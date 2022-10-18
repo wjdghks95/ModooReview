@@ -37,8 +37,8 @@ public class UserLoginRememberMeService extends AbstractRememberMeServices {
     @Override
     protected void onLoginSuccess(HttpServletRequest request, HttpServletResponse response, Authentication successfulAuthentication) {
 
-        Member member = (Member) successfulAuthentication.getPrincipal();
-        String username = member.getEmail();
+        MemberContext principal = (MemberContext) successfulAuthentication.getPrincipal();
+        String username = principal.getMember().getEmail();
         String newSeriesValue = generateTokenValue();
         String newTokenValue = generateTokenValue();
 
@@ -111,7 +111,7 @@ public class UserLoginRememberMeService extends AbstractRememberMeServices {
     @Override
     protected Authentication createSuccessfulAuthentication(HttpServletRequest request, UserDetails user) {
         MemberContext memberContext = (MemberContext) user;
-        RememberMeAuthenticationToken auth = new RememberMeAuthenticationToken(this.key, memberContext.getMember(), memberContext.getAuthorities());
+        RememberMeAuthenticationToken auth = new RememberMeAuthenticationToken(this.key, memberContext, memberContext.getAuthorities());
         auth.setDetails(this.authenticationDetailsSource.buildDetails(request));
         return auth;
     }
@@ -121,8 +121,8 @@ public class UserLoginRememberMeService extends AbstractRememberMeServices {
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         super.logout(request, response, authentication);
         if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            this.tokenRepository.removeUserTokens(((Member) principal).getEmail());
+            MemberContext principal = (MemberContext) authentication.getPrincipal();
+            this.tokenRepository.removeUserTokens(principal.getMember().getEmail());
         }
     }
 

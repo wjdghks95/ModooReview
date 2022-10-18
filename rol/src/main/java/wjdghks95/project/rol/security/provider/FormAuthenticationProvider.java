@@ -30,7 +30,7 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("BadCredentialsException");
         }
 
-        return new UsernamePasswordAuthenticationToken(memberContext.getMember(), null, memberContext.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(memberContext, null, memberContext.getAuthorities());
     }
 
     @Override

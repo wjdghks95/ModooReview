@@ -8,13 +8,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import wjdghks95.project.rol.security.provider.FormAuthenticationProvider;
+import wjdghks95.project.rol.security.service.CustomOAuth2UserService;
 import wjdghks95.project.rol.security.service.FormUserDetailService;
 import wjdghks95.project.rol.security.service.UserLoginRememberMeService;
 
@@ -27,6 +28,7 @@ public class SecurityConfig {
     private final FormAuthenticationProvider formAuthenticationProvider;
     private final DataSource dataSource;
     private final FormUserDetailService formUserDetailService;
+    private final CustomOAuth2UserService oAuth2UserService;
 
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
@@ -63,7 +65,13 @@ public class SecurityConfig {
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(3600)
-                .rememberMeServices(rememberMeServices(tokenRepository()));
+                .rememberMeServices(rememberMeServices(tokenRepository()))
+
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oAuth2UserService);
 
         return http.build();
     }
