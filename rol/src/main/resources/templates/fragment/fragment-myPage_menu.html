@@ -1,0 +1,20 @@
+<aside class="mypage-side-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="menu">
+    <ul class="mypage-side-menu__list">
+        <li class="mypage-side-menu__item active">
+            <a href="../html/myPage-profile.html" th:href="@{'/myPage/profile/'+${#authentication.principal.member.id}}" class="mypage-side-menu__link">프로필</a>
+        </li>
+        <li class="mypage-side-menu__item">
+            <a href="../html/myPage-myreview.html" class="mypage-side-menu__link">나의 리뷰</a>
+        </li>
+        <li class="mypage-side-menu__item">
+            <a href="#" class="mypage-side-menu__link">좋아요</a>
+        </li>
+        <li class="mypage-side-menu__item">
+            <a href="#" class="mypage-side-menu__link">팔로우</a>
+        </li>
+        <li class="mypage-side-menu__item">
+            <a href="../html/myPage-withdrawal.html" class="mypage-side-menu__link">회원 탈퇴</a>
+        </li>
+    </ul>
+</aside>
+<!-- myPage-side-menu -->

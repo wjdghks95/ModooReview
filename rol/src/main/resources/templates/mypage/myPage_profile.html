@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/myPage.css" th:href="@{/css/myPage.css}">
+    <title>프로필</title>
+</head>
+<body>
+    <header th:insert="~{fragment/fragment-header :: header}"></header>
+
+    <main class="profile">
+        <section class="profile-info">
+            <div class="profile-info__container container">
+
+                <aside th:insert="~{fragment/fragment-myPage_menu :: menu}"></aside>
+                <!-- myPage-side-menu -->
+
+                <article class="section__content" th:object="${member}">
+                    <header class="section__headings">
+                        <h2 class="section__heading">프로필</h2>
+                    </header>
+                    <ul class="profile-info__list">
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">사진</div>
+                            <div class="profile-info__field-text">사진을 등록하세요</div>
+                            <figure class="profile-info__field-image">
+                                <img src="/img/profile.png" th:if="*{profileImage} == null" th:src="'data:image/png;base64,' + ${defaultProfileImage}">
+                                <img src="/img/profile.png" th:unless="*{profileImage} == null" th:src="*{profileImage}">
+                            </figure>
+                        </li>
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">이름</div>
+                            <div class="profile-info__field-text" th:text="*{name}">NAME</div>
+                        </li>
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">닉네임</div>
+                            <div class="profile-info__field-text" th:text="*{nickname}">NICKNAME</div>
+                            <div class="profile-info__field-button">
+                                <button type="button" class="default-btn">변경</button>
+                            </div>
+                        </li>
+                    </ul>      
+                </article> 
+            </div>
+        </section>
+        <!-- myPage-profile -->
+    </main>
+
+    <footer th:insert="~{fragment/fragment-footer :: footer}"></footer>
+</body>
+</html>

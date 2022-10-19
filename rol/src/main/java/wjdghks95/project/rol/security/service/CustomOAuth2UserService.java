@@ -1,6 +1,9 @@
 package wjdghks95.project.rol.security.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.compress.utils.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,10 +20,10 @@ import wjdghks95.project.rol.security.oauth.KakaoUserInfo;
 import wjdghks95.project.rol.security.oauth.NaverUserInfo;
 import wjdghks95.project.rol.security.oauth.OAuth2UserInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +58,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String picture = oAuth2UserInfo.getPicture();
 
         Member member = memberRepository.findByEmail(email).orElseGet(() -> {
+
             Member newMember = Member.builder()
                     .phone(phone)
                     .email(email)
@@ -64,7 +68,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                     .zipcode(zipcode)
                     .address(address)
                     .detailAddress(detailAddress)
-                    .profileImage(picture)
+                    .profileImage(picture != null ? picture : null)
                     .role("USER")
                     .build();
             return memberRepository.save(newMember);

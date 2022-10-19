@@ -1,14 +1,13 @@
 package wjdghks95.project.rol.domain.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import wjdghks95.project.rol.domain.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Base64;
 
 @Entity
 @Getter
@@ -34,6 +33,7 @@ public class Member extends BaseEntity {
 
     private String phone;
 
+    @Lob
     private String profileImage;
 
     private String role;

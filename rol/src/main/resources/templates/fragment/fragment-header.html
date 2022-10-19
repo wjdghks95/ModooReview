@@ -14,8 +14,8 @@
           <li class="header__menu-item">
             <a href="../html/contents.html" class="header__menu-link">Contents</a>
           </li>
-          <li class="header__menu-item">
-            <a href="../html/myPage-profile.html" class="header__menu-link">MyPage</a>
+          <li class="header__menu-item" th:if="${#authorization.expr('isAuthenticated()')}">
+            <a href="../html/myPage-profile.html" th:href="@{'/myPage/profile/'+${#authentication.principal.member.id}}" class="header__menu-link">MyPage</a>
           </li>
         </ul>
         <ul class="header__util-buttons">
