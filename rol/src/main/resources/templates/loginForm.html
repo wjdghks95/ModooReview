@@ -59,6 +59,7 @@
                                     <a href="#">비밀번호 찾기</a>
                                 </div>
                             </div>
+                            <p th:if="${error}" th:text="${errorMessage}" class="error-message">알수 없는 이유로 로그인에 실패하였습니다. 관리자에게 문의하세요.</p>
                         </form>
                     </article>
                     <article class="login-form-type">
@@ -69,17 +70,17 @@
                         <ul class="login-form-type__oauth2">
                             <li class="login-form__oauth2-provider">
                                 <a href="/oauth2/authorization/kakao" class="login-form__oauth2-link">
-                                    <img src="../icon/kakaotalk.png" alt="kakaotalk">
+                                    <img src="../icon/kakaotalk.png" th:src="@{/icon/kakaotalk.png}" alt="kakaotalk">
                                 </a>
                             </li>
                             <li class="login-form__oauth2-provider">
                                 <a href="/oauth2/authorization/naver" class="login-form__oauth2-link">
-                                    <img src="../icon/naver.png" alt="naver">
+                                    <img src="../icon/naver.png" th:src="@{/icon/naver.png}" alt="naver">
                                 </a>
                             </li>
                             <li class="login-form__oauth2-provider">
                                 <a href="/oauth2/authorization/google" class="login-form__oauth2-link" style="transform: scale(1.1);">
-                                    <img src="../icon/google.svg" alt="google">
+                                    <img src="../icon/google.svg" th:src="@{/icon/google.svg}" alt="google">
                                 </a>
                             </li>
                         </ul>

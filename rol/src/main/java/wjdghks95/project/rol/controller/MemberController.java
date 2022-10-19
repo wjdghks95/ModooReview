@@ -14,6 +14,9 @@ import wjdghks95.project.rol.service.MemberService;
 import wjdghks95.project.rol.validator.MemberDuplicateValidator;
 import wjdghks95.project.rol.validator.AuthCheckValidator;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.URLEncoder;
+
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -32,7 +35,9 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String exception, Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("errorMessage", exception);
         return "loginForm";
     }
 
