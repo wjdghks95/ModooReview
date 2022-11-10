@@ -22,24 +22,29 @@ public class ContentsController {
     private final CategoryRepository categoryRepository;
 
     @GetMapping("/contents")
-    public String contents(@RequestParam(value = "category", required = false) String categoryVal, Model model,
-                           @PageableDefault(size = 12) Pageable pageable) {
+    public String contents(@PageableDefault(size = 12) Pageable pageable, Model model) {
 
         Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null);
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("page", new PageDto(reviewList.getTotalElements(), pageable));
 
-        if (!(categoryVal == null)) {
-            if (!categoryVal.equals("all")) {
-                Category category = categoryRepository.findByCategoryName(CategoryName.valueOf(categoryVal.toUpperCase())).orElseThrow();
-                reviewList = reviewQueryRepository.findReviewList(pageable, category.getId());
-                model.addAttribute("reviewList", reviewList);
-                model.addAttribute("page", new PageDto(reviewList.getTotalElements(), pageable));
-            }
+        return "/contents/contents";
+    }
 
-            return "/contents/res_contents";
+    @GetMapping("/api/contents")
+    public String contents(@RequestParam(value = "category") String categoryVal, Model model,
+                           @PageableDefault(size = 12) Pageable pageable) {
+
+        Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null);
+
+        if (!categoryVal.equals("all")) {
+            Category category = categoryRepository.findByCategoryName(CategoryName.valueOf(categoryVal.toUpperCase())).orElseThrow();
+            reviewList = reviewQueryRepository.findReviewList(pageable, category.getId());
         }
 
-        return "/contents/contents";
+        model.addAttribute("reviewList", reviewList);
+        model.addAttribute("page", new PageDto(reviewList.getTotalElements(), pageable));
+
+        return "/contents/res_contents";
     }
 }

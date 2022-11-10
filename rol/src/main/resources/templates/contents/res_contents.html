@@ -138,20 +138,20 @@
                 </div>
             </a>
             <div class="category__content-title">
-                <a href="#" class="category__content-tag">#태그1</a>
+                <a href="#" class="category__content-tag"  th:each="reviewTag : ${review.getReviewTag()}" th:text="'#'+${reviewTag.tag.name}">#태그1</a>
             </div>
         </li>
     </ul>
     <!-- content--board -->
 
     <div class="pagination">
-        <a href="javascript:void(0);" class="pagination-btn pagination-prev-btn" onclick="location.href='contents.html'"
-           th:onclick="|javascript:paging('${page.getCurPage()-1}')|" th:style="${page.isPrev() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Prev</a>
-        <a href="javascript:void(0);" class="pagination-btn" onclick="location.href='contents.html'"
-           th:each="num, index: ${#numbers.sequence(page.getStartPage(), page.getEndPage())}"
-           th:onclick="|javascript:paging('${index.current-1}')|" th:text="${num}" th:classappend="${page.getCurPage()+1} == ${num} ? active">1</a>
-        <a href="javascript:void(0);" class="pagination-btn pagination-next-btn" onclick="location.href='contents.html'"
-           th:onclick="|javascript:paging('${page.getCurPage()+1}')|" th:style="${page.isNext() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Next</a>
+        <button type="button" class="pagination-btn pagination-prev-btn" onclick="location.href='contents.html'"
+                th:onclick="|javascript:paging('${page.getCurPage()-1}')|" th:style="${page.isPrev() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Prev</button>
+        <button type="button" class="pagination-btn" onclick="location.href='contents.html'"
+                th:each="num, index: ${#numbers.sequence(page.getStartPage(), page.getEndPage())}"
+                th:onclick="|javascript:paging('${index.current-1}')|" th:text="${num}" th:classappend="${page.getCurPage()+1} == ${num} ? active">1</button>
+        <button class="pagination-btn pagination-next-btn" onclick="location.href='contents.html'"
+                th:onclick="|javascript:paging('${page.getCurPage()+1}')|" th:style="${page.isNext() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Next</button>
     </div>
     <!-- pagination -->
 </article>

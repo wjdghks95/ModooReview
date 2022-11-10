@@ -28,15 +28,16 @@ public class ReviewQueryRepositoryImpl implements ReviewQueryRepository{
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        JPAQuery<Long> count = getCount();
+        JPAQuery<Long> count = getCount(id);
 
         return PageableExecutionUtils.getPage(reviewList, pageable, () -> count.fetchOne());
     }
 
-    private JPAQuery<Long> getCount() {
+    private JPAQuery<Long> getCount(Long id) {
         return queryFactory
                 .select(review.count())
-                .from(review);
+                .from(review)
+                .where(categoryCon(id));
     }
 
     private BooleanExpression categoryCon(Long id) {

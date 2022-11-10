@@ -24,21 +24,10 @@ category.addEventListener("click", (e) => {
             categoryBtn.classList.remove("active");
         })
         target.classList.add("active");
-
-        const categoryVal = target.value;
-        const url = new URL(window.location.href);
-        const page = url.searchParams.get('page') == null ? 0 : url.searchParams.get('page');
-        fn_go_page(page, categoryVal);
     }
 })
 
-// pagination
-function paging(pageNo) {
-    const url = new URL(window.location.href);
-    const categoryName = url.searchParams.get('category') == null ? "all" : url.searchParams.get('category');
-    fn_go_page(pageNo, categoryName);
-}
-
+// content view
 function view(viewerBtns, contents) {
     for(let i=0; i<viewerBtns.length; i++) {
 
@@ -58,16 +47,20 @@ function view(viewerBtns, contents) {
     }
 }
 
-function fn_go_page(pageNo, categoryVal) {
-    const pageIndex = pageNo;
-    const categoryName = categoryVal;
+// pagination
+function paging(curPage, categoryVal) {
+    const getCategory = new URL(window.location.href).searchParams.get("category");
+    const categoryParam = getCategory !== null ? getCategory : "all";
+    const categoryName = !categoryVal ? categoryParam : categoryVal;
 
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", `/contents?category=${categoryName}&page=${pageIndex}`, true);
+    const url = `/contents?category=${categoryName}&page=${curPage}`;
+    xhr.open("GET", "/api" + url, true);
     xhr.send();
     xhr.onload = (data) => {
         const content = document.querySelector("#content");
         content.innerHTML = data.target.response;
+        history.pushState(null, null, url);
 
         viewerBtns = document.querySelectorAll('.viewer-btn');
         contents = document.querySelectorAll('.category__content');

@@ -38,43 +38,43 @@
                     <div class="category-swiper">
                         <ul class="category__list swiper-wrapper">
                             <li class="category__item swiper-slide">
-                                <button class="category-btn active" value="all">전체</button>
+                                <button class="category-btn active" value="all" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">전체</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="food">식품</button>
+                                <button class="category-btn" value="food" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">식품</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="cosmetic">미용/코스메틱</button>
+                                <button class="category-btn" value="cosmetic" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">미용/코스메틱</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="fashion">패션/잡화</button>
+                                <button class="category-btn" value="fashion" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">패션/잡화</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="nursing">출산/육아</button>
+                                <button class="category-btn" value="nursing" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">출산/육아</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="digital">디지털/가전</button>
+                                <button class="category-btn" value="digital" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">디지털/가전</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="sports">스포츠/건강</button>
+                                <button class="category-btn" value="sports" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">스포츠/건강</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="pet">반려동물</button>
+                                <button class="category-btn" value="pet" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">반려동물</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="restaurant">맛집</button>
+                                <button class="category-btn" value="restaurant" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">맛집</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="travel">여행/숙박</button>
+                                <button class="category-btn" value="travel" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">여행/숙박</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="culture">지역/문화</button>
+                                <button class="category-btn" value="culture" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">지역/문화</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="interior">지역/문화</button>
+                                <button class="category-btn" value="interior" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">지역/문화</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <button class="category-btn" value="etc">기타</button>
+                                <button class="category-btn" value="etc" th:onclick="|javascript:paging('${page.getCurPage()}', this.value)|">기타</button>
                             </li>
                         </ul>
                         <div class="swiper-button-next"></div>
@@ -238,14 +238,16 @@
                             </div>
                         </li>
                     </ul>
+                    <!-- content--board -->
+
                     <div class="pagination">
-                        <a href="javascript:void(0);" class="pagination-btn pagination-prev-btn" onclick="location.href='contents.html'"
-                            th:onclick="|javascript:paging('${page.getCurPage()-1}')|" th:style="${page.isPrev() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Prev</a>
-                        <a href="javascript:void(0);" class="pagination-btn" onclick="location.href='contents.html'"
+                        <button type="button" class="pagination-btn pagination-prev-btn" onclick="location.href='contents.html'"
+                            th:onclick="|javascript:paging('${page.getCurPage()-1}')|" th:style="${page.isPrev() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Prev</button>
+                        <button type="button" class="pagination-btn" onclick="location.href='contents.html'"
                             th:each="num, index: ${#numbers.sequence(page.getStartPage(), page.getEndPage())}"
-                            th:onclick="|javascript:paging('${index.current-1}')|" th:text="${num}" th:classappend="${page.getCurPage()+1} == ${num} ? active">1</a>
-                        <a href="javascript:void(0);" class="pagination-btn pagination-next-btn" onclick="location.href='contents.html'"
-                            th:onclick="|javascript:paging('${page.getCurPage()+1}')|" th:style="${page.isNext() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Next</a>
+                                th:onclick="|javascript:paging('${index.current-1}')|" th:text="${num}" th:classappend="${page.getCurPage()+1} == ${num} ? active">1</button>
+                        <button class="pagination-btn pagination-next-btn" onclick="location.href='contents.html'"
+                            th:onclick="|javascript:paging('${page.getCurPage()+1}')|" th:style="${page.isNext() == false ? 'pointer-events:none' : 'pointer-events:auto'}">Next</button>
                     </div>
                     <!-- pagination -->
                 </article>
