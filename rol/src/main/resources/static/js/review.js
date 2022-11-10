@@ -32,11 +32,10 @@ likeBtn.addEventListener('click', () => {
     if(likeBtn.classList.contains('anonymous')) {
         alert('좋아요는 로그인 후에 이용가능합니다.');
     } else {
-        const url = window.location.href;
-        const id = url.substring(url.length-1); // review id
+        const id = likeBtn.getAttribute("data-id");
 
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", `/review/${id}/like`, true);
+        xhr.open("GET", `/api/review/like/${id}`, true);
         xhr.send();
         xhr.onload = (data) => {
             const likeImg = likeBtn.querySelector('.like-btn');

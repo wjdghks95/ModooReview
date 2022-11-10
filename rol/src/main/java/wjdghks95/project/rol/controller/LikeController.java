@@ -21,7 +21,7 @@ public class LikeController {
     private final MemberRepository memberRepository;
     private final ReviewService reviewService;
 
-    @GetMapping("/review/{id}/like")
+    @GetMapping("/api/review/like/{id}")
     public int like(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberRepository.findById(memberContext.getMember().getId()).orElseThrow();
         Review review = reviewRepository.findById(id).orElseThrow();
