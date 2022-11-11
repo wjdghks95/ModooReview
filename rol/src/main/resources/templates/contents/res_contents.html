@@ -1,4 +1,4 @@
-<article class="section__content" id="content" xmlns:th="http://www.thymeleaf.org">
+<article class="section__content" id="content">
     <ul class="category__content category__content--gallery">
         <li class="category__content-item" th:each="review : ${reviewList}">
             <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="category__content-link">

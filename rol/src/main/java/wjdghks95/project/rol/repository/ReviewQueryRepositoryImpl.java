@@ -24,6 +24,7 @@ public class ReviewQueryRepositoryImpl implements ReviewQueryRepository{
     public Page<Review> findReviewList(Pageable pageable, Long id, String keyword) {
         List<Review> reviewList = queryFactory.selectFrom(review)
                 .where(categoryCon(id), titleCon(keyword))
+                .orderBy(review.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
