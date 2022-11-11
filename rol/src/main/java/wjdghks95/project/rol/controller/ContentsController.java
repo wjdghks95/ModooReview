@@ -22,9 +22,10 @@ public class ContentsController {
     private final CategoryRepository categoryRepository;
 
     @GetMapping("/contents")
-    public String contents(@PageableDefault(size = 12) Pageable pageable, Model model) {
+    public String contents(@PageableDefault(size = 12) Pageable pageable, Model model,
+                           @RequestParam(required = false, defaultValue = "") String keyword) {
 
-        Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null);
+        Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null, keyword);
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("page", new PageDto(reviewList.getTotalElements(), pageable));
 
@@ -33,13 +34,13 @@ public class ContentsController {
 
     @GetMapping("/api/contents")
     public String contents(@RequestParam(value = "category") String categoryVal, Model model,
-                           @PageableDefault(size = 12) Pageable pageable) {
+                           @PageableDefault(size = 12) Pageable pageable, @RequestParam(required = false, defaultValue = "") String keyword) {
 
-        Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null);
+        Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null, keyword);
 
         if (!categoryVal.equals("all")) {
             Category category = categoryRepository.findByCategoryName(CategoryName.valueOf(categoryVal.toUpperCase())).orElseThrow();
-            reviewList = reviewQueryRepository.findReviewList(pageable, category.getId());
+            reviewList = reviewQueryRepository.findReviewList(pageable, category.getId(), keyword);
         }
 
         model.addAttribute("reviewList", reviewList);

@@ -21,26 +21,30 @@ public class ReviewQueryRepositoryImpl implements ReviewQueryRepository{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<Review> findReviewList(Pageable pageable, Long id) {
+    public Page<Review> findReviewList(Pageable pageable, Long id, String keyword) {
         List<Review> reviewList = queryFactory.selectFrom(review)
-                .where(categoryCon(id))
+                .where(categoryCon(id), titleCon(keyword))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        JPAQuery<Long> count = getCount(id);
+        JPAQuery<Long> count = getCount(id, keyword);
 
         return PageableExecutionUtils.getPage(reviewList, pageable, () -> count.fetchOne());
     }
 
-    private JPAQuery<Long> getCount(Long id) {
+    private JPAQuery<Long> getCount(Long id, String keyword) {
         return queryFactory
                 .select(review.count())
                 .from(review)
-                .where(categoryCon(id));
+                .where(categoryCon(id), titleCon(keyword));
     }
 
     private BooleanExpression categoryCon(Long id) {
         return id != null ? review.category.id.eq(id) : null;
+    }
+
+    private BooleanExpression titleCon(String keyword) {
+        return keyword != null ? review.title.contains(keyword) : null;
     }
 }

@@ -51,10 +51,14 @@ function view(viewerBtns, contents) {
 function paging(curPage, categoryVal) {
     const getCategory = new URL(window.location.href).searchParams.get("category");
     const categoryParam = getCategory !== null ? getCategory : "all";
+
     const categoryName = !categoryVal ? categoryParam : categoryVal;
 
+    const getKeyword = new URL(window.location.href).searchParams.get("keyword");
+    let keyword = getKeyword !== null ? getKeyword : "";
+
     const xhr = new XMLHttpRequest();
-    const url = `/contents?category=${categoryName}&page=${curPage}`;
+    const url = `/contents?category=${categoryName}&page=${curPage}&keyword=${keyword}`;
     xhr.open("GET", "/api" + url, true);
     xhr.send();
     xhr.onload = (data) => {
