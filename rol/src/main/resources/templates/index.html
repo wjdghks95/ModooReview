@@ -87,342 +87,170 @@
                     <div class="swiper best-review-swiper">
                         <div class="swiper-wrapper">
                             <ul class="best-review__list swiper-slide">
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
+                                <li class="best-review__item" th:each="review, reviewStat : ${orderByLikeCount}" th:if="${reviewStat.count} <= 4">
+                                    <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="best-review__link">
                                         <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
+                                            <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
                                         </div>
                                         <div class="best-review__body">
-                                            <h4>리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                            <h4 th:text="${review.title}">리뷰입니다.</h4>
+                                            <div class="rating" th:switch="${review.rating}">
+                                                <div class="rating__star" th:case=0>
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=1>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=2>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=3>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=4>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=5>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">4.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">3.0</span>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="best-review__list swiper-slide">
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
+                            <ul class="best-review__list swiper-slide" th:if="${orderByLikeCount.size} > 4">
+                                <li class="best-review__item" th:each="review, reviewStat : ${orderByLikeCount}"
+                                    th:if="${reviewStat.count} >= 5 and ${reviewStat.count} <= 8">
+                                    <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="best-review__link">
                                         <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
+                                            <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
                                         </div>
                                         <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                            <h4 th:text="${review.title}">리뷰입니다.</h4>
+                                            <div class="rating" th:switch="${review.rating}">
+                                                <div class="rating__star" th:case=0>
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=1>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=2>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=3>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=4>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=5>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">4.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">3.0</span>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="best-review__list swiper-slide">
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
+                            <ul class="best-review__list swiper-slide" th:if="${orderByLikeCount.size} > 8">
+                                <li class="best-review__item" th:each="review, reviewStat : ${orderByLikeCount}"
+                                    th:if="${reviewStat.count} >= 9 and ${reviewStat.count} <= 12">
+                                    <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="best-review__link">
                                         <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
+                                            <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
                                         </div>
                                         <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                            <h4 th:text="${review.title}">리뷰입니다.</h4>
+                                            <div class="rating" th:switch="${review.rating}">
+                                                <div class="rating__star" th:case=0>
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=1>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=2>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=3>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=4>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
                                                 </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
+                                                <div class="rating__star" th:case=5>
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
                                                 </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">5.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">4.0</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="best-review__item">
-                                    <a href="review.html" class="best-review__link">
-                                        <div class="best-review__img-container">
-                                            <img src="../img/sample1.jpg" alt="썸네일">
-                                        </div>
-                                        <div class="best-review__body">
-                                            <h4>리뷰입니다.</h4>
-                                            <div class="rating">
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-solid.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <div class="rating__star">
-                                                    <img src="../icon/star-regular.svg" alt="star">
-                                                </div>
-                                                <span class="rating__score">3.0</span>
                                             </div>
                                         </div>
                                     </a>
@@ -443,23 +271,34 @@
                 </header>
                 <div class="switch-area">
                     <div class="switch">
-                        <input type="radio" class="switch-input" name="view" value="latest" id="latest" checked>
-                        <label for="latest" class="switch-label switch-label-off">최신순</label>
-                        <input type="radio" class="switch-input" name="view" value="popularity" id="popularity">
-                        <label for="popularity" class="switch-label switch-label-on">인기순</label>
+                        <input type="radio" class="switch-input" onclick="check(this)" name="view" value="latest" id="latest-button" checked>
+                        <label for="latest-button" class="switch-label switch-label-off">최신순</label>
+                        <input type="radio" class="switch-input" onclick="check(this)" name="view" value="popularity" id="popularity-button">
+                        <label for="popularity-button" class="switch-label switch-label-on">인기순</label>
                         <span class="switch-selection"></span>
                     </div>
                 </div>
-                <article class="section__content">
-                    <ul class="hot-review__list">
-                        <li class="hot-review__item">
-                            <a href="review.html" class="hot-review__link">
-                                <img src="../img/sample1.jpg" alt="썸네일">
+                <article class="section__content latest__content">
+                    <ul class="latest-review__list">
+                        <li class="latest-review__item" th:each="review, reviewStat : ${orderByCreatedDate}" th:if="${reviewStat.count} <= 8">
+                            <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="latest-review__link">
+                                <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
                             </a>
                         </li>
                     </ul>
                 </article>
+                <!-- latest-review -->
 
+                <article class="section__content hot__content">
+                    <ul class="hot-review__list">
+                        <li class="hot-review__item" th:each="review, reviewStat : ${orderByCountVisit}" th:if="${reviewStat.count} <= 8">
+                            <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="hot-review__link">
+                                <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+                <!-- hot-review -->
             </div>
         </section>
         <!-- hot-review -->

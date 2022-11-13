@@ -1,6 +1,8 @@
 package wjdghks95.project.rol.repository;
 
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
+import wjdghks95.project.rol.domain.entity.QReview;
 import wjdghks95.project.rol.domain.entity.Review;
 
 import java.util.List;
@@ -32,6 +35,13 @@ public class ReviewQueryRepositoryImpl implements ReviewQueryRepository{
         JPAQuery<Long> count = getCount(id, keyword);
 
         return PageableExecutionUtils.getPage(reviewList, pageable, () -> count.fetchOne());
+    }
+
+    @Override
+    public List<Review> findAllByOrder(OrderSpecifier<?> orderSpecifier) {
+        return queryFactory.selectFrom(review)
+                .orderBy(orderSpecifier)
+                .fetch();
     }
 
     private JPAQuery<Long> getCount(Long id, String keyword) {

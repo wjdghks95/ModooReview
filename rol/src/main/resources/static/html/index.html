@@ -474,14 +474,25 @@
                 </header>
                 <div class="switch-area">
                     <div class="switch">
-                        <input type="radio" class="switch-input" name="view" value="latest" id="latest" checked>
-                        <label for="latest" class="switch-label switch-label-off">최신순</label>
-                        <input type="radio" class="switch-input" name="view" value="popularity" id="popularity">
-                        <label for="popularity" class="switch-label switch-label-on">인기순</label>                        
+                        <input type="radio" class="switch-input" onclick="check(this)" name="view" value="latest" id="latest-button" checked>
+                        <label for="latest-button" class="switch-label switch-label-off">최신순</label>
+                        <input type="radio" class="switch-input" onclick="check(this)" name="view" value="popularity" id="popularity-button">
+                        <label for="popularity-button" class="switch-label switch-label-on">인기순</label>                        
                         <span class="switch-selection"></span>
                     </div>
                 </div>
-                <article class="section__content">
+                <article class="section__content latest__content">
+                    <ul class="latest-review__list">
+                        <li class="latest-review__item">
+                            <a href="review.html" class="latest-review__link">
+                                <img src="../img/sample1.jpg" alt="썸네일">
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+                <!-- latest-review -->
+
+                <article class="section__content hot__content">
                     <ul class="hot-review__list">
                         <li class="hot-review__item">
                             <a href="review.html" class="hot-review__link">
@@ -490,10 +501,11 @@
                         </li>
                     </ul>
                 </article>
+                <!-- hot-review -->
                 
             </div>
         </section>
-        <!-- hot-review -->
+        
 
     </main>
     <!-- main -->
