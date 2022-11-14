@@ -14,6 +14,7 @@ import wjdghks95.project.rol.domain.dto.ReviewDto;
 import wjdghks95.project.rol.domain.entity.Comment;
 import wjdghks95.project.rol.domain.entity.Member;
 import wjdghks95.project.rol.domain.entity.Review;
+import wjdghks95.project.rol.repository.CommentRepository;
 import wjdghks95.project.rol.repository.MemberRepository;
 import wjdghks95.project.rol.repository.ReviewRepository;
 import wjdghks95.project.rol.security.service.MemberContext;
@@ -39,6 +40,7 @@ public class ReviewController {
     private final FileValidator fileValidator;
 
     private final CommentService commentService;
+    private final CommentRepository commentRepository;
 
     @InitBinder("reviewDto")
     public void reviewValidation(WebDataBinder dataBinder) {
@@ -118,6 +120,16 @@ public class ReviewController {
 
         List<Comment> comments = commentService.findComments(id);
         model.addAttribute("comments", comments);
+
+        return "redirect:/review/" + id;
+    }
+
+    @GetMapping("/comment/delete/{idx}")
+    public String delComment(@PathVariable Long idx) {
+        Comment comment = commentRepository.findById(idx).orElseThrow();
+        Long id = comment.getReview().getId();
+
+        commentService.deleteComment(comment);
 
         return "redirect:/review/" + id;
     }

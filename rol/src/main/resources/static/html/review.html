@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/review.css">
-    <script src="../js/detail-review.js" defer></script>
+    <script src="../js/review.js" defer></script>
     <title>Title</title>
 </head>
 <body>
@@ -138,7 +138,25 @@
                                 <span class="comments__author-nickname">nickname</span>
                             </a>
                         </div>
-                        <div class="comments__comment-content">댓글</div>
+                        <div class="comments__comment-content">
+                            <span class="comments__comment-text">댓글</span>
+                            <div class="comments__delete-button">
+                                <button class="default-btn comments__delete-btn">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments__comment">
+                        <div class="comments__author">
+                            <a href="#" class="comments__author-link">
+                                <div class="comments__author-image">
+                                    <img src="../img/profile.png" onerror="this.src='/images/profile'">
+                                </div>
+                                <span class="comments__author-nickname">nickname</span>
+                            </a>
+                        </div>
+                        <div class="comments__comment-content">
+                            <span class="comments__comment-text">댓글</span>
+                        </div>
                     </div>
                 </article>
             </div>

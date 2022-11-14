@@ -12,4 +12,6 @@ public interface CommentService {
     Comment add(CommentDto commentDto, Member member, Review review);
 
     List<Comment> findComments(Long reviewId);
+
+    void deleteComment(Comment comment);
 }

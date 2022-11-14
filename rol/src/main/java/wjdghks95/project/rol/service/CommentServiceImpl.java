@@ -36,5 +36,11 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findComments(reviewId);
     }
 
+    @Transactional
+    @Override
+    public void deleteComment(Comment comment) {
+        commentRepository.delete(comment);
+    }
+
 
 }

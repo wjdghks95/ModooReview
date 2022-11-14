@@ -152,7 +152,12 @@
                                 <span class="comments__author-nickname" th:text="${comment.member.nickname}">nickname</span>
                             </a>
                         </div>
-                        <div class="comments__comment-content" th:text="${comment.content}">댓글</div>
+                        <div class="comments__comment-content">
+                            <span class="comments__comment-text" th:text="${comment.content}">댓글</span>
+                            <div class="comments__delete-button" th:data-index="${comment.id}" th:if="${comment.member.id} == ${member.id}" sec:authorize="isAuthenticated()">
+                                <button class="default-btn comments__delete-btn">삭제</button>
+                            </div>
+                        </div>
                     </div>
                 </article>
             </div>

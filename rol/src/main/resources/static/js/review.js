@@ -47,3 +47,14 @@ likeBtn.addEventListener('click', () => {
         }
     }
 });
+
+// comment delete
+const comDeleteBtns = document.querySelectorAll('.comments__delete-button');
+if(comDeleteBtns !== null) {
+    comDeleteBtns.forEach(comDeleteBtn => {
+        comDeleteBtn.addEventListener('click', () => {
+            const idx = comDeleteBtn.getAttribute('data-index');
+            location.href = `/review/comment/delete/${idx}`;
+        })
+    })
+}

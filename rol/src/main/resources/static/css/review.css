@@ -197,6 +197,20 @@
 }
 
 .comments__comment-content {
-    padding: 1rem .625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8rem .625rem;
+    height: 3.75rem;
+}
+
+.comments__comment-text {
+    display: inline-block;
     word-wrap: break-word;
+    word-break: break-word;
+}
+
+.comments__delete-btn {
+    padding: .5rem 1rem;
+    font-size: var(--font-micro);
 }
