@@ -56,18 +56,48 @@ function paging(curPage, categoryVal) {
 
     const getKeyword = new URL(window.location.href).searchParams.get("keyword");
     let keyword = getKeyword !== null ? getKeyword : "";
-
-    const xhr = new XMLHttpRequest();
+    
     const url = `/contents?category=${categoryName}&page=${curPage}&keyword=${keyword}`;
+
+    drawContent(url);
+    history.pushState(null, null, url);
+}
+
+function drawContent(url) {
+    const xhr = new XMLHttpRequest();
     xhr.open("GET", "/api" + url, true);
     xhr.send();
     xhr.onload = (data) => {
         const content = document.querySelector("#content");
         content.innerHTML = data.target.response;
-        history.pushState(null, null, url);
 
         viewerBtns = document.querySelectorAll('.viewer-btn');
         contents = document.querySelectorAll('.category__content');
         view(viewerBtns, contents);
     }
 }
+
+// popstate
+window.addEventListener('popstate', () => {
+    const href = location.href;
+    const beginIndex = href.indexOf("/contents");
+    const url = href.substring(beginIndex);
+    
+    drawContent(url);
+
+    const categoryVal = new URL(href).searchParams.get("category");
+
+    category.querySelectorAll('.category-btn').forEach(categoryBtn => {
+        categoryBtn.classList.remove("active");
+
+        if (categoryBtn.value === categoryVal) {
+            categoryBtn.classList.add("active");
+        }
+
+        if (categoryVal === null) {
+            categoryBtn.value === 'all' ? categoryBtn.classList.add("active") : categoryBtn.classList.remove("active");
+        }
+    })
+})
+
+

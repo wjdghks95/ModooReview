@@ -33,7 +33,7 @@ public class ContentsController {
     }
 
     @GetMapping("/api/contents")
-    public String contents(@RequestParam(value = "category") String categoryVal, Model model,
+    public String contents(@RequestParam(value = "category", defaultValue = "all") String categoryVal, Model model,
                            @PageableDefault(size = 12) Pageable pageable, @RequestParam(required = false, defaultValue = "") String keyword) {
 
         Page<Review> reviewList = reviewQueryRepository.findReviewList(pageable, null, keyword);
