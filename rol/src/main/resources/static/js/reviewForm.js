@@ -79,8 +79,8 @@ tagInput.addEventListener("keypress", (e) => {
 })
 
 function createTag() {
-    if (tagList.childElementCount >= 10) {
-            alert('태그는 10개까지만 추가할 수 있습니다.');
+    if (tagList.childElementCount >= 5) {
+            alert('태그는 5개까지만 추가할 수 있습니다.');
     } else {
         let tagVal = tagInput.value; // 값 가져오기
 
@@ -154,8 +154,8 @@ function getImageFile(e) {
         return;
     }
 
-    if (count > 10) {
-        alert('이미지는 최대 10개까지 업로드가 가능합니다.');
+    if (count > 5) {
+        alert('이미지는 최대 5개까지 업로드가 가능합니다.');
         return;
     }
 
