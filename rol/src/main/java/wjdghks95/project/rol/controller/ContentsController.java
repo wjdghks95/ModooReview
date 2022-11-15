@@ -9,17 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wjdghks95.project.rol.domain.dto.PageDto;
-import wjdghks95.project.rol.domain.entity.Category;
-import wjdghks95.project.rol.domain.entity.CategoryName;
-import wjdghks95.project.rol.domain.entity.Review;
+import wjdghks95.project.rol.domain.entity.*;
 import wjdghks95.project.rol.repository.CategoryRepository;
 import wjdghks95.project.rol.repository.ReviewQueryRepository;
+import wjdghks95.project.rol.repository.ReviewTagRepository;
+import wjdghks95.project.rol.repository.TagRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 public class ContentsController {
     private final ReviewQueryRepository reviewQueryRepository;
     private final CategoryRepository categoryRepository;
+    private final TagRepository tagRepository;
+    private final ReviewTagRepository reviewTagRepository;
 
     @GetMapping("/contents")
     public String contents(@PageableDefault(size = 12) Pageable pageable, Model model,
@@ -47,5 +52,17 @@ public class ContentsController {
         model.addAttribute("page", new PageDto(reviewList.getTotalElements(), pageable));
 
         return "/contents/res_contents";
+    }
+
+    @GetMapping("/contents/hashTag")
+    public String hashTag(@RequestParam String tagName, Model model) {
+        Tag tag = tagRepository.findByName(tagName).orElseThrow();
+        List<ReviewTag> reviewTagList = reviewTagRepository.findAllReviewTag(tag);
+        List<Review> reviewList = reviewTagList.stream().map(reviewTag -> reviewTag.getReview()).collect(Collectors.toList());
+
+        model.addAttribute("reviewList", reviewList);
+        model.addAttribute("tagName", tagName);
+
+        return "/contents/hashTag";
     }
 }

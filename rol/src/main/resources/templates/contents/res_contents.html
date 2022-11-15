@@ -1,4 +1,4 @@
-<article class="section__content" id="content">
+<article class="section__content" id="content"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <ul class="category__content category__content--gallery">
         <li class="category__content-item" th:each="review : ${reviewList}">
             <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="category__content-link">
@@ -138,7 +138,8 @@
                 </div>
             </a>
             <div class="category__content-title">
-                <a href="hashTag.html" class="category__content-tag"  th:each="reviewTag : ${review.getReviewTag()}" th:text="'#'+${reviewTag.tag.name}">#태그1</a>
+                <a href="hashTag.html" class="category__content-tag" th:href="@{/contents/hashTag(tagName=${reviewTag.tag.name})}"
+                   th:each="reviewTag : ${review.getReviewTag()}" th:text="'#'+${reviewTag.tag.name}">#태그1</a>
             </div>
         </li>
     </ul>

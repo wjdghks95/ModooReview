@@ -40,7 +40,8 @@
                         </div>
                         <ul class="detail-review__tags">
                             <li class="detail-review__tag" th:each="reviewTag : *{reviewTag}">
-                                <a href="hashTag.html" class="detail-review__tag-link" th:text="'#' + ${reviewTag.tag.name}">#태그</a>
+                                <a href="hashTag.html" th:href="@{/contents/hashTag(tagName=${reviewTag.tag.name})}"
+                                   class="detail-review__tag-link" th:text="'#' + ${reviewTag.tag.name}">#태그</a>
                             </li>
                         </ul>
                     </header>

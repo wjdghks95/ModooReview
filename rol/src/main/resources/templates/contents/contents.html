@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -234,7 +234,8 @@
                                 </div>
                             </a>
                             <div class="category__content-title">
-                                <a href="hashTag.html" class="category__content-tag"  th:each="reviewTag : ${review.getReviewTag()}" th:text="'#'+${reviewTag.tag.name}">#태그1</a>
+                                <a href="hashTag.html" th:href="@{/contents/hashTag(tagName=${reviewTag.tag.name})}"
+                                   class="category__content-tag"  th:each="reviewTag : ${review.getReviewTag()}" th:text="'#'+${reviewTag.tag.name}">#태그1</a>
                             </div>
                         </li>
                     </ul>
