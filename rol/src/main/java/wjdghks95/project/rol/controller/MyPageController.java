@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import wjdghks95.project.rol.domain.dto.MemberWithdrawalDto;
 import wjdghks95.project.rol.domain.dto.NicknameDto;
 import wjdghks95.project.rol.domain.entity.Follow;
@@ -18,6 +19,7 @@ import wjdghks95.project.rol.repository.MemberRepository;
 import wjdghks95.project.rol.security.service.MemberContext;
 import wjdghks95.project.rol.service.MemberService;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -41,8 +43,8 @@ public class MyPageController {
         return "myPage/myPage_profile";
     }
 
-    @PostMapping("/profile/{id}")
-    public String updateProfile(@PathVariable Long id, @ModelAttribute @Validated NicknameDto nicknameDto,
+    @PostMapping("/profile/{id}/nickname")
+    public String updateNickname(@PathVariable Long id, @ModelAttribute @Validated NicknameDto nicknameDto,
                                 BindingResult bindingResult, Model model) {
         Member member = memberRepository.findById(id).orElseThrow();
 
@@ -53,6 +55,14 @@ public class MyPageController {
 
         member.setNickname(nicknameDto.getNickname());
         memberRepository.save(member);
+
+        return "redirect:/myPage/profile/" + id;
+    }
+
+    @PostMapping("/profile/{id}/profileImg")
+    public String updateProfileImg(@PathVariable Long id, MultipartFile multipartFile) throws IOException {
+        Member member = memberRepository.findById(id).orElseThrow();
+        memberService.updateProfileImg(member, multipartFile);
 
         return "redirect:/myPage/profile/" + id;
     }

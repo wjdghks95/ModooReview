@@ -1,18 +1,21 @@
 package wjdghks95.project.rol.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import wjdghks95.project.rol.domain.dto.MemberDto;
 import wjdghks95.project.rol.domain.entity.Follow;
 import wjdghks95.project.rol.domain.entity.LikeEntity;
 import wjdghks95.project.rol.domain.entity.Member;
-import wjdghks95.project.rol.domain.entity.Review;
 import wjdghks95.project.rol.repository.FollowRepository;
 import wjdghks95.project.rol.repository.MemberRepository;
-import wjdghks95.project.rol.repository.ReviewRepository;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,5 +88,16 @@ public class MemberServiceImpl implements MemberService {
                     followRepository.save(follow);
                 }
         );
+    }
+
+    @Override
+    @Transactional
+    public void updateProfileImg(Member member, MultipartFile multipartFile) throws IOException {
+        InputStream is = multipartFile.getInputStream();
+        byte[] bytes = IOUtils.toByteArray(is); // to byte array
+        String img = Base64.getEncoder().encodeToString(bytes);
+
+        member.setProfileImage(img);
+        memberRepository.save(member);
     }
 }

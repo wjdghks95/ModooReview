@@ -19,3 +19,14 @@ modifyBtn.addEventListener('click', () => {
         cancelBtn.style.display = 'none';
     })
 })
+
+const imgBtn = document.querySelector('.profile-info__field-image');
+const fileInput = imgBtn.querySelector('input[type=file]');
+imgBtn.addEventListener('click', () => {
+    fileInput.click();
+})
+
+fileInput.addEventListener('change', (e) => {
+    const imgForm = document.querySelector('.profile-info__profileImg-form');
+    imgForm.submit();
+});

@@ -82,6 +82,9 @@
                             <div class="profile-info__field-text">사진을 등록하세요</div>
                             <figure class="profile-info__field-image">
                                 <img src="../img/profile.png" onerror="this.src='/images/profile'" alt="프로필">
+                                <form action="myPage_profile.html" method="post" enctype="multipart/form-data" class="profile-info__profileImg-form">
+                                    <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
+                                </form>
                             </figure>
                         </li>
                         <li class="profile-info__item">
