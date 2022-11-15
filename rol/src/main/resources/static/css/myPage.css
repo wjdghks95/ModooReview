@@ -48,20 +48,39 @@ section .section__content {
     color: var(--color-gray);
 }
 
-.profile-info__field-text {
-    flex-basis: 70%;
-}
-
 .profile-info__field-image {
     overflow: hidden;
+    margin-right: 4.75rem;
     width: 4.375rem;
     height: 4.375rem;
     border-radius: 50%;
     cursor: pointer;
 }
 
+.profile-info__field-text {
+    flex-basis: 65%;
+}
+
+.profile-info__nickname-form {
+    flex-basis: 62%;
+    display: none;
+}
+
+.profile-info__nickname-input {
+    width: 80%;
+}
+
 .profile-info__field-button {
-    width: 4.375rem;
+    display: flex;
+}
+
+.update-btn {
+    margin-right: .625rem;
+    display: none;
+}
+
+.cancel-btn {
+    display: none;
 }
 
 /* myReview */

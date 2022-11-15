@@ -71,7 +71,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                         .phone(phone)
                         .email(email)
                         .password(password)
-                        .name(name)
+                        .name(name != null ? name : "이름없음")
                         .nickname(nickname != null ? nickname : "닉네임" + UUID.randomUUID().toString().substring(0, 4))
                         .zipcode(zipcode)
                         .address(address)

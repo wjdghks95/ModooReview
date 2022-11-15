@@ -5,8 +5,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import wjdghks95.project.rol.domain.dto.MemberWithdrawalDto;
+import wjdghks95.project.rol.domain.dto.NicknameDto;
 import wjdghks95.project.rol.domain.entity.Follow;
 import wjdghks95.project.rol.domain.entity.LikeEntity;
 import wjdghks95.project.rol.domain.entity.Member;
@@ -25,7 +28,6 @@ public class MyPageController {
     private final MemberRepository memberRepository;
     private final MemberService memberService;
 
-
     @GetMapping("/profile/{id}")
     public String profile(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberRepository.findById(id).orElseThrow();
@@ -35,7 +37,24 @@ public class MyPageController {
         }
 
         model.addAttribute("member", member);
+        model.addAttribute("nicknameDto", new NicknameDto());
         return "myPage/myPage_profile";
+    }
+
+    @PostMapping("/profile/{id}")
+    public String updateProfile(@PathVariable Long id, @ModelAttribute @Validated NicknameDto nicknameDto,
+                                BindingResult bindingResult, Model model) {
+        Member member = memberRepository.findById(id).orElseThrow();
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("member", member);
+            return "myPage/myPage_profile";
+        }
+
+        member.setNickname(nicknameDto.getNickname());
+        memberRepository.save(member);
+
+        return "redirect:/myPage/profile/" + id;
     }
 
     @GetMapping("/myReview/{id}")
