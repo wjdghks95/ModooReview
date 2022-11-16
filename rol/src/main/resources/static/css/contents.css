@@ -80,6 +80,10 @@
     align-items: center;
 }
 
+.category__content-img-container {
+    height: 14.5rem;
+}
+
 .category__content-title,
 .category__content-author {
     display: inline-block;
@@ -87,6 +91,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+    margin-top: .5rem;
 }
 
 .category__content-title > a:hover,

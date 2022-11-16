@@ -17,7 +17,7 @@
     <title>콘텐츠</title>
 </head>
 <body>
-    <header th:insert="~{fragment/fragment-header :: header}"></header>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
 
     <main class="contents">
         <section class="banner">
@@ -267,6 +267,6 @@
         <!-- search -->
     </main>
 
-    <footer th:insert="~{fragment/fragment-footer :: footer}"></footer>
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
 </body>
 </html>

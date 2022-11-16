@@ -15,7 +15,7 @@
     </head>
 
 <body>
-    <header th:insert="~{fragment/fragment-header :: header}"></header>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
 
     <main class="sign-up">
         <section class="banner">
@@ -119,6 +119,6 @@
         <!-- sign-up-form -->
     </main>
 
-    <footer th:insert="~{fragment/fragment-footer :: footer}"></footer>
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
 </body>
 </html>

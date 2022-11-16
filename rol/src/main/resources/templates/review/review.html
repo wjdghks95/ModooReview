@@ -13,7 +13,7 @@
     <title>Title</title>
 </head>
 <body>
-    <header th:insert="~{fragment/fragment-header :: header}"></header>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
     <!-- header -->
 
     <main class="review">
@@ -166,7 +166,7 @@
         <!-- detail-review-content__comments -->
     </main>
 
-    <footer th:insert="~{fragment/fragment-footer :: footer}"></footer>
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
     <!-- footer -->
 </body>
 </html>
