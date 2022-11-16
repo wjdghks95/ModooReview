@@ -9,17 +9,18 @@
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="../css/hashTag.css" th:href="@{/css/hashTag.css}">
+    <script src="../js/hashTag.js" defer th:src="@{/js/hashTag.js}"></script>
     <title>해시태그</title>
 </head>
 <body>
-    <header th:insert="~{fragment/fragment-header :: header}"></header>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
     <!-- header -->
 
     <main class="hashTag">
         <div class="hashTag__container container">
             <header class="section__headings">
                 <h2 class="section__heading" th:text="'#' + ${tagName}">#태그</h2>
-                <p class="section__subheading">게시물 <span class="hashTag__count" th:text="${reviewList.size}">10,000</span></p>
+                <p class="section__subheading">게시물 <span class="hashTag__count" th:text="${totalElement}">10,000</span></p>
             </header>
             <section class="content">
                 <ul class="content__list">
