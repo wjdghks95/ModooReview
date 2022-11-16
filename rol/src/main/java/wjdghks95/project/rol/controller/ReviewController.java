@@ -2,6 +2,7 @@ package wjdghks95.project.rol.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dom4j.rule.Mode;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import wjdghks95.project.rol.service.ReviewService;
 import wjdghks95.project.rol.validator.FileValidator;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -125,12 +127,54 @@ public class ReviewController {
     }
 
     @GetMapping("/comment/delete/{idx}")
-    public String delComment(@PathVariable Long idx) {
+    public String delComment(@PathVariable Long idx, @AuthenticationPrincipal MemberContext memberContext) {
         Comment comment = commentRepository.findById(idx).orElseThrow();
+        if (memberContext.getMember().getId() != comment.getMember().getId() || memberContext.getMember() == null) {
+            throw new IllegalStateException();
+        }
         Long id = comment.getReview().getId();
 
-        commentService.deleteComment(comment);
+        commentRepository.delete(comment);
 
         return "redirect:/review/" + id;
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        Review review = reviewRepository.findById(id).orElseThrow();
+        if (memberContext.getMember().getId() != review.getMember().getId() || memberContext.getMember() == null) {
+            throw new IllegalStateException();
+        }
+        model.addAttribute("review", review);
+        model.addAttribute("reviewDto", new ReviewDto());
+
+        return "/review/reviewEditForm";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit(@Validated @ModelAttribute ReviewDto reviewDto, BindingResult bindingResult,
+                       @AuthenticationPrincipal MemberContext memberContext, Model model) throws IOException {
+        if (bindingResult.hasErrors()) {
+            log.info("bindingResult: {}", bindingResult.getFieldError());
+            return "/review/reviewEditForm";
+        }
+
+        Long memberId = memberContext.getMember().getId();
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("NoSuchElementException"));
+
+        Long reviewId = reviewService.write(reviewDto, member);
+
+        return "redirect:/review/" + reviewId;
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
+        Review review = reviewRepository.findById(id).orElseThrow();
+        if (memberContext.getMember().getId() != review.getMember().getId() || memberContext.getMember() == null) {
+            throw new IllegalStateException();
+        }
+        reviewRepository.delete(review);
+
+        return "redirect:/";
     }
 }

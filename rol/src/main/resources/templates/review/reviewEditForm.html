@@ -14,17 +14,19 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="../js/swiper.js" th:src="@{/js/swiper.js}" defer></script>
     <script src="../js/reviewForm.js" th:src="@{/js/reviewForm.js}" defer></script>
-    <title>리뷰 작성</title>
+    <script src="../js/reviewEditForm.js" th:src="@{/js/reviewEditForm.js}" defer></script>
+    <title>리뷰 수정</title>
 </head>
 <body>
     <header th:replace="~{fragment/fragment-header :: header}"></header>
+    <!-- header -->
 
     <main class="review">
         <div class="review__container container">
             <header class="section__headings">
-                <h2 class="section__heading">리뷰 쓰기</h2>
+                <h2 class="section__heading">리뷰 수정</h2>
             </header>
-            <form action="reviewForm.html" th:action method="post" class="review__form" th:object="${reviewDto}" enctype="multipart/form-data">
+            <form action="reviewForm.html" th:action method="post" class="review__form" enctype="multipart/form-data" th:object="${reviewDto}">
                 <div class="form__row-wrapper">
                     <div class="review__photo">
                         <div class="photo-swiper swiper">
@@ -42,17 +44,17 @@
                         </div>
                         <div class="field-error" th:errors="*{multipartFiles}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                     </div>
-                    <input type="file" accept=".jpg, .png" required multiple style="display: none;" th:field="*{multipartFiles}" th:errorclass="field-error" >
+                    <input type="file" accept=".jpg, .png" required multiple style="display: none;" th:field="*{multipartFiles}" th:errorclass="field-error">
                     <div class="review__info">
                         <div class="form__group">
                             <label for="review-title" class="form__label">제목</label>
-                            <input type="text" id="review-title" th:field="*{title}" placeholder="제목" th:errorclass="field-error">
+                            <input type="text" id="review-title" placeholder="제목" th:field="*{title}" th:value="${review.getTitle()}">
                             <div class="field-error" th:errors="*{title}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                         </div>
                         <div class="form__group">
                             <label for="review-category" class="form__label">카테고리 선택</label>
-                            <select name="category" id="review-category" th:field="*{categoryName}">
-                                <option value="" disabled selected style="display: none;">카테고리</option>
+                            <select name="category" id="review-category" th:field="*{categoryName}" th:data-type="${review.category.categoryName}">
+                                <option value="" selected disabled style="display: none;">카테고리</option>
                                 <option value="food">식품</option>
                                 <option value="cosmetic">미용/코스메틱</option>
                                 <option value="fashion">패션/잡화</option>
@@ -84,7 +86,8 @@
                 </div>
                 <div class="review__description form__group">
                     <label for="review-description" class="form__label">리뷰 작성</label>
-                    <textarea name="description" id="review-description" th:field="*{description}" rows="10" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)" th:errorclass="field-error"></textarea>
+                    <textarea name="description" id="review-description" rows="10" th:field="*{description}" th:text="${review.getDescription()}"
+                              placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
                     <div class="field-error" th:errors="*{description}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                 </div>
                 <div class="review__tag form__group">
@@ -97,8 +100,11 @@
                         </div>
                     </div>
                     <ul class="tag__list">
+                        <li class="tag__item" th:each="reviewTag : ${review.reviewTag}">
+                            <span th:text="'#'+${reviewTag.tag.name}">#tag</span><button type='button' class='remove-btn' th:data-index='${reviewTag.tag.id}'>x</button>
+                        </li>
                     </ul>
-                    <input type="hidden" value="" id="review-tags" th:field="*{tagNames}" />
+                    <input type="hidden" value="" id="review-tags" th:field="*{tagNames}"/>
                 </div>
                 <div class="review__submit-button">
                     <button type="button" class="default-btn">작성하기</button>
@@ -108,5 +114,6 @@
     </main>
 
     <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
+    <!-- footer -->
 </body>
 </html>

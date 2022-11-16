@@ -35,12 +35,4 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> findComments(Long reviewId) {
         return commentRepository.findComments(reviewId);
     }
-
-    @Transactional
-    @Override
-    public void deleteComment(Comment comment) {
-        commentRepository.delete(comment);
-    }
-
-
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,12 +95,22 @@
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </div>
                     </div>
-                    <div class="detail-review__like">
-                        <div class="detail-review__like-button">
-                            <button class="like-btn"></button>
+                    <div class="detail-review__util">
+                        <div class="detail-review__like">
+                            <div class="detail-review__like-button">
+                                <button class="like-btn"></button>
+                            </div>
+                            <span class="detail-review__like-text">좋아요</span>
+                            <span class="detail-review__like-count">10</span>
                         </div>
-                        <span class="detail-review__like-text">좋아요</span>
-                        <span class="detail-review__like-count">10</span>
+                        <div class="detail-review__buttons">
+                            <div class="detail-review__button detail-review__button--modify" onclick="location.href='reviewEditForm.html'">
+                                <button class="default-btn">리뷰 수정</button>
+                            </div>
+                            <div class="detail-review__button detail-review__button--delete">
+                                <button class="default-btn" onclick="location.href='index.html'">리뷰 삭제</button>
+                            </div>
+                        </div>
                     </div>
                 </article>
             </div>

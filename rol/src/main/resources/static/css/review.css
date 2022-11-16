@@ -110,6 +110,12 @@
     word-wrap: break-word;
 }
 
+.detail-review__util {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .detail-review__like {
     display: flex;
     align-items: center;
@@ -125,6 +131,14 @@
     margin-left: .3rem;
     font-size: var(--font-medium-small);
     font-weight: bold;
+}
+
+.detail-review__buttons {
+    display: flex;
+}
+
+.detail-review__button {
+    margin-left: .625rem;
 }
 
 .section__heading.comment {

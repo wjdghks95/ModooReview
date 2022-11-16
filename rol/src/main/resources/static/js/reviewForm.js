@@ -19,9 +19,9 @@ ratingStars.forEach((star, index) => {
 function fill(ratingVal) {
     for (let i = 0; i < 5; i++) {
         if (i < ratingVal) {
-            ratingStars[i].setAttribute('src', '../icon/star-solid.svg');
+            ratingStars[i].setAttribute('src', '/icon/star-solid.svg');
         } else {
-            ratingStars[i].setAttribute('src', '../icon/star-regular.svg');
+            ratingStars[i].setAttribute('src', '/icon/star-regular.svg');
         }
     }
 }
@@ -229,3 +229,4 @@ function createElement(e, attr, attrName) {
     element.setAttribute(attr, attrName);
     return element;
 }
+
