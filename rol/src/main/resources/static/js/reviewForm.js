@@ -49,6 +49,16 @@ function onClick(e) {
 let tag = {};
 let counter = 0;
 
+const tagItems = document.querySelectorAll('.tag__item');
+if (tagItems !== null) {
+    tagItems.forEach(tagItem => {
+        const text = tagItem.querySelector('span').innerText;
+        const tagVal = text.substring(text.indexOf('#')+1);
+        tagItem.querySelector('button').setAttribute('data-index', counter);;
+        addTag(tagVal);
+    })
+}
+
 // 입력한 값을 태그로 생성
 function addTag (value) {
     tag[counter] = value;
@@ -99,19 +109,28 @@ function createTag() {
                 tagList.appendChild(tagItem);
                 tagInput.value = "";
                 tagInput.focus();
+                tagDelBtns = document.querySelectorAll('.remove-btn');
 
-                const tagRemoveBtn = document.querySelector(`.remove-btn[data-index="${counter}"]`);
-                tagRemoveBtn.addEventListener('click', () => {
-                    let index = tagRemoveBtn.getAttribute("data-index");
-                    tag[index] = "";
-                    tagRemoveBtn.parentElement.remove();
-                })
+                deleteTag(tagDelBtns);
                 addTag(tagVal);
             } else {
                 alert("태그값이 중복됩니다.");
             }
         }
     }
+}
+
+let tagDelBtns = document.querySelectorAll('.remove-btn');
+deleteTag(tagDelBtns);
+
+function deleteTag(tagDelBtns) {
+    tagDelBtns.forEach(tagDelBtn => {
+        tagDelBtn.addEventListener('click', () => {
+            let index = tagDelBtn.getAttribute("data-index");
+            tag[index] = "";
+            tagDelBtn.parentElement.remove();
+        })
+    })
 }
 
 function sendTagVal() {
@@ -126,7 +145,6 @@ const reviewForm = document.querySelector('.review__form');
 
 submitBtn.addEventListener('click', () => {
     sendTagVal(); // 태그 값 전송
-
     reviewForm.submit();
 });
 
@@ -231,3 +249,14 @@ function createElement(e, attr, attrName) {
     return element;
 }
 
+// category
+const categorySelect = document.querySelector('#review-category');
+const value = categorySelect.getAttribute('data-type');
+
+if (value !== null) {
+    categorySelect.querySelectorAll('option').forEach(option => {
+        if(value.toLowerCase() === option.value) {
+            option.setAttribute('selected', 'selected');
+        }
+    })
+}

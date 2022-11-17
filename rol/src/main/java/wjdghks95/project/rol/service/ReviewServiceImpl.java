@@ -105,6 +105,7 @@ public class ReviewServiceImpl implements ReviewService{
     public Long edit(Long id, ReviewDto reviewDto) throws IOException {
         Review review = reviewRepository.findById(id).orElseThrow();
         Category category = categoryRepository.findByCategoryName(CategoryName.valueOf(reviewDto.getCategoryName().toUpperCase())).orElseThrow();
+        List<Tag> tagList = tagService.saveTag(reviewDto.getTagNames());
 
         if (!reviewDto.getMultipartFiles().get(0).isEmpty()) {
             imageService.deleteImages(review.getImages());
@@ -119,6 +120,16 @@ public class ReviewServiceImpl implements ReviewService{
         review.setCategory(category);
         review.setRating(reviewDto.getRating());
         review.setDescription(reviewDto.getDescription());
+
+        review.getReviewTag().clear();
+        tagList.forEach(tag -> {
+            ReviewTag reviewTag = ReviewTag.builder()
+                    .review(review)
+                    .tag(tag)
+                    .build();
+
+            reviewTagRepository.save(reviewTag);
+        });
 
         Review savedReview = reviewRepository.save(review);
 

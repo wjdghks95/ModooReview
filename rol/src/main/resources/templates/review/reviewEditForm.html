@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="../js/swiper.js" th:src="@{/js/swiper.js}" defer></script>
     <script src="../js/reviewForm.js" th:src="@{/js/reviewForm.js}" defer></script>
-    <script src="../js/reviewEditForm.js" th:src="@{/js/reviewEditForm.js}" defer></script>
     <title>리뷰 수정</title>
 </head>
 <body>
@@ -96,7 +95,7 @@
                     </div>
                     <ul class="tag__list">
                         <li class="tag__item" th:each="reviewTag : ${review.reviewTag}">
-                            <span th:text="'#'+${reviewTag.tag.name}">#tag</span><button type='button' class='remove-btn' th:data-index='${reviewTag.tag.id}'>x</button>
+                            <span th:text="'#'+${reviewTag.tag.name}">#tag</span><button type='button' class='remove-btn'>x</button>
                         </li>
                     </ul>
                     <input type="hidden" value="" id="review-tags" th:field="*{tagNames}"/>
