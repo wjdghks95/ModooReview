@@ -156,6 +156,7 @@ function getImageFile(e) {
 
     if (count > 5) {
         alert('이미지는 최대 5개까지 업로드가 가능합니다.');
+        filesInput.value = "";
         return;
     }
 

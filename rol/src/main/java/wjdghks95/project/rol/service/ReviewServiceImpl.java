@@ -99,4 +99,29 @@ public class ReviewServiceImpl implements ReviewService{
         Review review = reviewRepository.findById(id).orElseThrow();
         review.updateVisit();
     }
+
+    @Override
+    @Transactional
+    public Long edit(Long id, ReviewDto reviewDto) throws IOException {
+        Review review = reviewRepository.findById(id).orElseThrow();
+        Category category = categoryRepository.findByCategoryName(CategoryName.valueOf(reviewDto.getCategoryName().toUpperCase())).orElseThrow();
+
+        if (!reviewDto.getMultipartFiles().get(0).isEmpty()) {
+            imageService.deleteImages(review.getImages());
+            review.getImages().clear();
+
+            List<Image> images = imageService.saveImages(reviewDto.getMultipartFiles());
+            review.setThumbnail(images);
+            images.forEach(image -> review.setImage(image));
+        }
+
+        review.setTitle(reviewDto.getTitle());
+        review.setCategory(category);
+        review.setRating(reviewDto.getRating());
+        review.setDescription(reviewDto.getDescription());
+
+        Review savedReview = reviewRepository.save(review);
+
+        return savedReview.getId();
+    }
 }

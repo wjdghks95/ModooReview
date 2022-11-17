@@ -14,6 +14,7 @@ public interface ReviewService {
     boolean isLike(Member member, Review review);
 
     void visit(Long id);
+    Long edit(Long id, ReviewDto reviewDto) throws IOException;
 }
 
 

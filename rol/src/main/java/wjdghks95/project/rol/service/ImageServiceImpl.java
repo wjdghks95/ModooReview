@@ -8,6 +8,7 @@ import wjdghks95.project.rol.domain.FileStore;
 import wjdghks95.project.rol.domain.entity.Image;
 import wjdghks95.project.rol.repository.ImageRepository;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,5 +31,12 @@ public class ImageServiceImpl implements ImageService {
     public List<Image> findImages() {
         List<Image> images = imageRepository.findAll();
         return images;
+    }
+
+    @Override
+    public void deleteImages(List<Image> images) {
+        images.forEach(image -> {
+            new File(fileStore.createPath(image.getStoreFileName())).delete();
+        });
     }
 }

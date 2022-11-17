@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ImageService {
 
-    public List<Image> saveImages(List<MultipartFile> multipartFileList) throws IOException;
-
-    public List<Image> findImages();
+    List<Image> saveImages(List<MultipartFile> multipartFileList) throws IOException;
+    List<Image> findImages();
+    void deleteImages(List<Image> images);
 }

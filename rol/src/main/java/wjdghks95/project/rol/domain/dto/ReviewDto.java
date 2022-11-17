@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;

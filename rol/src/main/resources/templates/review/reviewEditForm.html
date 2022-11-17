@@ -26,29 +26,24 @@
             <header class="section__headings">
                 <h2 class="section__heading">리뷰 수정</h2>
             </header>
-            <form action="reviewForm.html" th:action method="post" class="review__form" enctype="multipart/form-data" th:object="${reviewDto}">
+            <form action="reviewForm.html" th:action method="post" class="review__form" enctype="multipart/form-data" th:object="${editDto}">
                 <div class="form__row-wrapper">
                     <div class="review__photo">
                         <div class="photo-swiper swiper">
                             <div class="swiper-wrapper">
-                                <button type="button" class="photo-btn">
-                                    <div class="photo-icon">
-                                        <img src="../icon/camera.svg" th:src="@{/icon/camera.svg}" alt="camera">
-                                    </div>
-                                    <p>사진 올리기</p>
-                                    <p><small>(* 최대 10장까지)</small></p>
-                                </button>
+                                <div class="swiper-slide" th:each="image : ${review.images}">
+                                    <img src="../img/sample1.jpg" th:src="|/images/${image.getStoreFileName()}|">
+                                </div>
                             </div>
-                            <div class="swiper-button-next" style="display: none"></div>
-                            <div class="swiper-button-prev" style="display: none"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
-                        <div class="field-error" th:errors="*{multipartFiles}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                     </div>
-                    <input type="file" accept=".jpg, .png" required multiple style="display: none;" th:field="*{multipartFiles}" th:errorclass="field-error">
+                    <input type="file" accept=".jpg, .png" multiple style="display: none;" th:field="*{multipartFiles}">
                     <div class="review__info">
                         <div class="form__group">
                             <label for="review-title" class="form__label">제목</label>
-                            <input type="text" id="review-title" placeholder="제목" th:field="*{title}" th:value="${review.getTitle()}">
+                            <input type="text" id="review-title" placeholder="제목" th:field="*{title}" th:value="*{title}">
                             <div class="field-error" th:errors="*{title}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                         </div>
                         <div class="form__group">
@@ -86,7 +81,7 @@
                 </div>
                 <div class="review__description form__group">
                     <label for="review-description" class="form__label">리뷰 작성</label>
-                    <textarea name="description" id="review-description" rows="10" th:field="*{description}" th:text="${review.getDescription()}"
+                    <textarea name="description" id="review-description" rows="10" th:field="*{description}" th:text="*{description}"
                               placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
                     <div class="field-error" th:errors="*{description}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
                 </div>

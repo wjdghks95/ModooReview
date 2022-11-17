@@ -95,4 +95,20 @@ public class Review extends BaseTimeEntity {
     public void updateVisit() {
         ++this.countVisit;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 }

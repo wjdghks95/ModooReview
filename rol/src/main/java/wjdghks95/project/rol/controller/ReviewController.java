@@ -2,7 +2,6 @@ package wjdghks95.project.rol.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dom4j.rule.Mode;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,6 @@ import wjdghks95.project.rol.service.ReviewService;
 import wjdghks95.project.rol.validator.FileValidator;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -145,24 +143,29 @@ public class ReviewController {
         if (memberContext.getMember().getId() != review.getMember().getId() || memberContext.getMember() == null) {
             throw new IllegalStateException();
         }
+
+        ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setTitle(review.getTitle());
+        reviewDto.setDescription(review.getDescription());
+
         model.addAttribute("review", review);
-        model.addAttribute("reviewDto", new ReviewDto());
+        model.addAttribute("editDto", reviewDto);
 
         return "/review/reviewEditForm";
     }
 
     @PostMapping("/{id}/edit")
-    public String edit(@Validated @ModelAttribute ReviewDto reviewDto, BindingResult bindingResult,
-                       @AuthenticationPrincipal MemberContext memberContext, Model model) throws IOException {
+    public String edit(@PathVariable Long id, @Validated @ModelAttribute(name = "editDto") ReviewDto reviewDto,
+                       BindingResult bindingResult, Model model) throws IOException {
+        Review review = reviewRepository.findById(id).orElseThrow();
+        model.addAttribute("review", review);
+
         if (bindingResult.hasErrors()) {
             log.info("bindingResult: {}", bindingResult.getFieldError());
             return "/review/reviewEditForm";
         }
 
-        Long memberId = memberContext.getMember().getId();
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("NoSuchElementException"));
-
-        Long reviewId = reviewService.write(reviewDto, member);
+        Long reviewId = reviewService.edit(id, reviewDto);
 
         return "redirect:/review/" + reviewId;
     }
