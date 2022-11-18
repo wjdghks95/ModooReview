@@ -20,18 +20,18 @@ import java.time.format.DateTimeFormatter;
 public abstract class BaseTimeEntity {
 
     @CreatedDate
-    private String createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    private String lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @PrePersist // 영속(new/transient) 상태에서 영속(managed) 상태가 되는 시점 이전에 실행
     public void onPrePersist(){
-        this.createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm:ss"));
+        this.createdDate = LocalDateTime.now();
         this.lastModifiedDate = this.createdDate;
     }
     @PreUpdate // 영속 상태의 엔티티를 이용하여 데이터 업데이트를 수행하기 이전에 실행
     public void onPreUpdate(){
-        this.lastModifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm:ss"));
+        this.lastModifiedDate = LocalDateTime.now();
     }
 }

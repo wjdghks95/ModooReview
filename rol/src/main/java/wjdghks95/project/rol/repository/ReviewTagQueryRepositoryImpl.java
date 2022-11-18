@@ -26,7 +26,7 @@ public class ReviewTagQueryRepositoryImpl implements ReviewTagQueryRepository{
     public Page<ReviewTag> findReviewTagList(Pageable pageable, Tag tag) {
         List<ReviewTag> reviewList = queryFactory.selectFrom(reviewTag)
                 .where(tagCon(tag))
-                .orderBy(reviewTag.review.createdDate.desc())
+                .orderBy(reviewTag.review.lastModifiedDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

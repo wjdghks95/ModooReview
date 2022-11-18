@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import wjdghks95.project.rol.domain.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review extends BaseTimeEntity {
+public class Review {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
@@ -40,6 +41,10 @@ public class Review extends BaseTimeEntity {
 
     private int likeCount;
 
+    private LocalDateTime createdDate;
+
+    private LocalDateTime lastModifiedDate;
+
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReviewTag> reviewTag = new ArrayList<>();
 
@@ -62,6 +67,8 @@ public class Review extends BaseTimeEntity {
         this.rating = rating;
         this.countVisit = 0;
         this.likeCount = 0;
+        this.createdDate = LocalDateTime.now();
+        this.lastModifiedDate = createdDate;
     }
 
     /**
@@ -110,5 +117,9 @@ public class Review extends BaseTimeEntity {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

@@ -11,6 +11,7 @@ import wjdghks95.project.rol.repository.ReviewRepository;
 import wjdghks95.project.rol.repository.ReviewTagRepository;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -130,6 +131,8 @@ public class ReviewServiceImpl implements ReviewService{
 
             reviewTagRepository.save(reviewTag);
         });
+
+        review.setLastModifiedDate(LocalDateTime.now());
 
         Review savedReview = reviewRepository.save(review);
 
