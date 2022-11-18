@@ -20,8 +20,8 @@ public class ImageServiceImpl implements ImageService {
     private final ImageRepository imageRepository;
     private final FileStore fileStore;
 
-    @Transactional
     @Override
+    @Transactional
     public List<Image> saveImages(List<MultipartFile> multipartFileList) throws IOException {
         List<Image> images = fileStore.storeFiles(multipartFileList);
         return images;
@@ -34,9 +34,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    @Transactional
     public void deleteImages(List<Image> images) {
         images.forEach(image -> {
             new File(fileStore.createPath(image.getStoreFileName())).delete();
+            imageRepository.delete(image);
         });
     }
 }
