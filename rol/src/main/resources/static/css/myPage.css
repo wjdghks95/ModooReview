@@ -93,6 +93,7 @@ section .section__content {
     position: relative;
     overflow: hidden;
     width: 30%;
+    height: 12.875rem;
     margin-bottom: 1.875rem;
     margin-right: 1.875rem;
 }
@@ -125,6 +126,7 @@ section .section__content {
     position: relative;
     overflow: hidden;
     width: 30%;
+    height: 12.875rem;
     margin-bottom: 1.875rem;
     margin-right: 1.875rem;
 }
