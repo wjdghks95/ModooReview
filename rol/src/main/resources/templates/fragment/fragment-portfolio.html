@@ -1,0 +1,46 @@
+<section class="profile" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+         th:object="${member}" th:fragment="portfolio">
+    <article class="section__content profile__content">
+        <div class="profile__img">
+            <img src="../img/profile.png" th:src="'data:image/png;base64,' + *{profileImage}" onerror="this.src='/images/profile'" alt="프로필">
+        </div>
+        <div class="profile__info">
+            <h3 class="profile__nickname" th:text="*{nickname}">닉네임</h3>
+            <div class="profile__follow">
+                <div class="profile__follower">
+                    <span>팔로워</span><strong class="profile__follow-count" th:text="*{followerList.size()}">100</strong>
+                </div>
+                <div class="profile__following">
+                    <span>팔로잉</span><strong class="profile__follow-count" th:text="*{followingList.size()}">100</strong>
+                </div>
+            </div>
+            <div class="profile__edit-button" th:if="${loginMember} != null and *{id} == ${loginMember.id}">
+                <button onclick="location.href='myPage_profile.html'" th:onclick="|location.href='@{/myPage/profile/{id}(id=*{id})}'|"
+                        class="default-btn">설정</button>
+            </div>
+            <div class="profile__follow-button anonymous" sec:authorize="isAnonymous()">
+                <button class="follow-btn">+ 팔로우</button>
+            </div>
+            <div class="profile__follow-button" th:if="*{id} != ${loginMember.id}" th:data-index="*{id}" sec:authorize="isAuthenticated()">
+                <button class="follow-btn" th:if="${isFollow}">+ 팔로우</button>
+                <button class="follow-btn active" th:unless="${isFollow}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:10px; height:10px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 팔로잉
+                </button>
+            </div>
+        </div>
+        <div class="profile__grade">
+            <img src="../img/iron.png" th:if="*{reviewList.size()} < 1" th:src="@{/img/iron.png}" alt="아이언">
+            <img src="../img/bronze.png" th:if="*{reviewList.size()} >= 1 and *{reviewList.size()} <= 10 " th:src="@{/img/bronze.png}" alt="브론즈">
+            <img src="../img/silver.png" th:if="*{reviewList.size()} >= 11 and *{reviewList.size()} <= 30" th:src="@{/img/silver.png}" alt="실버">
+            <img src="../img/gold.png" th:if="*{reviewList.size()} >= 31 and *{reviewList.size()} <= 50" th:src="@{/img/gold.png}" alt="골드">
+            <img src="../img/platinum.png" th:if="*{reviewList.size()} >= 51 and *{reviewList.size()} <= 100" th:src="@{/img/platinum.png}" alt="플래티넘">
+            <img src="../img/dia.png" th:if="*{reviewList.size()} >= 101 and *{reviewList.size()} <= 200" th:src="@{/img/dia.png}" alt="다이아">
+            <img src="../img/master.png" th:if="*{reviewList.size()} >= 201 and *{reviewList.size()} <= 300 and
+                                                *{followerList.size()} >= 51 and *{followerList.size()} <= 100" th:src="@{/img/master.png}" alt="마스터">
+            <img src="../img/grandmaster.png" th:if="*{reviewList.size()} >= 301 and *{followerList.size()} >= 101 and *{followerList.size()} <= 200"
+                 th:src="@{/img/grandmaster.png}" alt="그랜드마스터">
+            <img src="../img/challenger.png" th:if="*{reviewList.size()} >= 301 and *{followerList.size()} >= 201"
+                 th:src="@{/img/challenger.png}" alt="챌린저">
+        </div>
+    </article>
+</section>

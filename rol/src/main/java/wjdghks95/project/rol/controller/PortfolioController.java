@@ -46,4 +46,40 @@ public class PortfolioController {
 
         return "portfolio/portfolio";
     }
+
+    @GetMapping("/{id}/reviewList")
+    public String reviewList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        Member member = memberRepository.findById(id).orElseThrow();
+        Member loginMember = memberContext != null ? memberContext.getMember() : null;
+
+        List<Review> reviewList = member.getReviewList();
+        Collections.reverse(reviewList);
+
+        boolean isFollow = memberService.isFollow(loginMember, member);
+
+        model.addAttribute("member", member);
+        model.addAttribute("loginMember", loginMember);
+        model.addAttribute("reviewList", reviewList);
+        model.addAttribute("isFollow", isFollow);
+
+        return "portfolio/portfolio_review";
+    }
+
+    @GetMapping("/{id}/likeList")
+    public String likeList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        Member member = memberRepository.findById(id).orElseThrow();
+        Member loginMember = memberContext != null ? memberContext.getMember() : null;
+
+        List<LikeEntity> likeList = member.getLikeList();
+        Collections.reverse(likeList);
+
+        boolean isFollow = memberService.isFollow(loginMember, member);
+
+        model.addAttribute("member", member);
+        model.addAttribute("loginMember", loginMember);
+        model.addAttribute("likeList", likeList);
+        model.addAttribute("isFollow", isFollow);
+
+        return "portfolio/portfolio_like";
+    }
 }
