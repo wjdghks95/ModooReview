@@ -9,6 +9,8 @@
         <link rel="shortcut icon" href="#">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/signUpForm.css">
+        <script src="../js/signUpForm.js" defer></script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <title>회원가입</title>
     </head>
 <body>
@@ -16,28 +18,28 @@
         <div class="header__container container">
             <div class="header__wrapper">
                 <div class="header__logo-area">
-                    <a href="../html/index.html" class="header__logo">
+                    <a href="index.html" class="header__logo">
                         <img src="https://reviewshare.io/static/media/reviewshare_logo.057c3bd3.svg" alt="logo">
                     </a>
                 </div>
                 <nav class="header__nav">
                     <ul class="header__menu">
                         <li class="header__menu-item">
-                            <a href="../html/index.html" class="header__menu-link">Home</a>
+                            <a href="index.html" class="header__menu-link">Home</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/contents.html" class="header__menu-link">Contents</a>
+                            <a href="contents.html" class="header__menu-link">Contents</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/myPage-profile.html" class="header__menu-link">MyPage</a>
+                            <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
                         </li>
                     </ul>
                     <ul class="header__util-buttons">
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/login'">Login</button>
+                            <button type="button" class="util-btn" onclick="location.href='loginForm.html'">Login</button>
                         </li>
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/signUp'">SignUp</button>
+                            <button type="button" class="util-btn" onclick="location.href='signUpForm.html'">SignUp</button>
                         </li>
                     </ul>
                 </nav>
@@ -58,31 +60,33 @@
         </section>
         <!-- banner -->
 
-        <section class="sign-up-model">
-            <div class="sign-up-model__container container">
+        <section class="sign-up-form">
+            <div class="sign-up-form__container container">
                 <article class="section__content">
-                    <form action="/signUp" method="post" class="sign-up-model__form" id="sign-up-form">
+                    <form action="signUpForm.html" method="post" class="sign-up-form__form">
                         <div class="form__group">
                             <label for="user-phone" class="form__label">휴대폰 번호</label>
                             <div class="form__row-wrapper">
                                 <div class="form__input-container">
                                     <input type="text" name="phone" id="user-phone" placeholder="휴대폰 번호(-없이 입력해주세요)">
                                 </div>
-                                <div class="sign-up-model__send-button">
+                                <div class="sign-up-form__send-sms-button">
                                     <button type="button" class="default-btn">인증번호 발송</button>
                                 </div>
                             </div>
+                            <div class="field-error">text</div>
 
-                            <div class="form__row-wrapper" id="phone-check">
+                            <div class="sign-up-form__phone-check-area form__row-wrapper">
                                 <input type="text" id="phone-check-number" placeholder="인증번호">
-                                <div class="sign-up-model__phone-check-button">
+                                <div class="sign-up-form__phone-check-button">
                                     <button type="button" class="default-btn">인증확인</button>
                                 </div>
-                                <div class="sign-up-model__resend-button">
+                                <div class="sign-up-form__resend-sms-button">
                                     <button type="button" class="default-btn">재발송</button>
                                 </div>
                             </div>
-                            <input type="hidden" id="phone-double-check" value="false"/>
+                            <input type="hidden" id="user-phone-check" value="false"/>
+                            <p class="field-error">text</p>
                         </div>
                         <div class="form__group">
                             <label for="user-email" class="form__label">이메일</label>
@@ -101,42 +105,48 @@
                                 </select>
                             </div>
                             <input type="hidden" name="email" id="user-total-email">
+                            <div class="field-error">text</div>
                         </div>
                         <div class="form__group">
                             <label for="user-password" class="form__label">비밀번호</label>
-                            <input type="password" name="password" id="user-password" placeholder="비밀번호(최소 8자 이상)">
+                            <input type="password" name="password" id="user-password" placeholder="비밀번호(최소 8자 이상, 숫자와 하나 이상의 특수 문자 포함)">
+                            <div class="field-error">text</div>
                             <input type="password" id="user-password-confirm" placeholder="비밀번호 확인">
-                            <p class="error-message" id="password-confirm-message"></p>
-                            <input type="hidden" id="password-double-check" value="false">
+                            <input type="hidden" name="passwordCheck" id="user-password-check" value="false" >
+                            <div class="field-error">text</div>
                         </div>
                         <div class="form__group">
                             <label for="user-name" class="form__label">이름</label>
-                            <input type="text" name="username" id="user-name" placeholder="이름">
+                            <input type="text" name="name" id="user-name" placeholder="이름">
+                            <div class="field-error">text</div>
                         </div>
                         <div class="form__group">
                             <label for="user-nickname" class="form__label">닉네임</label>
                             <input type="text" name="nickname" id="user-nickname" placeholder="닉네임(최소2자~8자)">
+                            <div class="field-error">text</div>
                         </div>
                         <div class="form__group">
+                            <label class="form__label">주소</label>
                             <div class="form__row-wrapper">
                                 <div class="form__input-container">
                                     <input type="text" name="zipcode" id="user-zipcode" placeholder="우편번호" readonly>
                                 </div>
-                                <div class="sign-up-model__search-address-button">
+                                <div class="sign-up-form__search-address-button">
                                     <button type="button" class="default-btn">주소 검색</button>
                                 </div>
                             </div>
                             <input type="text" name="address" id="user-address" placeholder="주소" readonly>
                             <input type="text" name="detailAddress" id="user-detail-address" placeholder="상세주소">
+                            <div class="field-error">text</div>
                         </div>
                     </form>
-                    <div class="sign-up-model__submit-button">
-                        <button type="submit" class="default-btn" form="sign-up-form">가입 완료하기</button>
+                    <div class="sign-up-form__submit-button">
+                        <button type="button" class="default-btn">가입 완료하기</button>
                     </div>
                 </article>
             </div>
         </section>
-        <!-- sign-up-model -->
+        <!-- sign-up-form -->
     </main>
 
     <footer class="footer">

@@ -1,8 +1,9 @@
 // rating
-const stars = document.querySelectorAll('.rating__star');
+const ratingStars = document.querySelectorAll('.rating__star > img');
+const ratingScore = document.querySelector(".rating__score");
 let totalStar = 0;
 
-stars.forEach((star, index) => {
+ratingStars.forEach((star, index) => {
     star.dataset.rating = index + 1;
     star.addEventListener('mouseover', e => {
         onMouseOver(e);
@@ -18,9 +19,9 @@ stars.forEach((star, index) => {
 function fill(ratingVal) {
     for (let i = 0; i < 5; i++) {
         if (i < ratingVal) {
-            stars[i].querySelector('img').setAttribute('src', '../icon/star-solid.svg');
+            ratingStars[i].setAttribute('src', '/icon/star-solid.svg');
         } else {
-            stars[i].querySelector('img').setAttribute('src', '../icon/star-regular.svg');
+            ratingStars[i].setAttribute('src', '/icon/star-regular.svg');
         }
     }
 }
@@ -41,74 +42,126 @@ function onMouseLeave(e) {
 function onClick(e) {
     const ratingVal = e.currentTarget.dataset.rating;
     totalStar = ratingVal;
+    ratingScore.value = totalStar;
 }
 
 // tag
-const tagInput = document.querySelector('.tag-in > input');
-const tagAddBtn = document.querySelector('.tag-in__add-button');
-const tagList = document.querySelector('.tag-in__list');
+let tag = {};
+let counter = 0;
 
-tagAddBtn.addEventListener('click', () => createTag());
-tagInput.addEventListener('keydown', (e) => { 
-    if(e.key === 'Enter') {
+const tagItems = document.querySelectorAll('.tag__item');
+if (tagItems !== null) {
+    tagItems.forEach(tagItem => {
+        const text = tagItem.querySelector('span').innerText;
+        const tagVal = text.substring(text.indexOf('#')+1);
+        tagItem.querySelector('button').setAttribute('data-index', counter);;
+        addTag(tagVal);
+    })
+}
+
+// 입력한 값을 태그로 생성
+function addTag (value) {
+    tag[counter] = value;
+    counter++; // remove-btn 의 고유 id
+}
+
+// tag 안에 있는 값을 array type 으로 만들어서 넘김
+function marginTag () {
+    return Object.values(tag).filter(word => {
+        return word !== "";
+    });
+}
+
+const tagInput = document.querySelector("#review-tag");
+const tagList = document.querySelector(".tag__list");
+const tagAddBtn = document.querySelector(".tag-in__add-button");
+
+tagAddBtn.addEventListener('click', () => {
+    createTag();
+})
+
+tagInput.addEventListener("keypress", (e) => {
+    //엔터나 스페이스바 눌렀을때 실행
+    if (e.key === "Enter" || e.keyCode == 32) {
         tagAddBtn.click();
+        e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
     }
-});
+})
 
 function createTag() {
-    const tagItem = document.createElement('li');
-    const tagName = document.createElement('span');
-    const tagRemoveBtn = document.createElement('button');
-
-    let text = tagInput.value;
-    if (tagList.childElementCount >= 10) {
-        alert('태그는 10개까지만 추가할 수 있습니다.');
+    if (tagList.childElementCount >= 5) {
+            alert('태그는 5개까지만 추가할 수 있습니다.');
     } else {
-        if (text != '') {
-            tagItem.setAttribute('class', 'tag-in__item');
+        let tagVal = tagInput.value; // 값 가져오기
 
-            tagName.innerHTML = '#' + text;
+         // 해시태그 값 없으면 실행X
+        if (tagVal !== "") {
+            // 같은 태그가 있는지 검사, 있다면 해당값이 array 로 return
+            let result = Object.values(tag).filter(word => {
+                return word === tagVal;
+            });
 
-            tagRemoveBtn.setAttribute('type', 'button');
-            tagRemoveBtn.setAttribute('class', 'remove-btn');
-            tagRemoveBtn.innerHTML = 'x';
-            tagRemoveBtn.addEventListener('click', () => {
-                tagItem.remove();
-            })
-            
-            tagItem.appendChild(tagName);
-            tagItem.appendChild(tagRemoveBtn);
-            tagList.appendChild(tagItem);
-            
-            tagInput.value = '';
-            tagInput.focus();
-        } else {
-            tagInput.focus();
-            return;
+            // 해시태그가 중복되었는지 확인
+            if (result.length == 0) {
+                const tagItem = document.createElement("li");
+                tagItem.setAttribute("class", "tag__item");
+                tagItem.innerHTML = "<span>#" + tagVal + "</span><button type='button' class='remove-btn' data-index='" + counter + "'>x</button>";
+                tagList.appendChild(tagItem);
+                tagInput.value = "";
+                tagInput.focus();
+                tagDelBtns = document.querySelectorAll('.remove-btn');
+
+                deleteTag(tagDelBtns);
+                addTag(tagVal);
+            } else {
+                alert("태그값이 중복됩니다.");
+            }
         }
     }
 }
 
-// submitBtn
-const submitBtn = document.querySelector('.review-model__submit-button');
-const form = document.querySelector('form');
+let tagDelBtns = document.querySelectorAll('.remove-btn');
+deleteTag(tagDelBtns);
 
-submitBtn.addEventListener('click', () => form.submit());
+function deleteTag(tagDelBtns) {
+    tagDelBtns.forEach(tagDelBtn => {
+        tagDelBtn.addEventListener('click', () => {
+            let index = tagDelBtn.getAttribute("data-index");
+            tag[index] = "";
+            tagDelBtn.parentElement.remove();
+        })
+    })
+}
+
+function sendTagVal() {
+    const tagsInput = document.querySelector("#review-tags");
+    let tagArr = marginTag(); // return array
+    tagsInput.value = tagArr;
+}
+
+// submit
+const submitBtn = document.querySelector('.review__submit-button');
+const reviewForm = document.querySelector('.review__form');
+
+submitBtn.addEventListener('click', () => {
+    sendTagVal(); // 태그 값 전송
+    reviewForm.submit();
+});
 
 // imgUpload
-const uploadBtn = document.querySelector('.review-model__photo');
-const fileInput = document.querySelector('.review-model__photo input');
-const wrapper = document.querySelector(".review-model__photo .swiper-wrapper");
-const nextBtn = document.querySelector(".review-model__photo .swiper-button-next");
-const prevBtn = document.querySelector(".review-model__photo .swiper-button-prev");
+const reviewPhoto = document.querySelector('.review__photo');
+const filesInput = document.querySelector('input[type="file"]');
+const wrapper = document.querySelector(".swiper-wrapper");
+const nextBtn = document.querySelector(".swiper-button-next");
+const prevBtn = document.querySelector(".swiper-button-prev");
 
-uploadBtn.addEventListener('click', (e) => {
-    if (e.target == nextBtn || e.target == prevBtn) {
+reviewPhoto.addEventListener('click', (e) => {
+    if (e.target === nextBtn || e.target === prevBtn) {
         return;
     }
-    fileInput.click();
-    fileInput.addEventListener('change', (e) => getImageFile(e));
+    filesInput.click();
 })
+filesInput.addEventListener('change', (e) => getImageFile(e));
 
 function getImageFile(e) {
     const uploadFiles = [];
@@ -119,8 +172,9 @@ function getImageFile(e) {
         return;
     }
 
-    if (count > 10) {
-        alert('이미지는 최대 10개까지 업로드가 가능합니다.');
+    if (count > 5) {
+        alert('이미지는 최대 5개까지 업로드가 가능합니다.');
+        filesInput.value = "";
         return;
     }
 
@@ -141,23 +195,24 @@ function getImageFile(e) {
             wrapper.appendChild(photo);
         }
         reader.readAsDataURL(file);
-    })
+    });
 
     const uploadInfo = document.createElement('p');
-    let fileName;
+    uploadInfo.setAttribute('class', 'review__uploadInfo')
+    let uploadInfoText;
     if (count == 1) {
         [...files].forEach(file => {
-            fileName = `해당 사진을 썸네일로 등록합니다. (${file.name})`;
+            uploadInfoText = `해당 사진이 썸네일로 등록됩니다. (${file.name})`;
         })
     } else {
-            fileName = `해당 사진을 썸네일로 등록합니다. (업로드할 사진 수 ${count}개)`;
+            uploadInfoText = `첫번째 사진이 썸네일로 등록됩니다. (업로드할 사진 수 ${count}개)`;
     }
-    uploadInfo.innerHTML = fileName;
-    uploadBtn.appendChild(uploadInfo);
+    uploadInfo.innerHTML = uploadInfoText;
+    reviewPhoto.appendChild(uploadInfo);
 }
 
 
-function init() {
+function init(files) {
     const photoBtn = document.querySelector('.photo-btn');
     if (photoBtn != null) {
         photoBtn.remove();
@@ -166,17 +221,16 @@ function init() {
     nextBtn.style.display = 'block';
     prevBtn.style.display = 'block';
 
-    if (wrapper.hasChildNodes) {
+    if (wrapper.hasChildNodes()) {
         wrapper.querySelectorAll('.swiper-slide').forEach(slide => {
             slide.remove();
         })
     }
 
-    uploadBtn.childNodes.forEach(child  => {
-        if (child.tagName == 'P') {
-            child.remove();
-        }
-    })
+    const uploadInfo = document.querySelector('.review__uploadInfo');
+    if(uploadInfo !== null) {
+        uploadInfo.remove();
+    }
 }
 
 function createPhoto(e, file) {
@@ -193,4 +247,16 @@ function createElement(e, attr, attrName) {
     const element = document.createElement(e);
     element.setAttribute(attr, attrName);
     return element;
-}b
+}
+
+// category
+const categorySelect = document.querySelector('#review-category');
+const value = categorySelect.getAttribute('data-type');
+
+if (value !== null) {
+    categorySelect.querySelectorAll('option').forEach(option => {
+        if(value.toLowerCase() === option.value) {
+            option.setAttribute('selected', 'selected');
+        }
+    })
+}

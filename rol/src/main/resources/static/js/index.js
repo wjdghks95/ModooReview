@@ -1,13 +1,16 @@
-// tagButton
-const tagBtn = document.querySelector('.tag-btn');
-const searchTag = document.querySelector('.search-tag');
-tagBtn.addEventListener('click', () => {
-    searchTag.style.display = 'block';
-    tagBtn.style.display = 'none';
+const latestContent = document.querySelector('.latest__content');
+const hotContent = document.querySelector('.hot__content');
 
-    const xBtn = document.querySelector('.x-btn');
-    xBtn.addEventListener('click', () => {
-        searchTag.style.display = 'none';
-        tagBtn.style.display = 'block';
-    })
-})
+function check(button) {
+    if(button.checked) {
+        if(button.value === "latest") {
+            latestContent.style.display = "block";
+            hotContent.style.display = "none";
+        }
+
+        if(button.value === "popularity") {
+            hotContent.style.display = "block";
+            latestContent.style.display = "none";
+        }
+    }
+}

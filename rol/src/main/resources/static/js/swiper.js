@@ -28,24 +28,6 @@ new Swiper(".category-swiper", {
     },
 });
 
-new Swiper(".tag-swiper", {
-    slidesPerView: 5, 
-    loop: true,
-    loopAdditionalSlides : 1,
-
-    touchRatio: 1,
-    speed: 3000,
-
-    observer: true,
-    observeParents: true,
-    autoplayDisableOnInteraction: false,
-
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false
-    },
-});
-
 new Swiper(".photo-swiper", {
     touchRatio: 0,
     observer: true,

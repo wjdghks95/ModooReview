@@ -14,7 +14,6 @@ import javax.validation.constraints.Pattern;
 public class MemberDto {
 
     @NotBlank(message = "핸드폰 번호를 입력해주세요.")
-    @Pattern(regexp = "01[016789][^0][0-9]{2,3}[0-9]{4}$")
     private String phone;
     @Email
     @NotBlank(message = "이메일을 입력해주세요.")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,28 +21,28 @@
         <div class="header__container container">
             <div class="header__wrapper">
                 <div class="header__logo-area">
-                    <a href="../html/index.html" class="header__logo">
+                    <a href="index.html" class="header__logo">
                         <img src="https://reviewshare.io/static/media/reviewshare_logo.057c3bd3.svg" alt="logo">
                     </a>
                 </div>
                 <nav class="header__nav">
                     <ul class="header__menu">
                         <li class="header__menu-item">
-                            <a href="../html/index.html" class="header__menu-link">Home</a>
+                            <a href="index.html" class="header__menu-link">Home</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/contents.html" class="header__menu-link">Contents</a>
+                            <a href="contents.html" class="header__menu-link">Contents</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/myPage-profile.html" class="header__menu-link">MyPage</a>
+                            <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
                         </li>
                     </ul>
                     <ul class="header__util-buttons">
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/login'">Login</button>
+                            <button type="button" class="util-btn" onclick="location.href='loginForm.html'">Login</button>
                         </li>
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/signUp'">SignUp</button>
+                            <button type="button" class="util-btn" onclick="location.href='signUpForm.html'">SignUp</button>
                         </li>
                     </ul>
                 </nav>
@@ -70,37 +70,43 @@
                     <div class="category-swiper">
                         <ul class="category__list swiper-wrapper">
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link active">전체</a>
+                                <button class="category-btn active" value="all">전체</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">식품</a>
+                                <button class="category-btn" value="food">식품</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">미용/코스메틱</a>
+                                <button class="category-btn" value="cosmetic">미용/코스메틱</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">패션/잡화</a>
+                                <button class="category-btn" value="fashion">패션/잡화</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">출산/육아</a>
+                                <button class="category-btn" value="nursing">출산/육아</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">디지털/가전</a>
+                                <button class="category-btn" value="digital">디지털/가전</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">스포츠/건강</a>
+                                <button class="category-btn" value="sports">스포츠/건강</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">반려동물</a>
+                                <button class="category-btn" value="pet">반려동물</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">여행/숙박</a>
+                                <button class="category-btn" value="restaurant">맛집</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">인테리어</a>
+                                <button class="category-btn" value="travel">여행/숙박</button>
                             </li>
                             <li class="category__item swiper-slide">
-                                <a href="#" class="category__link">기타</a>
+                                <button class="category-btn" value="culture">지역/문화</button>
+                            </li>
+                            <li class="category__item swiper-slide">
+                                <button class="category-btn" value="interior">인테리어</button>
+                            </li>
+                            <li class="category__item swiper-slide">
+                                <button class="category-btn" value="etc">기타</button>
                             </li>
                         </ul>
                         <div class="swiper-button-next"></div>
@@ -120,21 +126,23 @@
                     </li>
                 </ul>
 
-                <article class="section__content">
+                <article class="section__content" id="category-article">
                     <ul class="category__content category__content--gallery">
                         <li class="category__content-item">
-                            <a href="#" class="category__content-link">
+                            <a href="review.html" class="category__content-link">
                                 <div class="category__content-img-container">
-                                    <img src="../img/sample3.jpg" alt="review-thumbnail">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
                                 </div>
                                 <div class="category__content-body">
                                     <h4 class="category__content-title">리뷰입니다.</h4>
                                     <div class="rating">
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -146,9 +154,10 @@
                         <thead>
                             <th style="width:10%">작성자</th>
                             <th style="width:50%">제목</th>
-                            <th style="width:20%">평점</th>
-                            <th style="width:10%">등록일</th>
-                            <th style="width:10%">조회수</th>
+                            <th style="width:15%">평점</th>
+                            <th style="width:9%">등록일</th>
+                            <th style="width:9%">수정일</th>
+                            <th style="width:7%">조회수</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -159,19 +168,22 @@
                                 </td>
                                 <td>
                                     <div class="category__content-title">
-                                        <a href="#">리뷰입니다.</a>
+                                        <a href="review.html">리뷰입니다.</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="rating">
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
-                                        <div class="rating__star"><img src="../icon/star-solid.svg" alt="star"></div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                            <img src="../icon/star-regular.svg" alt="star">
+                                        </div>
                                     </div>
                                 </td>
                                 <td>2022.09.20</td>
+                                <td>2022.10.20</td>
                                 <td>100</td>
                             </tr>
                         </tbody>
@@ -180,58 +192,44 @@
 
                     <ul class="category__content category__content--board">
                         <li class="category__content-item">
-                            <a href="#" class="category__content-link">
+                            <a href="review.html" class="category__content-link">
                                 <div class="category__content-img-container">
-                                    <img src="../img/sample2.jpg" alt="review-thumbnail">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
                                 </div>
-                                <h4 class="category__content-title">#태그 #태그</h4>
                             </a>
+                            <div class="category__content-title">
+                                <a href="hashTag.html" class="category__content-tag">#태그1</a>
+                            </div>
                         </li>
                     </ul>
                     <!-- content--board -->
 
+                    <div class="pagination">
+                        <button type="button" class="pagination-btn pagination-prev-btn" onclick="location.href='contents.html'">Prev</button>
+                        <button type="button" class="pagination-btn active" onclick="location.href='contents.html'">1</button>
+                        <button type="button" class="pagination-btn" onclick="location.href='contents.html'">2</button>
+                        <button type="button" class="pagination-btn" onclick="location.href='contents.html'">3</button>
+                        <button type="button" class="pagination-btn" onclick="location.href='contents.html'">4</button>
+                        <button type="button" class="pagination-btn" onclick="location.href='contents.html'">5</button>
+                        <button type="button" class="pagination-btn pagination-next-btn" onclick="location.href='contents.html'">Next</button>
+                    </div>
+                    <!-- pagination -->
                 </article>
-
-                <div class="pagination">
-                    <a href="#" class="pagination-btn pagination-prev-btn">Prev</a>
-                    <a href="#" class="pagination-btn">1</a>
-                    <a href="#" class="pagination-btn">2</a>
-                    <a href="#" class="pagination-btn">3</a>
-                    <a href="#" class="pagination-btn">4</a>
-                    <a href="#" class="pagination-btn">5</a>
-                    <a href="#" class="pagination-btn pagination-next-btn">Next</a>
-                </div>
-                <!-- pagination -->
-
             </div>
         </section>
         <!-- category -->
 
         <div class="search-form__container container">
-            <form action="#" class="search-form" method="post">
-                <button type="button" class="tag-btn active"></button>
-                <div class="search-tag">
-                    <button type="button" class="x-btn"></button>
-                    <div class="swiper tag-swiper">
-                        <div class="swiper-wrapper">
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그1</button></li>
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그2</button></li>
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그3</button></li>
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그4</button></li>
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그5</button></li>
-                            <li class="swiper-slide"><button type="button" class="tag-item">#태그6</button></li>
-                        </div>
-                    </div>
-                </div>
+            <form action="contents.html" class="search-form" method="get">
                 <div class="search-form__search-bar">
-                    <input type="search" class="search-form__input" placeholder="검색어를 입력하세요">
+                    <input type="search" class="search-form__input" name="keyword" placeholder="검색어를 입력하세요">
                     <button type="submit" class="search-form__submit">Search</button>
                 </div>
             </form>
         </div>
         <!-- search -->
     </main>
-    
+
     <footer class="footer">
         <div class="footer__container container">
             <header class="section__headings">

@@ -1,0 +1,52 @@
+<li class="content__item" th:each="review : ${reviewList}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="content__link">
+        <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
+        <div class="content__info">
+            <h3 class="content__title" th:text="${review.title}">리뷰</h3>
+            <div class="rating" th:switch="${review.rating}">
+                <div class="rating__star" th:case=0>
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                </div>
+                <div class="rating__star" th:case=1>
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                </div>
+                <div class="rating__star" th:case=2>
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                </div>
+                <div class="rating__star" th:case=3>
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                </div>
+                <div class="rating__star" th:case=4>
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                </div>
+                <div class="rating__star" th:case=5>
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                </div>
+            </div>
+        </div>
+    </a>
+</li>

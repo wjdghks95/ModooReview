@@ -17,10 +17,6 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import wjdghks95.project.rol.security.handler.CustomAuthenticationFailureHandler;
-import wjdghks95.project.rol.security.provider.FormAuthenticationProvider;
-import wjdghks95.project.rol.security.service.CustomOAuth2UserService;
-import wjdghks95.project.rol.security.service.FormUserDetailService;
 import wjdghks95.project.rol.security.service.UserLoginRememberMeService;
 
 import javax.sql.DataSource;
@@ -46,12 +42,16 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.headers().frameOptions().sameOrigin();
         http
-//                .csrf().disable()
+                .csrf().disable()
                 .httpBasic().disable();
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signUp", "/logout", "/check/sendSMS").permitAll()
+                .antMatchers("/", "/login", "/signUp", "/logout", "/check/sendSMS", "/contents/**",
+                        "/portfolio/**", "/search/**", "/api/**").permitAll()
+                .antMatchers("/review/new").hasAnyAuthority("ROLE_USER")
+                .antMatchers("/review/**").permitAll()
+                .antMatchers("/myPage/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest().authenticated()
 
                 .and()

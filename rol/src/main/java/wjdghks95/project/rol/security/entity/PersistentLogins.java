@@ -2,8 +2,6 @@ package wjdghks95.project.rol.security.entity;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
-import wjdghks95.project.rol.domain.entity.Member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

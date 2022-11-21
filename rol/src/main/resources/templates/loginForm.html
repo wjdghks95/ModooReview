@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta author="LeeJeongHwan">
         <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
-        <link rel="shortcut icon" href="#">
+        <link rel="shortcut icon">
         <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
         <link rel="stylesheet" href="../css/loginForm.css" th:href="@{/css/loginForm.css}">
         <title>로그인</title>
     </head>
 <body>
-    <header th:insert="~{fragment/fragment-header :: header}"></header>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
 
     <main class="login">
         <section class="banner">
@@ -35,8 +35,7 @@
                             <h3 class="login-form-type__heading">일반 로그인</h3>
                             <p class="login-form-type__subheading">아이디/비밀번호를 활용한 로그인 방식입니다.</p>
                         </header>
-                        <form action="/login" method="post" class="login-form-type__form">
-                            <input type="hidden" th:name="_csrf" th:value="${_csrf.token}"/>
+                        <form action="loginForm.html" th:action method="post" class="login-form-type__form">
                             <div class="form__group form__row-wrapper">
                                 <div class="form__input-container">
                                     <label class="form__label">
@@ -92,6 +91,6 @@
         
     </main>
 
-    <footer th:insert="~{fragment/fragment-footer :: footer}"></footer>
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
 </body>
 </html>

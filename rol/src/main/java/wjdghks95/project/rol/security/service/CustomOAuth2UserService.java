@@ -2,8 +2,6 @@ package wjdghks95.project.rol.security.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.compress.utils.IOUtils;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,9 +18,11 @@ import wjdghks95.project.rol.security.oauth.KakaoUserInfo;
 import wjdghks95.project.rol.security.oauth.NaverUserInfo;
 import wjdghks95.project.rol.security.oauth.OAuth2UserInfo;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 
 @Service
@@ -55,23 +55,36 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String zipcode = oAuth2UserInfo.getZipcode();
         String address = oAuth2UserInfo.getAddress();
         String detailAddress = oAuth2UserInfo.getDetailAddress();
-        String picture = oAuth2UserInfo.getPicture();
+        String pictureUrl = oAuth2UserInfo.getPicture();
 
         Member member = memberRepository.findByEmail(email).orElseGet(() -> {
 
-            Member newMember = Member.builder()
-                    .phone(phone)
-                    .email(email)
-                    .password(password)
-                    .name(name)
-                    .nickname(nickname != null ? nickname : "닉네임" + UUID.randomUUID().toString().substring(0, 4))
-                    .zipcode(zipcode)
-                    .address(address)
-                    .detailAddress(detailAddress)
-                    .profileImage(picture != null ? picture : null)
-                    .role("USER")
-                    .build();
-            return memberRepository.save(newMember);
+            try {
+                // URL 이미지 인코딩
+                URL url = new URL(pictureUrl);
+                URLConnection urlConnection = url.openConnection(); // URLConnection 웹을 통해 데이터를 주고 받는데 사용
+                InputStream is = urlConnection.getInputStream();
+                byte[] bytes = IOUtils.toByteArray(is); // to byte array
+                String picture = Base64.getEncoder().encodeToString(bytes);
+
+                Member newMember = Member.builder()
+                        .phone(phone)
+                        .email(email)
+                        .password(password)
+                        .name(name != null ? name : "이름없음")
+                        .nickname(nickname != null ? nickname : "닉네임" + UUID.randomUUID().toString().substring(0, 4))
+                        .zipcode(zipcode)
+                        .address(address)
+                        .detailAddress(detailAddress)
+                        .profileImage(picture)
+                        .role("ROLE_USER")
+                        .build();
+                return memberRepository.save(newMember);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         });
 
         List<GrantedAuthority> roles = new ArrayList<>();

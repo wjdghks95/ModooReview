@@ -19,6 +19,7 @@
     --color-dark-blue: #002761;
     --color-turquoise: #42b2dc;
     --color-red: #d50000;
+    --color-orange: #f9a825;
 }
 
 @font-face {
@@ -154,8 +155,7 @@ textarea::placeholder {
 }
 
 /* button */
-.default-btn,
-.default-btn--white {
+.default-btn {
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -171,15 +171,6 @@ textarea::placeholder {
 
 .default-btn:hover {
     background-color: #27a8cf;
-}
-
-.default-btn--white {
-    border: 1px solid var(--color-black);
-    background-color: var(--color-white);
-    color: var(--color-black);
-}
-.default-btn--white:hover {
-    background-color: var(--color-light-white);
 }
 
 .util-btn {
@@ -203,22 +194,6 @@ textarea::placeholder {
     box-shadow: 0px 15px 20px rgba(46, 73, 229, 0.4);
     color: var(--color-white);
     transform: translateY(-7px);
-}
-
-.viewer-btn {
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;    
-    background-repeat: no-repeat;
-    filter: invert(10%) sepia(56%) saturate(4338%) hue-rotate(204deg) brightness(91%);
-    transition: all .1s ease-in;
-}
-
-.viewer-btn.active {
-    filter: invert(26%) sepia(74%) saturate(3738%) hue-rotate(209deg) brightness(100%);
 }
 
 .add-btn {
@@ -259,19 +234,47 @@ textarea::placeholder {
     background-color: var(--color-dark-white);
 }
 
-.thumbs-up-btn {
-    width: 1.5rem;
-    height: 1.5rem;
+.like-btn {
+    width: 1.7rem;
+    height: 1.7rem;
     background-image: url(../icon/heart-regular.svg);
     background-color: transparent;
+    background-repeat: no-repeat;
     border: none;
     outline: none;
     cursor: pointer;
 }
 
-.thumbs-up-btn.active {
+.like-btn.active {
     background-image: url(../icon/heart-solid.svg);
     filter: invert(12%) sepia(83%) saturate(7279%) hue-rotate(359deg) brightness(116%) contrast(120%);
+}
+
+.follow-btn {
+    width: 100%;
+    height: 100%;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: var(--color-turquoise);
+    color: var(--color-white);
+    font-size: var(--font-small);
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.follow-btn:hover {
+    background-color: #27a8cf;
+}
+
+.follow-btn.active {
+    border: 1px solid var(--color-black);
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+.follow-btn.active:hover {
+    background-color: var(--color-light-white);
 }
 
 /* section */
@@ -289,6 +292,7 @@ textarea::placeholder {
 .section__heading {
     margin-bottom: 1.5rem;
     font-size: var(--font-large);
+    word-wrap: break-word;
 }
 
 .section__heading--white {
@@ -299,6 +303,7 @@ textarea::placeholder {
     margin-bottom: 1.5rem;
     font-size: var(--font-medium-small);
     color: var(--color-gray);
+    word-wrap: break-word;
 }
 
 /* banner */
@@ -503,60 +508,6 @@ textarea::placeholder {
     margin: 0 auto;
 }
 
-.search-tag {
-    display: none;
-    position: relative;
-    width: 80%;
-    padding: .5rem;
-    padding-left: 2.4rem;
-}
-
-.search-tag.active {
-    display: block;
-}
-
-.tag-btn {
-    height: 34px;
-    width: 34px;
-    border: none;
-    z-index: 100;
-    background: url(../icon/tag-horizontal.svg) no-repeat center / 100% 100%;
-    cursor: pointer;
-    filter: invert(100%) sepia(99%) saturate(0%) hue-rotate(299deg) brightness(107%) contrast(100%);
-}
-
-.tag-btn:hover {
-    filter: invert(100%) sepia(4%) saturate(163%) hue-rotate(64deg) brightness(112%) contrast(86%);
-}
-
-.x-btn {
-    position: absolute;
-    top: 8px;
-    left: 2px;
-    height: 34px;
-    width: 34px;
-    z-index: 100;
-    background: url(../icon/xmark.svg) no-repeat center / 100% 100%;
-    border: 2px solid var(--color-black);
-    border-radius: 4px;
-    cursor: pointer;
-    filter: invert(100%) sepia(99%) saturate(0%) hue-rotate(299deg) brightness(107%) contrast(100%);
-}
-
-.x-btn:hover {
-    filter: invert(100%) sepia(4%) saturate(163%) hue-rotate(64deg) brightness(112%) contrast(86%);
-}
-
-.tag-item {
-    height: 34px;
-    padding: 0 .7rem;
-    border: none;
-    border-radius: 4px;
-    font-size: var(--font-micro);
-    font-weight: bold;
-    cursor: pointer;
-}
-
 .search-form__search-bar {
     display: flex;
     width: 100%;
@@ -595,12 +546,10 @@ textarea::placeholder {
     padding: .625rem;
 }
 
-.rating__star {
+.rating__star > img {
+
     width: 1.25rem;
     height: 1.25rem;
-}
-
-.rating__star img {
     filter: invert(82%) sepia(68%) saturate(5238%) hue-rotate(358deg) brightness(104%) contrast(102%);
 }
 
@@ -624,14 +573,21 @@ textarea::placeholder {
     display: block;
     width: 40px;
     height: 100%;
+    border: 1px solid var(--color-gray);
     line-height: 40px;
     font-size: var(--font-micro);
     font-weight: bold;
     text-align: center;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.pagination-btn {
-    border: 1px solid var(--color-gray);
+.pagination-btn.active {
+    border: 2px solid var(--color-gray);
+}
+
+.pagination-btn:hover {
+    border: 2px solid var(--color-gray);
 }
 
 .pagination-btn.pagination-next-btn,

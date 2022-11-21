@@ -16,28 +16,28 @@
         <div class="header__container container">
             <div class="header__wrapper">
                 <div class="header__logo-area">
-                    <a href="../html/index.html" class="header__logo">
+                    <a href="index.html" class="header__logo">
                         <img src="https://reviewshare.io/static/media/reviewshare_logo.057c3bd3.svg" alt="logo">
                     </a>
                 </div>
                 <nav class="header__nav">
                     <ul class="header__menu">
                         <li class="header__menu-item">
-                            <a href="../html/index.html" class="header__menu-link">Home</a>
+                            <a href="index.html" class="header__menu-link">Home</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/contents.html" class="header__menu-link">Contents</a>
+                            <a href="contents.html" class="header__menu-link">Contents</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="../html/myPage-profile.html" class="header__menu-link">MyPage</a>
+                            <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
                         </li>
                     </ul>
                     <ul class="header__util-buttons">
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/login'">Login</button>
+                            <button type="button" class="util-btn" onclick="location.href='loginForm.html'">Login</button>
                         </li>
                         <li class="header__util-button">
-                            <button type="button" class="util-btn" onclick="location.href='/signUp'">SignUp</button>
+                            <button type="button" class="util-btn" onclick="location.href='signUpForm.html'">SignUp</button>
                         </li>
                     </ul>
                 </nav>
@@ -59,19 +59,19 @@
         </section>
         <!-- banner -->
 
-        <section class="login-model">
-            <div class="login-model__container container">
-                <div class="login-model__inner">
-                    <article class="login-model-type">
-                        <header class="login-model-type__headings">
-                            <h3 class="login-model-type__heading">일반 로그인</h3>
-                            <p class="login-model-type__subheading">아이디/비밀번호를 활용한 로그인 방식입니다.</p>
+        <section class="login-form">
+            <div class="login-form__container container">
+                <div class="login-form__inner">
+                    <article class="login-form-type">
+                        <header class="login-form-type__headings">
+                            <h3 class="login-form-type__heading">일반 로그인</h3>
+                            <p class="login-form-type__subheading">아이디/비밀번호를 활용한 로그인 방식입니다.</p>
                         </header>
-                        <form action="/login" method="post" class="login-model-type__form">
+                        <form action="loginForm.html" class="login-form-type__form">
                             <div class="form__group form__row-wrapper">
                                 <div class="form__input-container">
                                     <label class="form__label">
-                                        <input type="email" name="email" placeholder="아이디">
+                                        <input type="email" name="username" placeholder="아이디">
                                     </label>
                                     <label class="form__label">
                                         <input type="password" name="password" placeholder="비밀번호">
@@ -82,34 +82,35 @@
                                 </div>
                             </div>
                             <div class="form__group form__row-wrapper">
-                                <label for="user[remember-me]" class="form__label">
-                                    <input type="checkbox" name="remember-me" id="user[remember-me]">아이디 저장
+                                <label for="remember-me" class="form__label">
+                                    <input type="checkbox" name="remember-me" id="remember-me">아이디 저장
                                 </label>
                                 <div class="find-account">
                                     <a href="#">아이디 찾기</a>
                                     <a href="#">비밀번호 찾기</a>
                                 </div>
                             </div>
+                            <p class="error-message">알수 없는 이유로 로그인에 실패하였습니다. 관리자에게 문의하세요.</p>
                         </form>
                     </article>
-                    <article class="login-model-type">
-                        <header class="login-model-type__headings">
-                            <h3 class="login-model-type__heading">SNS 로그인</h2>
-                            <p class="login-model-type__subheading">SNS 계정을 활용한 로그인 방식입니다.</p>
+                    <article class="login-form-type">
+                        <header class="login-form-type__headings">
+                            <h3 class="login-form-type__heading">SNS 로그인</h3>
+                            <p class="login-form-type__subheading">SNS 계정을 활용한 로그인 방식입니다.</p>
                         </header>
-                        <ul class="login-model-type__oauth2">
-                            <li class="login-model__oauth2-provider">
-                                <a href="#" class="login-model__oauth2-link">
+                        <ul class="login-form-type__oauth2">
+                            <li class="login-form__oauth2-provider">
+                                <a href="/oauth2/authorization/kakao" class="login-form__oauth2-link">
                                     <img src="../icon/kakaotalk.png" alt="kakaotalk">
                                 </a>
                             </li>
-                            <li class="login-model__oauth2-provider">
-                                <a href="#" class="login-model__oauth2-link">
+                            <li class="login-form__oauth2-provider">
+                                <a href="/oauth2/authorization/naver" class="login-form__oauth2-link">
                                     <img src="../icon/naver.png" alt="naver">
                                 </a>
                             </li>
-                            <li class="login-model__oauth2-provider">
-                                <a href="#" class="login-model__oauth2-link" style="transform: scale(1.1);">
+                            <li class="login-form__oauth2-provider">
+                                <a href="/oauth2/authorization/google" class="login-form__oauth2-link" style="transform: scale(1.1);">
                                     <img src="../icon/google.svg" alt="google">
                                 </a>
                             </li>
@@ -118,8 +119,8 @@
                 </div>
             </div>
         </section>
-        <!-- login-model -->
-        
+        <!-- login-form -->
+
     </main>
 
     <footer class="footer">
