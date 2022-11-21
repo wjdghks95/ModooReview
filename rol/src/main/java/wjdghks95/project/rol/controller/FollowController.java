@@ -19,12 +19,12 @@ public class FollowController {
     private final MemberService memberService;
 
     @GetMapping("/member/follow/{id}")
-    public String follow(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
+    public int follow(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
         Member followingMember = memberRepository.findById(memberContext.getMember().getId()).orElseThrow();
         Member followerMember = memberRepository.findById(id).orElseThrow();
 
         memberService.follow(followingMember, followerMember);
-
-        return "";
+        int followerCount = followerMember.getFollowerList().size();
+        return followerCount;
     }
 }

@@ -48,7 +48,7 @@
                     <ul class="following-content__following-list">
                         <li class="following-content__following-item" th:each="following : ${followingList}">
                             <div class="following-content__following-info">
-                                <a href="#" th:href="@{/profile/{id}(id=${following.follower.id})}" class="following-content__following-link">
+                                <a href="portfolio.html" th:href="@{/portfolio/{id}(id=${following.follower.id})}" class="following-content__following-link">
                                     <div class="following-content__following-image">
                                         <img src="../img/profile.png" th:src="'data:image/png;base64,' + ${following.follower.profileImage}" onerror="this.src='/images/profile'" alt="프로필">
                                     </div>

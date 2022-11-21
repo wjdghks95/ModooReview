@@ -47,7 +47,8 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signUp", "/logout", "/check/sendSMS", "/contents/**", "/search/**", "/api/**").permitAll()
+                .antMatchers("/", "/login", "/signUp", "/logout", "/check/sendSMS", "/contents/**",
+                        "/portfolio/**", "/search/**", "/api/**").permitAll()
                 .antMatchers("/review/new").hasAnyAuthority("ROLE_USER")
                 .antMatchers("/review/**").permitAll()
                 .antMatchers("/myPage/**").hasAnyAuthority("ROLE_USER")
