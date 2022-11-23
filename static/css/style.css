@@ -286,3 +286,66 @@ img {
     font-size: var(--font-medium-small);
     color: var(--color-gray);
 }
+
+/* banner */
+.banner {
+    background-color: var(--color-light-blue);
+}
+
+.banner .section__headings {
+    margin-bottom: 0;
+    width: 30%;
+    text-align: left;
+}
+
+.banner .section__subheading {
+    color: var(--color-black);
+    font-weight: bold;
+}
+
+/* pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 308px;
+    height: 40px;
+    margin: 2rem auto;
+}
+
+.pagination-btn {
+    display: block;
+    width: 40px;
+    height: 100%;
+    border: 1px solid var(--color-gray);
+    line-height: 40px;
+    font-size: var(--font-micro);
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.pagination-btn.active {
+    border: 2px solid var(--color-gray);
+}
+
+.pagination-btn:hover {
+    border: 2px solid var(--color-gray);
+}
+
+.pagination-btn.pagination-next-btn,
+.pagination-btn.pagination-prev-btn {
+    width: 54px;
+    color: var(--color-white);
+    background-color: var(--color-blue);
+    border-radius: 4px 0 0 4px;
+}
+
+.pagination-btn.pagination-prev-btn {
+    border-radius: 4px 0 0 4px;
+}
+
+.pagination-btn.pagination-next-btn {
+    border-radius: 0 4px 4px 0;
+}
