@@ -1,0 +1,92 @@
+.login-modal__container {
+    max-width: 768px;
+}
+
+.login-modal__content {
+    padding: 4rem;
+    border: 2px solid var(--color-gray);
+    border-radius: 20px;
+}
+
+.login-modal__type {
+    margin-bottom: 3rem;
+}
+
+.section__headings {
+    margin-bottom: 2rem;
+}
+
+.section__heading {
+    margin-bottom: 1rem;
+    font-size: var(--font-medium-large);
+    text-align: left;
+}
+
+.section__subheading {
+    color: var(--color-gray);
+    font-size: var(--font-small);
+    font-weight: bold;
+    text-align: left;
+}
+
+.login-modal__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.login-modal__form-container {
+    width: 75%;
+}
+
+.form__group:last-child {
+    margin-bottom: 0;
+}
+
+.login-modal__login-button {
+    width: 15%;
+    height: 5.75rem;
+}
+
+.login-modal__more-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.find-account a {
+    color: var(--color-gray);
+}
+
+.login-modal__find-link:first-child {
+    position: relative;
+    margin-right: 1.25rem;
+}
+
+.login-modal__find-link:first-child::after {
+    content: "";
+    position: absolute;
+    right: -1rem;
+    bottom: .3125rem;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background-color: var(--color-gray);
+    pointer-events: none;
+}
+
+.login-modal__sns {
+    display: flex;
+    height: 3.25rem;
+}
+
+.login-modal__sns-prov {
+    height: 100%;
+    margin-right: 1.875rem;
+}
+
+.login-modal__sns-prov-link {
+    display: block;
+    height: 100%;
+}
