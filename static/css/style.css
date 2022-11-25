@@ -115,6 +115,15 @@ input[type="checkbox"] {
     margin-right: 0.3125rem;
 }
 
+select {
+    padding: 0.625rem 0.875rem;
+    width: 100%;
+    border: 1px solid var(--color-gray);
+    border-radius: 4px;
+    color: var(--color-black);
+    font-size: var(--font-small);
+}
+
 /* button */
 .default-btn {
     width: 100%;
@@ -388,8 +397,19 @@ input[type="checkbox"] {
     margin-bottom: 1rem;
 }
 
+.form__label {
+    font-size: var(--font-small);
+    font-weight: bold;
+}
+
+.form__row-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* error */
 .error-msg {
-    margin-top: .75rem;
+    margin-top: .5rem;
     color: var(--color-red);
 }
