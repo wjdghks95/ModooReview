@@ -1,0 +1,86 @@
+.default-btn {
+    padding: .625rem 1rem;
+}
+
+/* side-menu */
+.myPage__container {
+    display: flex;
+}
+
+.side-menu {
+    width: 200px;
+}
+
+.side-menu__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--font-medium);
+}
+
+.side-menu__item.active {
+    font-weight: bold;
+}
+
+.side-menu__item {
+    margin-bottom: 2.5rem;
+}
+
+/* profile */
+.profile {
+    width: 1024px;
+    margin-left: 4%;
+}
+
+.profile__list {
+    padding: 2.25rem 1.75rem;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 10px;
+}
+
+.profile__item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem .625rem;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.profile__field {
+    flex-basis: 20%;
+    color: var(--color-gray);
+}
+
+.profile__image {
+    overflow: hidden;
+    width: 4.375rem;
+    height: 4.375rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile__text {
+    flex-basis: 65%;
+}
+
+.profile__nick-form {
+    flex-basis: 61%;
+    display: none;
+}
+
+.profile__nick-form > input[name="nickname"] {
+    width: 80%;
+}
+
+.profile__buttons {
+    display: flex;
+    margin-left: .1875rem;
+}
+
+.update-btn {
+    margin-right: .625rem;
+    display: none;
+}
+
+.cancel-btn {
+    display: none;
+}
