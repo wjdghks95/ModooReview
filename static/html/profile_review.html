@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/profile_likeAndReview.css">
+    <title>프로필 - 리뷰</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo">
+                <a href="index.html" class="header__logo-link">
+                    <img src="../img/logo.png" alt="로고" class="header__logo-img">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li class="header__menu-item">
+                        <a href="index.html" class="header__menu-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="contents.html" class="header__menu-link">Contents</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
+                    </li>
+                </ul>
+                <ul class="header__account-menu">
+                    <li class="header__account-item">
+                        <a href="login.html" class="header__account-link">Login</a>
+                    </li>
+                    <li class="header__account-item">
+                        <a href="signUp.html" class="header__account-link">SignUp</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header -->
+    
+    <main class="main">
+        <div class="profile__container container">
+            <section class="profile">
+                <div class="profile__content">
+                    <div class="profile__info">
+                        <div class="profile__image">
+                            <img src="../img/profile.png" alt="프로필">
+                        </div>
+                        <h3 class="profile__nickname">닉네임</h3>
+                        <div class="profile__follow">
+                            <div class="profile__follower">
+                                <span>팔로워</span><strong class="profile__follow-count">100</strong>
+                            </div>
+                            <div class="profile__following">
+                                <span>팔로잉</span><strong class="profile__follow-count">100</strong>
+                            </div>
+                        </div>
+                        <!-- <div class="profile__edit-button">
+                            <button onclick="location.href='myPage_profile.html'" class="default-btn">설정</button>
+                        </div> -->
+                        <div class="profile__follow-button">
+                            <button class="default-btn">팔로우</button>
+                        </div>
+                    </div>
+                    <div class="profile__grade">
+                        <img src="../img/challenger.png" alt="등급">
+                    </div>
+                </div>
+            </section>
+            <!-- profile -->
+
+            <section class="content">
+                <header class="section__headings">
+                    <h2 class="section__heading">리뷰<span class="content__count">100</span></h2>
+                </header>
+                <article class="section__content">
+                    <ul class="content__list">
+                        <li class="content__item">
+                            <a href="board.html" class="content__link">
+                                <div class="content__image">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
+                                </div>
+                                <div class="content__info">
+                                    <div class="content__like">
+                                        <div class="content__like-image">
+                                            <img src="../icon/heart-solid.svg" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count">100</strong>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <span class="rating__score">5.0</span>
+                                    </div>
+                                </div>
+                                <h4 class="content__title">제목</h4>
+                            </a>
+                        </li>
+                        <li class="content__item">
+                            <a href="board.html" class="content__link">
+                                <div class="content__image">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
+                                </div>
+                                <div class="content__info">
+                                    <div class="content__like">
+                                        <div class="content__like-image">
+                                            <img src="../icon/heart-solid.svg" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count">100</strong>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <span class="rating__score">5.0</span>
+                                    </div>
+                                </div>
+                                <h4 class="content__title">제목</h4>
+                            </a>
+                        </li>
+                        <li class="content__item">
+                            <a href="board.html" class="content__link">
+                                <div class="content__image">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
+                                </div>
+                                <div class="content__info">
+                                    <div class="content__like">
+                                        <div class="content__like-image">
+                                            <img src="../icon/heart-solid.svg" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count">100</strong>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <span class="rating__score">5.0</span>
+                                    </div>
+                                </div>
+                                <h4 class="content__title">제목</h4>
+                            </a>
+                        </li>
+                        <li class="content__item">
+                            <a href="board.html" class="content__link">
+                                <div class="content__image">
+                                    <img src="../img/sample1.jpg" alt="썸네일">
+                                </div>
+                                <div class="content__info">
+                                    <div class="content__like">
+                                        <div class="content__like-image">
+                                            <img src="../icon/heart-solid.svg" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count">100</strong>
+                                    </div>
+                                    <div class="rating">
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <div class="rating__star">
+                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                        </div>
+                                        <span class="rating__score">5.0</span>
+                                    </div>
+                                </div>
+                                <h4 class="content__title">제목</h4>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <!-- content -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <h2 class="footer__heading">Let's talk</h2>
+            <article class="footer__content">
+                <ul class="footer__contact">
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/email.svg" alt="email" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/facebook.svg" alt="facebook" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/instagram.svg" alt="instagram" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/github.svg" alt="github" class="footer__contact-img">
+                        </a>
+                    </li>
+                </ul>
+                <p class="footer__copyright">
+                    Copyright ⓒ 2022 - All rights reserved by wjdghks95
+                </p>
+            </article>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+</html>
+

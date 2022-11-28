@@ -1,0 +1,141 @@
+.default-btn {
+    padding: .5rem 1rem;
+}
+
+.profile__container {
+    display: flex;
+    border-top: 1px solid var(--color-light-gray);
+}
+
+.profile__image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile__content {
+    padding: 1.875rem;
+    margin-right: 5rem;
+    width: 22.5rem;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 20px;
+}
+
+.profile__info {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-gray);
+}
+
+.profile__nickname {
+    text-align: center;
+}
+
+.profile__follow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem 0;
+    color: var(--color-gray);
+}
+
+.profile__follower {
+    position: relative;
+    margin-right: .5rem;
+}
+
+.profile__follower::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: -.5rem;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 10px;
+    background-color: var(--color-light-gray);
+}
+
+.profile__following {
+    margin-left: .5rem;
+}
+
+.profile__follow-count {
+    margin-left: .2rem;
+    color: var(--color-black);
+}
+
+.profile__edit-button {
+    width: 80px;
+    margin: 0 auto;
+}
+
+.profile__grade {
+    width: 200px;
+    height: 100%;
+    padding-top: 1.25rem;
+    margin: 0 auto;
+}
+
+.content {
+    width: 62.5rem;
+}
+
+.section__headings {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.section__heading {
+    margin-bottom: 0;
+    font-size: var(--font-medium);
+    font-weight: bold;
+}
+
+.content__count {
+    margin-left: .2rem;
+    color: var(--color-blue);
+}
+
+.content__all {
+    color: var(--color-blue);
+    font-weight: bold;
+}
+
+.content__all:hover {
+    color: var(--color-light-blue);
+}
+
+.section__content {
+    margin-bottom: 1.5rem;
+    min-height: 26.875rem;
+}
+
+.section__content:not(:last-child) {
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.content__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.content__item {
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: 23%;
+    height: 12.5rem;
+}
+
+.content__item:hover .content__link > img {
+    transform: scale(1.1);
+}
+
+.content__link {
+    display: block;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
