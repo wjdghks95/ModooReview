@@ -170,3 +170,46 @@
     opacity: 0;
     transition: all .2s ease-out;
 }
+
+/* following */
+.following {
+    width: 1024px;
+    margin-left: 4%;
+}
+
+.following__list {
+    margin: 0 auto;
+    max-width: 760px;
+}
+
+.following__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.following__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.following__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.following__image {
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.following__nickname {
+    margin-left: 1rem;
+    font-size: var(--font-medium-small);
+    font-weight: bold;
+}
