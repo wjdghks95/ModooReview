@@ -102,6 +102,7 @@
 
 .best__item {
     flex-basis: 24%;
+    margin-bottom: 1.875rem;
 }
 
 .best__item:hover .best__img-container > img {
