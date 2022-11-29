@@ -227,7 +227,7 @@
     display: none;
 }
 
-.switch-input:checked + .switch-label {
+.switch-label.checked {
     font-weight: bold;
     color: rgba(0, 0, 0, 0.65);
     text-shadow: 0 1px rgba(255, 255, 255, 0.25);
@@ -235,10 +235,6 @@
     -moz-transition: 0.15s ease-out;
     -o-transition: 0.15s ease-out;
     transition: 0.15s ease-out;
-}
-
-.switch-input:checked + .switch-label--on ~ .switch-selection {
-    left: 85px;
 }
 
 .switch-selection {
