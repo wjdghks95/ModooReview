@@ -213,3 +213,51 @@
     font-size: var(--font-medium-small);
     font-weight: bold;
 }
+
+/* withdrawal */
+.withdrawal {
+    width: 1024px;
+    margin-left: 4%;
+}
+
+.withdrawal__content {
+    padding: 2.25rem 1.75rem;
+    border: 1px solid var(--color-gray);
+    border-radius: 10px;
+}
+
+.withdrawal__group {
+    margin-bottom: 2.5rem;
+}
+
+.withdrawal__description {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.withdrawal__description--red {
+    color: var(--color-red);
+}
+
+.withdrawal__label {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.withdrawal__pwdChk {
+    text-align: center;
+}
+
+.withdrawal__group > input {
+    margin-left: 1rem;
+    width: 40%;
+}
+
+.withdrawal__buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.withdrawal__button {
+    margin: 0 .625rem;
+}

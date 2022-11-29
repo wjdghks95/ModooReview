@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/myPage.css">
+    <title>마이페이지 - 회원탈퇴</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo">
+                <a href="index.html" class="header__logo-link">
+                    <img src="../img/logo.png" alt="로고" class="header__logo-img">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li class="header__menu-item">
+                        <a href="index.html" class="header__menu-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="contents.html" class="header__menu-link">Contents</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
+                    </li>
+                </ul>
+                <ul class="header__account-menu">
+                    <li class="header__account-item">
+                        <a href="login.html" class="header__account-link">Login</a>
+                    </li>
+                    <li class="header__account-item">
+                        <a href="signUp.html" class="header__account-link">SignUp</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header -->
+
+    <main class="myPage">
+        <div class="myPage__container container">
+
+            <aside class="side-menu">
+                <ul class="side-menu__list">
+                    <li class="side-menu__item">
+                        <a href="myPage_profile.html" class="side-menu__link">프로필</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_myReview.html" class="side-menu__link">나의 리뷰</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_like.html" class="side-menu__link">좋아요</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_following.html" class="side-menu__link">팔로잉</a>
+                    </li>
+                    <li class="side-menu__item active">
+                        <a href="myPage_withdrawal.html" class="side-menu__link">회원 탈퇴</a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- side-menu -->
+
+            <section class="withdrawal">
+                <article class="section__content withdrawal__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">회원 탈퇴</h2>
+                    </header>
+                    <div class="withdrawal__group">
+                        <span class="withdrawal__description withdrawal__description--red">
+                            탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
+                        </span>
+                    </div>
+                    <form action="index.html" class="withdrawal__form">
+                        <div class="withdrawal__group">
+                            <span class="withdrawal__description">회원탈퇴 완료 후 복구가 불가한 것에 대해 인지하였으며 동의합니다.</span>
+                            <label class="withdrawal__label">
+                                <input type="checkbox"> 동의
+                            </label>
+                        </div>
+                        <div class="withdrawal__group">
+                            <span class="withdrawal__description">회원탈퇴 시 주의사항에 대해 확인하였으며 회원탈퇴에 동의합니다.</span>
+                            <label class="withdrawal__label">
+                                <input type="checkbox"> 동의
+                            </label>
+                        </div>
+                        <div class="withdrawal__group withdrawal__pwdChk">
+                            <label class="form__label">비밀번호 확인</label>
+                            <input name="pwdChk" placeholder="비밀번호를 입력해주세요">
+                        </div>
+                        <ul class="withdrawal__buttons">
+                            <li class="withdrawal__button">
+                                <button type="submit" class="default-btn">확인</button>
+                            </li>
+                            <li class="withdrawal__button">
+                                <button type="button" class="default-btn default-btn--white" onclick="location='myPage_profile.html'">취소</button>
+                            </li>
+                        </ul>
+                    </form>
+                </article>
+            </div>
+        </section>
+        <!-- myPage-withdrawal -->
+    </main>
+    <!-- withdrawal -->
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <h2 class="footer__heading">Let's talk</h2>
+            <article class="footer__content">
+                <ul class="footer__contact">
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/email.svg" alt="email" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/facebook.svg" alt="facebook" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/instagram.svg" alt="instagram" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/github.svg" alt="github" class="footer__contact-img">
+                        </a>
+                    </li>
+                </ul>
+                <p class="footer__copyright">
+                    Copyright ⓒ 2022 - All rights reserved by wjdghks95
+                </p>
+            </article>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+</html>
