@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="../icon/favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contents.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/contents.js" defer></script>
     <title>콘텐츠</title>
 </head>
 <body>
@@ -114,122 +116,125 @@
                 </ul>
 
                 <article class="content__content">
-                    <ul class="content__boards content__boards--gallery">
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-link">
-                                <div class="content__board-img-container">
-                                    <img src="../img/sample1.jpg" alt="썸네일">
-                                </div>
-                                <div class="content__board-content">
-                                    <h4 class="content__board-title">제목</h4>
-                                    <div class="rating">
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                    <div class="content__boards">
+                        <ul class="content__boards--gallery">
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-link">
+                                    <div class="content__board-img-container">
+                                        <img src="../img/sample1.jpg" alt="썸네일">
+                                    </div>
+                                    <div class="content__board-content">
+                                        <h4 class="content__board-title">제목</h4>
+                                        <div class="rating">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-link">
-                                <div class="content__board-img-container">
-                                    <img src="../img/sample1.jpg" alt="썸네일">
-                                </div>
-                                <div class="content__board-content">
-                                    <h4 class="content__board-title">제목</h4>
-                                    <div class="rating">
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                </a>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-link">
+                                    <div class="content__board-img-container">
+                                        <img src="../img/sample1.jpg" alt="썸네일">
+                                    </div>
+                                    <div class="content__board-content">
+                                        <h4 class="content__board-title">제목</h4>
+                                        <div class="rating">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-link">
-                                <div class="content__board-img-container">
-                                    <img src="../img/sample1.jpg" alt="썸네일">
-                                </div>
-                                <div class="content__board-content">
-                                    <h4 class="content__board-title">제목</h4>
-                                    <div class="rating">
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                </a>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-link">
+                                    <div class="content__board-img-container">
+                                        <img src="../img/sample1.jpg" alt="썸네일">
+                                    </div>
+                                    <div class="content__board-content">
+                                        <h4 class="content__board-title">제목</h4>
+                                        <div class="rating">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-link">
-                                <div class="content__board-img-container">
-                                    <img src="../img/sample1.jpg" alt="썸네일">
-                                </div>
-                                <div class="content__board-content">
-                                    <h4 class="content__board-title">제목</h4>
-                                    <div class="rating">
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                        </div>
-                                        <div class="rating__star">
-                                            <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                </a>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-link">
+                                    <div class="content__board-img-container">
+                                        <img src="../img/sample1.jpg" alt="썸네일">
+                                    </div>
+                                    <div class="content__board-content">
+                                        <h4 class="content__board-title">제목</h4>
+                                        <div class="rating">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <!-- boards--gallery -->
 
                     <table class="content__boards content__boards--list" style="table-layout: fixed">
                         <thead>
+                            <th style="width: 5%;">번호</th>
                             <th style="width:10%">작성자</th>
-                            <th style="width:50%">제목</th>
+                            <th style="width:45%">제목</th>
                             <th style="width:15%">평점</th>
                             <th style="width:9%">등록일</th>
                             <th style="width:9%">수정일</th>
@@ -237,6 +242,9 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>
+                                    2
+                                </td>
                                 <td>
                                     <div class="content__board-author">
                                         <a href="profile.html" class="content__board-author-link">회원</a>
@@ -271,6 +279,9 @@
                                 <td>100</td>
                             </tr>
                             <tr>
+                                <td>
+                                    1
+                                </td>
                                 <td>
                                     <div class="content__board-author">
                                         <a href="profile.html" class="content__board-author-link">회원</a>
@@ -307,53 +318,55 @@
                         </tbody>
                     </table>
                     <!-- boards--list -->
-
-                    <ul class="content__boards content__boards--board">
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-title">제목</a>
-                            <ul class="content__board-tags">
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
-                                </li>
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-title">제목</a>
-                            <ul class="content__board-tags">
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
-                                </li>
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-title">제목</a>
-                            <ul class="content__board-tags">
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
-                                </li>
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="content__board">
-                            <a href="board.html" class="content__board-title">제목</a>
-                            <ul class="content__board-tags">
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
-                                </li>
-                                <li class="content__board-tag">
-                                    <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    
+                    <div class="content__boards">
+                        <ul class="content__boards--board">
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-title">제목</a>
+                                <ul class="content__board-tags">
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
+                                    </li>
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-title">제목</a>
+                                <ul class="content__board-tags">
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
+                                    </li>
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-title">제목</a>
+                                <ul class="content__board-tags">
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
+                                    </li>
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="content__board">
+                                <a href="board.html" class="content__board-title">제목</a>
+                                <ul class="content__board-tags">
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그1</a>
+                                    </li>
+                                    <li class="content__board-tag">
+                                        <a href="hashTag.html" class="content__board-tag-link">#태그2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <!-- boards--board -->
 
                     <div class="pagination">
