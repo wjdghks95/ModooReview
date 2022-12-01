@@ -32,3 +32,9 @@ $('.arrow-btn--prev').on('click', function() {
         return;
     }
 })
+
+// 카테고리 선택
+$('.category-btn').on('click', function() {
+    $('.category-btn').removeClass('active');
+    $(this).addClass('active');
+})
