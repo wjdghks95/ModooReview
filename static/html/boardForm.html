@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="../icon/favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/boardForm.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/boardFrom.js" defer></script>
     <title>글쓰기</title>
 </head>
 <body>
@@ -53,21 +55,31 @@
                 <form action="board.html" class="write__form" enctype="multipart/form-data">
                     <div class="form__row-wrapper">
                         <div class="write__group">
-                            <div class="write__photo">
+                            <div class="write__photo-button">
                                 <div class="write__photo-icon">
                                     <img src="../icon/camera.svg" alt="camera" class="write__photo-img">
                                 </div>
                                 <p>사진 올리기</p>
                                 <p><small>(* 최대 10장까지)</small></p>
                             </div>
-                            <p class="error-msg">사진을 한 개 이상 등록해주세요.</p>
+                            <div class="write__photo-container slider-container">
+                                <ul class="write__photo-list slides">
+                                </ul>
+
+                                <div class="arrow-button">
+                                    <button type="button" class="arrow-btn arrow-btn--prev"></button>
+                                    <button type="button" class="arrow-btn arrow-btn--next"></button>
+                                </div>
+                            </div>
+                            <p class="write__photo-error-msg error-msg">사진을 한 개 이상 등록해주세요.</p>
                             <input type="file" accept=".jpg, .png" required multiple style="display: none;">
+                            <input type="hidden" name="thumbnailIdx" value="">
                         </div>
 
                         <div class="write__group">
                             <div class="form__group">
                                 <label for="board-title" class="form__label">제목</label>
-                                <input type="text" id="board-title" placeholder="제목">
+                                <input type="text" name="title" id="board-title" placeholder="제목">
                                 <p class="error-msg">제목을 입력해주세요.</p>
                             </div>
 
