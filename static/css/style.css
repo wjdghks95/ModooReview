@@ -517,3 +517,59 @@ textarea::placeholder {
     margin-top: .5rem;
     color: var(--color-red);
 }
+
+/* slide */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    left: 0;
+    font-size: 0;
+    transition: all 0.2s;
+}
+
+.slide {
+    display: inline-block;
+}
+
+.arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(12%) sepia(88%) saturate(1802%) hue-rotate(202deg) brightness(92%) contrast(107%);
+    transition: all .1s ease-in;
+}
+
+.arrow-btn:hover {
+    filter: invert(26%) sepia(74%) saturate(3738%) hue-rotate(209deg) brightness(100%);
+}
+
+.arrow-btn--prev {
+    left: 0;
+    background-image: url(../icon/arrow-left-solid.svg);
+}
+
+.arrow-btn--next {
+    right: 0;
+    background-image: url(../icon/arrow-right-solid.svg);
+}
