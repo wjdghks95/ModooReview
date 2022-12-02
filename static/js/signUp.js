@@ -41,3 +41,32 @@ $('.sign-up-modal__submit-button').on('click', function() {
 
     $('.sign-up-modal__form').submit();
 })
+
+// 주소 검색
+$('.sign-up-modal__search-addr-button').on('click', function() {
+    execDaumPostcode();
+})
+
+var themeObj = {
+    searchBgColor: "#0C9EE8",
+    queryTextColor: "#FFFFFF",
+};
+
+function execDaumPostcode() {
+    new daum.Postcode({
+        theme: themeObj,
+        oncomplete: function(data) {
+            var addr = '';
+
+            if (data.userSelectedType === 'R') { 
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+
+            $('#user-zipcode').val(data.zonecode);
+            $('#user-addr').val(addr);
+            $('#user-detail-addr').focus();
+        }
+    }).open();
+}
