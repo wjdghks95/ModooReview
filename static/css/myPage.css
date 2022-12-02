@@ -214,6 +214,10 @@
     font-weight: bold;
 }
 
+.following__button {
+    width: 6.25rem;
+}
+
 /* withdrawal */
 .withdrawal {
     width: 1024px;
