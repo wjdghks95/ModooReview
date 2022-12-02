@@ -70,6 +70,10 @@
     margin: 0 auto;
 }
 
+.profile__follow-button {
+    height: 2.5rem;
+}
+
 .profile__grade {
     width: 200px;
     height: 100%;
