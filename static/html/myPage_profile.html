@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="../icon/favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/myPage.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/myPage_profile.js" defer></script>
     <title>마이페이지 - 프로필</title>
 </head>
 <body>
@@ -79,10 +81,10 @@
                             <div class="profile__text">사진을 등록하세요</div>
                             <div class="profile__image">
                                 <img src="../img/profile.png" alt="프로필">
-                                <form action="myPage_profile.html" method="post" enctype="multipart/form-data" class="profile__img-Form">
-                                    <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
-                                </form>
                             </div>
+                            <form action="myPage_profile.html" method="post" enctype="multipart/form-data" class="profile__img-form">
+                                <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
+                            </form>
                         </li>
                         <li class="profile__item">
                             <div class="profile__field">이름</div>
