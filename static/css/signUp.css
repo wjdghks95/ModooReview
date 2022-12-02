@@ -65,6 +65,10 @@
     margin-top: .5rem;
 }
 
+.sign-up-modal__pwdChk-error-msg {
+    margin-top: .5rem;
+}
+
 #user-zipcode {
     width: 40%;
 }
