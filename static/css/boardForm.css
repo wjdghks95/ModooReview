@@ -67,8 +67,8 @@
 
 .rating__star {
     cursor: pointer;
-    margin-right: .375rem;
-    width: 2rem;
+    padding: 0 2px;
+    width: 2.25rem;
     height: 2rem;
 }
 

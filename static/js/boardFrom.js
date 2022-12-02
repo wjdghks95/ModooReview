@@ -96,9 +96,57 @@ $('.arrow-btn--prev').on('click', function() {
     }
 })
 
+// Rating
+let totalStar = 0;
+$('.rating__star').each(function(index) {
+    $(this).data('rating', index + 1);
+})
+
+$('.rating__star').on({
+    mouseover: function(e) {
+        onMouseOver(e);
+    },
+    mouseleave: function() {
+        onMouseLeave();
+    },
+    click: function(e) {
+        onClick(e);
+    }
+})
+
+function onMouseOver(e) {
+    const ratingVal = $(e.currentTarget).data('rating');
+    if (!ratingVal) {
+        return;
+    } else {
+        fill(ratingVal);
+    }
+}
+
+function onMouseLeave() {
+    fill(totalStar);
+}
+
+function onClick(e) {
+    const ratingVal = $(e.currentTarget).data('rating');
+    totalStar = ratingVal;
+    $('.rating__score').val(totalStar);
+}
+
+function fill(ratingVal) {
+    $('.rating__star').each(function(index) {
+        if(index < ratingVal) {
+            $('.rating__star > img').eq(index).css('filter', 'invert(82%) sepia(68%) saturate(5238%) hue-rotate(358deg) brightness(104%) contrast(102%)');
+        } else {
+            $('.rating__star > img').eq(index).css('filter', 'invert(100%) sepia(0%) saturate(4078%) hue-rotate(293deg) brightness(81%) contrast(117%)');
+        }
+    })
+}
+
 // Submit
 $('.write__submit-button').on('click', function() {
     $('input[name=thumbnailIdx]').val(currentIdx); // thumbnailIdx 값 설정
 
     $('.write__form').submit(); // form 전송
 })
+
