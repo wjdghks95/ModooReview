@@ -143,9 +143,83 @@ function fill(ratingVal) {
     })
 }
 
+// 태그
+let tag = {};
+let counter = 0;
+
+$('.write__tag-add-button').on('click', function() {
+    createTag();
+});
+
+$('#board-tag').on('keypress', function(e) {
+    if (e.key === "Enter" || e.keyCode == 32) {
+        $('.write__tag-add-button').click();
+        e.preventDefault();
+    }
+})
+
+function createTag() {
+    if ($('.write__tags').children().length >= 5) {
+        alert('태그는 5개까지만 추가할 수 있습니다.');
+    } else {
+        let tagVal = $('#board-tag').val();
+
+        if (tagVal !== "") {
+            let result = Object.values(tag).filter(word => {
+                return word === tagVal;
+            });
+
+            if (result.length === 0) {
+                const tag = $(`<li class="write__tag">` + 
+                                `<span class="write__tag-text">#${tagVal}</span>` +
+                                `<button type='button' class='remove-btn' data-index='${counter}'>x</button>` + 
+                            `</li>`);
+                $('.write__tags').append(tag);
+                $('#board-tag').val("");
+                $('#board-tag').focus();
+
+                addTag(tagVal);
+            } else {
+                alert("태그값이 중복됩니다.");
+            }
+        }
+    }
+}
+
+function addTag(value) {
+    tag[counter] = value;
+    counter++;
+}
+
+$(document).on('click', '.remove-btn', function() {
+    const index = $(this).data('index');
+    tag[index] = "";
+    $(this).parent().remove();
+})
+
+
+function marginTag () {
+    return Object.values(tag).filter(word => {
+        return word !== "";
+    });
+}
+
+function sendTagVal() {
+    let tagArr = marginTag();
+    $('#board-tags').val(tagArr);
+}
+
+$('.write__tag').each(function(index, obj) {
+    const text = $(obj).children('.write__tag-text').text();
+    const tagVal = text.substring(text.indexOf('#')+1);
+    $(obj).children('button').attr('data-index', counter);
+    addTag(tagVal);
+})
+
 // Submit
 $('.write__submit-button').on('click', function() {
     $('input[name=thumbnailIdx]').val(currentIdx); // thumbnailIdx 값 설정
+    sendTagVal(); // 태그 값 설정
 
     $('.write__form').submit(); // form 전송
 })
