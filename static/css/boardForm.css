@@ -1,8 +1,8 @@
-.container {
+/* write */
+.boardForm__container {
     max-width: 1024px;
 }
 
-/* write */
 .form__row-wrapper {
     align-items: flex-start;
     height: 20.625rem;
