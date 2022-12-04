@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta author="LeeJeongHwan">
+        <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+        <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+        <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+        <link rel="stylesheet" href="../css/signUp.css" th:href="@{/css/signUp.css}">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script src="../js/signUp.js" th:src="@{/js/signUp.js}" defer></script>
+        <title>회원가입</title>
+    </head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="sign-up">
+        <section class="banner">
+            <div class="banner__container container">
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">회원가입</h2>
+                    </header>
+                </article>
+            </div>
+        </section>
+        <!-- banner -->
+
+        <section class="sign-up-modal">
+            <div class="sign-up-modal__container container">
+                <article class="sign-up-modal__content">
+                    <form action="login.html" method="post" th:action class="sign-up-modal__form">
+                        <div class="form__group">
+                            <label for="user-phone" class="form__label">휴대폰 번호</label>
+                            <div class="form__row-wrapper">
+                                <input type="text" name="phone" id="user-phone" placeholder="휴대폰 번호(-없이 입력해주세요)">
+                                <div class="sign-up-modal__sms-button">
+                                    <button type="button" class="default-btn">인증번호 발송</button>
+                                </div>
+                            </div>
+                            <p class="error-msg">휴대폰 인증에 실패하였습니다.</p>
+                            <div class="sign-up-modal__phoneChk">
+                                <div class="form__row-wrapper">
+                                    <input type="text" id="user-phoneChk" placeholder="인증번호">
+                                    <div class="sign-up-modal__phoneChk-button">
+                                        <button type="button" class="default-btn">인증확인</button>
+                                    </div>
+                                    <div class="sign-up-modal__resend-sms-button">
+                                        <button type="button" class="default-btn">재발송</button>
+                                    </div>
+                                </div>
+                                <p class="error-msg">인증이 완료되지 않았습니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="user-email" class="form__label">이메일</label>
+                            <div class="form__row-wrapper">
+                                <input type="text" id="user-email" placeholder="이메일 ID">
+                                <span id="email-symbol">@</span>
+                                <input type="text" id="user-email-addr">
+                                <select id="user-email-addr-list">
+                                    <option value="" disabled selected style="display: none">이메일 주소</option>
+                                    <option value="input">직접입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="email" id="user-total-email">
+                            <p class="error-msg">이메일을 입력해주세요.</p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="user-password" class="form__label">비밀번호</label>
+                            <input type="password" name="password" id="user-password" placeholder="비밀번호(최소 8자 이상, 숫자와 하나 이상의 특수 문자 포함)">
+                            <p class="error-msg">비밀번호를 입력해주세요.</p>
+                            <div class="sign-up-modal__passwordChk">
+                                <input type="password" id="user-passwordChk" placeholder="비밀번호 확인">
+                            </div>
+                            <p class="error-msg sign-up-modal__pwdChk-error-msg"></p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="user-name" class="form__label">이름</label>
+                            <input type="text" name="name" id="user-name" placeholder="이름">
+                            <p class="error-msg">이름을 입력해주세요.</p>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="user-nickname" class="form__label">닉네임</label>
+                            <input type="text" name="nickname" id="user-nickname" placeholder="닉네임(최소2자~8자)">
+                            <p class="error-msg">닉네임을 입력해주세요.</p>
+                        </div>
+
+                        <div class="form__group">
+                            <label class="form__label">주소</label>
+                            <div class="form__row-wrapper">
+                                <input type="text" name="zipcode" id="user-zipcode" placeholder="우편번호" readonly>
+                                <div class="sign-up-modal__search-addr-button">
+                                    <button type="button" class="default-btn">주소 검색</button>
+                                </div>
+                            </div>
+                            <input type="text" name="address" id="user-addr" placeholder="주소" readonly>
+                            <input type="text" name="detailAddress" id="user-detail-addr" placeholder="상세주소">
+                            <p class="error-msg">주소를 입력해주세요.</p>
+                        </div>
+                    </form>
+                    <div class="sign-up-modal__submit-button">
+                        <button type="button" class="default-btn">가입 완료하기</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- sign-up-modal -->
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>
