@@ -67,6 +67,8 @@ $('#user-email-addr-list').on('change', function() {
 function addUpEmail() {
     if($('#user-email').val() !== "" && $('#user-email-addr').val() !== "") {
         $('#user-total-email').val($('#user-email').val() + "@" + $('#user-email-addr').val());
+    } else {
+        $('#user-total-email').val("");
     }
 };
 
@@ -74,12 +76,17 @@ function addUpEmail() {
 let isPwdChk = false;
 
 $('#user-password, #user-passwordChk').on('keyup', function() {
-    if($('#user-password').val() !== $('#user-passwordChk').val()) {
-        $('.sign-up-modal__pwdChk-error-msg').text('비밀번호가 일치하지 않습니다').addClass('error-msg');
-        isPwdChk = false;
+    if($('#user-password').val() !== "" && $('#user-passwordChk').val() !== "") {
+        if($('#user-password').val() !== $('#user-passwordChk').val()) {
+            $('.sign-up-modal__pwdChk-error-msg').text('비밀번호가 일치하지 않습니다').addClass('error-msg');
+            isPwdChk = false;
+        } else {
+            $('.sign-up-modal__pwdChk-error-msg').text('비밀번호가 일치합니다.').removeClass('error-msg');
+            isPwdChk = true;
+        }
     } else {
-        $('.sign-up-modal__pwdChk-error-msg').text('비밀번호가 일치합니다.').removeClass('error-msg');
-        isPwdChk = true;
+        $('.sign-up-modal__pwdChk-error-msg').text('').removeClass('error-msg');
+        isPwdChk = false;
     }
 })
 
