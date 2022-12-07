@@ -9,10 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -44,5 +41,18 @@ public class MemberController {
 
         memberService.join(memberDto);
         return "redirect:/login";
+    }
+
+    /**
+     * 로그인
+     */
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String exception, Model model) {
+
+        boolean isError = Boolean.parseBoolean(error);
+        if (isError) {
+            model.addAttribute("errorMsg", exception);
+        }
+        return "login";
     }
 }
