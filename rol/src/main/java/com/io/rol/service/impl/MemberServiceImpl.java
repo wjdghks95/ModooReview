@@ -14,6 +14,10 @@ public class MemberServiceImpl implements MemberService {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
+
+    /**
+     * 회원가입
+     */
     @Override
     public Long join(MemberDto memberDto) {
         Member member = Member.builder()

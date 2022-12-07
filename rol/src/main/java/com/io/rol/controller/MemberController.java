@@ -24,9 +24,12 @@ public class MemberController {
     @InitBinder("memberDto")
     public void memberValidation(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
-        dataBinder.addValidators(memberDuplicateValidator);
+        dataBinder.addValidators(memberDuplicateValidator); // 회원 중복 검사
     }
 
+    /**
+     * 회원가입
+     */
     @GetMapping("/signUp")
     public String signUpForm(Model model) {
         model.addAttribute("memberDto", new MemberDto());

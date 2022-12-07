@@ -15,35 +15,35 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
-    private Long id;
+    private Long id; // primary key
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String email; // 이메일
 
     @Column(nullable = false)
-    private String password;
+    private String password; // 비밀번호
 
     @Column(nullable = false)
-    private String name;
+    private String name; // 이름
 
     @Column(unique = true, nullable = false)
-    private String nickname;
+    private String nickname; // 닉네임
 
     @Column(nullable = false)
-    private String zipcode;
+    private String zipcode; // 우편번호
 
     @Column(nullable = false)
-    private String address;
+    private String address; // 주소
 
-    private String detailAddress;
-
-    @Column(nullable = false)
-    private String phone;
-
-    private String profileImage;
+    private String detailAddress; // 상세주소
 
     @Column(nullable = false)
-    private String role;
+    private String phone; // 핸드폰 번호
+
+    private String profileImage; // 프로필 사진
+
+    @Column(nullable = false)
+    private String role; // 역할
 
     @Builder
     public Member(String email, String password, String name, String nickname, String zipcode, String address, String detailAddress, String phone, String profileImage, String role) {
