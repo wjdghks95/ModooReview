@@ -3,6 +3,9 @@ package com.io.rol.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.io.rol.domain.dto.MemberDto;
+import com.io.rol.respository.MemberRepository;
+import com.io.rol.service.MemberService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ import org.springframework.util.MultiValueMap;
 import javax.persistence.EntityManager;
 import java.util.Map;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -29,22 +35,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MemberControllerTest {
 
     @Autowired MockMvc mockMvc;
-    @Autowired
-    EntityManager em;
+    @Autowired EntityManager em;
+    @Autowired MemberRepository memberRepository;
+    @Autowired MemberService memberService;
     ObjectMapper objectMapper = new ObjectMapper();
 
     private String phone = "01012345678";
     private String email = "test@test.com";
     private String password = "asdf1234!";
-    private String wrongPass = "1234";
     private String name = "이름";
     private String nickname = "테스트";
-    private String wrongNick = "ㄱㅏ!@";
     private String zipcode = "12345";
     private String address = "경기도 고양시 일산서구 현중로 10";
     private String detailAddress = "101동 101호";
 
     private static String SIGN_UP_URL = "/signUp";
+    private static String LOGIN_URL = "/login";
+
+    @BeforeEach
+    void clearDb() {
+        memberRepository.deleteAll();
+        clear();
+    }
 
     private void clear(){
         em.flush();
@@ -59,24 +71,24 @@ class MemberControllerTest {
      */
     @Test
     @DisplayName("회원가입_성공")
-    public void signUp_success() throws Exception {
+    void signUp_success() throws Exception {
         //given
         MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
 
         //when, then
-        perform(memberDto)
+        signUpPerform(memberDto)
                 .andExpect(status().is3xxRedirection()) // 성공 시 /login 으로 Redirect
                 .andDo(print());
     }
 
     @Test
     @DisplayName("회원가입_실패_필수 입력란에 입력하지 않는 필드 존재")
-    public void signUp_failure_empty_field() throws Exception {
+    void signUp_failure_empty_field() throws Exception {
         //given
         MemberDto memberDto = createMemberDto("", "", "", "", "", "", "", "");
 
         //when, then
-        perform(memberDto)
+        signUpPerform(memberDto)
                 .andExpect(model().attributeHasFieldErrors("memberDto", "phone"))
                 .andExpect(model().attributeHasFieldErrors("memberDto", "email"))
                 .andExpect(model().attributeHasFieldErrors("memberDto", "password"))
@@ -90,12 +102,12 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("회원가입_실패_잘못된 비밀번호 입력")
-    public void signUp_failure_wrong_password() throws Exception {
+    void signUp_failure_badPassword() throws Exception {
         //given
-        MemberDto memberDto = createMemberDto(phone, email, wrongPass, name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(phone, email, "1234", name, nickname, zipcode, address, detailAddress);
 
         //when, then
-        perform(memberDto)
+        signUpPerform(memberDto)
                 .andExpect(model().attributeHasFieldErrors("memberDto", "password"))
                 .andExpect(status().isOk()) // 필드에 오류가 있어도 상태는 200
                 .andDo(print());
@@ -103,14 +115,61 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("회원가입_실패_잘못된 닉네임 입력")
-    public void signUp_failure_wrong_nickname() throws Exception {
+    void signUp_failure_badNickname() throws Exception {
         //given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, wrongNick, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname+"ㄱ", zipcode, address, detailAddress);
 
         //when, then
-        perform(memberDto)
+        signUpPerform(memberDto)
                 .andExpect(model().attributeHasFieldErrors("memberDto", "nickname"))
                 .andExpect(status().isOk()) // 필드에 오류가 있어도 상태는 200
+                .andDo(print());
+    }
+
+    /**
+     * 로그인
+     *    로그인시 아이디가 존재하지 않을 경우 로그인 실패
+     *    로그인시 비밀번호가 틀리면 로그인 실패
+     */
+    @Test
+    @DisplayName("로그인_성공")
+    void login_success() throws Exception {
+        // given
+        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        memberService.join(memberDto);
+
+        // when, then
+        loginPerform(email, password)
+                .andExpect(status().is3xxRedirection())
+                .andExpect(authenticated())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("로그인_실패_아이디를 찾을수 없음")
+    void login_failure_notFoundUsername() throws Exception {
+        // given
+        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        memberService.join(memberDto);
+
+        // when, then
+        loginPerform(email+"123", password)
+                .andExpect(status().is3xxRedirection())
+                .andExpect(unauthenticated())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("로그인_실패_패스워드가 틀림")
+    void login_failure_badCredentials() throws Exception {
+        // given
+        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        memberService.join(memberDto);
+
+        // when, then
+        loginPerform(email, password+"123")
+                .andExpect(status().is3xxRedirection())
+                .andExpect(unauthenticated())
                 .andDo(print());
     }
 
@@ -134,11 +193,20 @@ class MemberControllerTest {
         return params;
     }
 
-    private ResultActions perform(MemberDto memberDto) throws Exception {
+    private ResultActions signUpPerform(MemberDto memberDto) throws Exception {
         MultiValueMap<String, String> params = setParams(memberDto);
 
         return mockMvc.perform(post(SIGN_UP_URL)
                 .accept(MediaType.APPLICATION_FORM_URLENCODED)
+                .with(csrf())
                 .params(params));
+    }
+
+    private ResultActions loginPerform(String email, String password) throws Exception {
+        return mockMvc.perform(post(LOGIN_URL)
+                .accept(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("username", email)
+                .param("password", password)
+                .with(csrf()));
     }
 }

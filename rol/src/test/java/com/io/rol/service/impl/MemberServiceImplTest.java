@@ -4,6 +4,7 @@ import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.MemberRepository;
 import com.io.rol.service.MemberService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ class MemberServiceImplTest {
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
+
+    @BeforeEach
+    void clearDb() {
+        memberRepository.deleteAll();
+        clear();
+    }
 
     /**
      * 회원가입
