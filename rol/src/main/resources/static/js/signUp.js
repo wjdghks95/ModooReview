@@ -7,12 +7,20 @@ $('.sign-up-modal__sms-button').on('click', function() {
 
     if (phoneValidator(phoneNum)) {
         alert("인증번호가 발송되었습니다.");
+        $.ajax({
+            /* 요청 시작 부분 */
+            type: "GET", // 전송 타입
+            url: "/signUp/sendSMS?phone="+phoneNum, //주소
+            async: true, // 비동기 여부
 
-        $(this).children().attr('disabled', true);
-        $('#user-phone').attr('readonly', true);
-        $('.sign-up-modal__phoneChk').show();
-
-        code = "0000";
+            /* 응답 확인 부분 */
+            success: function(data) {
+                $('.sign-up-modal__sms-button').children().attr('disabled', true);
+                $('#user-phone').attr('readonly', true);
+                $('.sign-up-modal__phoneChk').show();
+                code = data;
+            }
+        });
     } else {
         alert("유효하지 않는 전화번호입니다.");
     }
