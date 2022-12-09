@@ -4,14 +4,15 @@ import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.service.BoardService;
 import com.io.rol.service.MemberService;
+import com.io.rol.validator.MultiPartFilesValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -22,6 +23,13 @@ public class ContentsController {
 
     private final BoardService boardService;
     private final MemberService memberService;
+    private final MultiPartFilesValidator multiPartFilesValidator;
+
+    @InitBinder("boardDto")
+    public void boardValidation(WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+        dataBinder.addValidators(multiPartFilesValidator); // 이미지 파일 업로드 여부 검사
+    }
 
     /**
      * 게시글 등록
@@ -33,7 +41,13 @@ public class ContentsController {
     }
 
     @PostMapping("/board/new")
-    public String newBoard(@ModelAttribute BoardDto boardDto, @AuthenticationPrincipal Member member) throws IOException {
+    public String newBoard(@Validated @ModelAttribute BoardDto boardDto, BindingResult bindingResult,
+                           @AuthenticationPrincipal Member member) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            return "contents/boardForm";
+        }
+
         Member writer = memberService.findMember(member.getId());
         boardService.write(boardDto, writer);
         return "redirect:/";
