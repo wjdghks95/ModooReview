@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -45,6 +47,10 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String role; // 역할
+
+    /* 회원 탈퇴시 회원이 작성한 게시글 모두 삭제 */
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Board> boardList = new ArrayList<>(); // 게시글 목록
 
     @Builder
     public Member(String email, String password, String name, String nickname, String zipcode, String address, String detailAddress, String phone, String profileImage, String role) {

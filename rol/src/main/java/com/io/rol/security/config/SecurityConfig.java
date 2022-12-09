@@ -50,6 +50,8 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/signUp/**", "/logout").permitAll()
+                .antMatchers("/contents/board/new").hasAnyAuthority("ROLE_USER")
+                .antMatchers("/contents/**").permitAll()
                 .anyRequest().authenticated()
 
                 /**

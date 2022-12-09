@@ -7,9 +7,13 @@ import com.io.rol.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberServiceImpl implements MemberService {
 
     private final PasswordEncoder passwordEncoder;
@@ -18,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
     /**
      * 회원가입
      */
+    @Transactional
     @Override
     public Long join(MemberDto memberDto) {
         Member member = Member.builder()
@@ -35,5 +40,14 @@ public class MemberServiceImpl implements MemberService {
         Member savedMember = memberRepository.save(member);
 
         return savedMember.getId();
+    }
+
+    /**
+     * 회원 조회
+     */
+    @Override
+    public Member findMember(Long id) {
+        return memberRepository.findById(id).orElseThrow(() ->
+                new NoSuchElementException("NoSuchElementException"));
     }
 }
