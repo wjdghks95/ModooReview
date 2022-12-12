@@ -25,8 +25,8 @@ public class ImageServiceImpl implements ImageService {
      */
     @Override
     @Transactional
-    public List<Image> saveImages(List<MultipartFile> multipartFileList) throws IOException {
-        List<Image> images = fileStore.storeFiles(multipartFileList);
+    public List<Image> saveImages(List<MultipartFile> files) throws IOException {
+        List<Image> images = fileStore.storeFiles(files);
         return imageRepository.saveAll(images);
     }
 

@@ -38,14 +38,14 @@ public class FileStore {
     }
 
     /** 파일 저장 */
-    public Image storeFile(MultipartFile multipartFile) throws IOException {
-        if (multipartFile.isEmpty()) {
+    public Image storeFile(MultipartFile file) throws IOException {
+        if (file.isEmpty()) {
             return null;
         }
 
-        String originalFilename = multipartFile.getOriginalFilename(); // 원본 파일 이름
+        String originalFilename = file.getOriginalFilename(); // 원본 파일 이름
         String storeFilename = createStoreFilename(originalFilename); // store 파일 이름
-        multipartFile.transferTo(new File(createPath(storeFilename))); // 파일 저장
+        file.transferTo(new File(createPath(storeFilename))); // 파일 저장
 
         return Image.builder()
                 .originFileName(originalFilename)
@@ -54,11 +54,11 @@ public class FileStore {
     }
 
     /** 전체 파일 저장 */
-    public List<Image> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
+    public List<Image> storeFiles(List<MultipartFile> files) throws IOException {
         List<Image> images = new ArrayList<>();
-        for (MultipartFile multipartFile : multipartFiles) {
-            if (!multipartFile.isEmpty()) {
-                images.add(storeFile(multipartFile));
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                images.add(storeFile(file));
             }
         }
         return images;

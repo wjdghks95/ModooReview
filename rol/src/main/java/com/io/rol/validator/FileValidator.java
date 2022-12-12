@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Component
-public class MultiPartFilesValidator implements Validator {
+public class FileValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -18,11 +18,13 @@ public class MultiPartFilesValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        BoardDto reviewDto = (BoardDto) target;
-        List<MultipartFile> multipartFiles = reviewDto.getMultipartFiles();
+        BoardDto boardDto = (BoardDto) target;
+        List<MultipartFile> file = boardDto.getFile();
 
-        if (multipartFiles.get(0).isEmpty()) {
-            errors.rejectValue("multipartFiles", "validate.invalid.multipartFiles", new Object[]{reviewDto.getMultipartFiles()}, "사진을 한 개 이상 등록해주세요.");
+        for (MultipartFile f : file) {
+            if (f.isEmpty()) {
+                errors.rejectValue("file", "validate.invalid.file", new Object[]{boardDto.getFile()}, "사진을 한 개 이상 등록해주세요.");
+            }
         }
     }
 }

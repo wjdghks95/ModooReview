@@ -4,7 +4,7 @@ import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.service.BoardService;
 import com.io.rol.service.MemberService;
-import com.io.rol.validator.MultiPartFilesValidator;
+import com.io.rol.validator.FileValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,12 +23,12 @@ public class ContentsController {
 
     private final BoardService boardService;
     private final MemberService memberService;
-    private final MultiPartFilesValidator multiPartFilesValidator;
+    private final FileValidator fileValidator;
 
     @InitBinder("boardDto")
     public void boardValidation(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
-        dataBinder.addValidators(multiPartFilesValidator); // 이미지 파일 업로드 여부 검사
+        dataBinder.addValidators(fileValidator); // 이미지 파일 업로드 여부 검사
     }
 
     /**

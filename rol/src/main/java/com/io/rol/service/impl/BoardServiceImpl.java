@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public Long write(BoardDto boardDto, Member writer) throws IOException {
-        List<Image> images = imageService.saveImages(boardDto.getMultipartFiles());
+        List<Image> images = imageService.saveImages(boardDto.getFile());
         List<Tag> tags = tagService.saveTags(boardDto.getTagNames());
 
         Board board = Board.builder()

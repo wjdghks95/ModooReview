@@ -42,8 +42,8 @@
                                     <button type="button" class="arrow-btn arrow-btn--next"></button>
                                 </div>
                             </div>
-                            <p class="write__photo-error-msg error-msg" th:errors="*{multipartFiles}">사진을 한 개 이상 등록해주세요.</p>
-                            <input type="file" accept=".jpg, .png" th:field="*{multipartFiles}" required multiple style="display: none;">
+                            <p class="write__photo-error-msg error-msg" th:errors="*{file}">사진을 한 개 이상 등록해주세요.</p>
+                            <input type="file" accept=".jpg, .png" th:field="*{file}" required multiple style="display: none;">
                             <input type="hidden" name="thumbnailIdx" value="">
                         </div>
 

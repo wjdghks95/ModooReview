@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-class MemberServiceImplTest {
+class MemberServiceTest {
 
     @Autowired EntityManager em;
     @Autowired PasswordEncoder passwordEncoder;
