@@ -2,6 +2,7 @@ package com.io.rol.controller;
 
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Member;
+import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
 import com.io.rol.service.MemberService;
 import com.io.rol.validator.FileValidator;
@@ -42,13 +43,13 @@ public class ContentsController {
 
     @PostMapping("/board/new")
     public String newBoard(@Validated @ModelAttribute BoardDto boardDto, BindingResult bindingResult,
-                           @AuthenticationPrincipal Member member) throws IOException {
+                           @AuthenticationPrincipal MemberContext memberContext) throws IOException {
 
         if (bindingResult.hasErrors()) {
             return "contents/boardForm";
         }
 
-        Member writer = memberService.findMember(member.getId());
+        Member writer = memberService.findMember(memberContext.getMember().getId());
         boardService.write(boardDto, writer);
         return "redirect:/";
     }

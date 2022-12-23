@@ -1,6 +1,7 @@
 package com.io.rol.domain.entity;
 
 import com.io.rol.domain.BaseTimeEntity;
+import com.io.rol.domain.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,14 +47,15 @@ public class Member extends BaseTimeEntity {
     private String profileImage; // 프로필 사진
 
     @Column(nullable = false)
-    private String role; // 역할
+    @Enumerated(EnumType.STRING)
+    private Role role; // 역할
 
     /* 회원 탈퇴시 회원이 작성한 게시글 모두 삭제 */
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boardList = new ArrayList<>(); // 게시글 목록
 
     @Builder
-    public Member(String email, String password, String name, String nickname, String zipcode, String address, String detailAddress, String phone, String profileImage, String role) {
+    public Member(String email, String password, String name, String nickname, String zipcode, String address, String detailAddress, String phone, String profileImage, Role role) {
         this.email = email;
         this.password = password;
         this.name = name;

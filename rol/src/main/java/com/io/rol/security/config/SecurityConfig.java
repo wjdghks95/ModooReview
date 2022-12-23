@@ -1,5 +1,6 @@
 package com.io.rol.security.config;
 
+import com.io.rol.domain.Role;
 import com.io.rol.security.handler.FormAuthenticationFailureHandler;
 import com.io.rol.security.service.FormRememberMeService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -19,6 +21,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
+
+import static com.io.rol.domain.Role.*;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,6 +32,7 @@ public class SecurityConfig {
     private final FormAuthenticationFailureHandler formAuthenticationFailureHandler;
     private final UserDetailsService userDetailsService;
     private final DataSource dataSource;
+    private final OAuth2UserService oAuth2UserService;
 
     /**
      * AuthenticationManagerBuilder: 인증 객체를 만들 수 있는 API 제공
@@ -50,7 +55,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/signUp/**", "/logout").permitAll()
-                .antMatchers("/contents/board/new").hasAnyAuthority("ROLE_USER")
+                .antMatchers("/contents/board/new").hasAnyAuthority(USER.value())
                 .antMatchers("/contents/**").permitAll()
                 .anyRequest().authenticated()
 
@@ -78,7 +83,18 @@ public class SecurityConfig {
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(3600) // 쿠키 만료 시간 (Default 14일)
-                .rememberMeServices(rememberMeServices(tokenRepository())); // PersistentTokenBasedRememberMeServices (DB 저장 방식) 등록
+                .rememberMeServices(rememberMeServices(tokenRepository())) // PersistentTokenBasedRememberMeServices (DB 저장 방식) 등록
+
+                /**
+                 * OAuth2Login
+                 */
+                .and()
+                .oauth2Login() // OAuth2기반의 로그인인 경우
+                .loginPage("/login") // 인증이 필요한 URL에 접근시 해당 페이지로 이동
+                .defaultSuccessUrl("/") // 로그인 성공하면 "/" 으로 이동
+                .failureUrl("/login")		// 로그인 실패 시
+                .userInfoEndpoint() // 로그인 성공 후 사용자 정보를 가져온다
+                .userService(oAuth2UserService); //사용자 정보를 처리할 때 사용
 
         return http.build();
     }

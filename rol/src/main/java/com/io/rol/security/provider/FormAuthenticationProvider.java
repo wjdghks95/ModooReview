@@ -30,7 +30,7 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
         }
 
         // AuthenticationManager 에 UsernamePasswordAuthenticationToken 전달
-        return new UsernamePasswordAuthenticationToken(memberContext.getMember(), null, memberContext.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(memberContext, null, memberContext.getAuthorities());
     }
 
     @Override

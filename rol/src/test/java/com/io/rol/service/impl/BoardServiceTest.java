@@ -5,6 +5,7 @@ import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.BoardRepository;
 import com.io.rol.respository.MemberRepository;
+import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -63,10 +64,12 @@ class BoardServiceTest {
         Member member = memberRepository.findByEmail(USERNAME).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole()));
+        roles.add(new SimpleGrantedAuthority(member.getRole().value()));
+
+        MemberContext memberContext = new MemberContext(member, roles);
 
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(member, null, roles));
+        securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(memberContext, null, roles));
         SecurityContextHolder.setContext(securityContext);
         clear();
     }
@@ -81,8 +84,8 @@ class BoardServiceTest {
     void board_write_success() throws IOException {
         // given
         BoardDto boardDto = createBoardDto();
-        Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Member writer = memberRepository.findById(member.getId()).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
+        MemberContext memberContext = (MemberContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Member writer = memberRepository.findById(memberContext.getMember().getId()).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
 
         // when
         Long id = boardService.write(boardDto, writer);
@@ -122,8 +125,8 @@ class BoardServiceTest {
         BoardDto boardDto4 = createBoardDto();
         boardDto4.setDescription(null);
 
-        Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Member writer = memberRepository.findById(member.getId()).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
+        MemberContext memberContext = (MemberContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Member writer = memberRepository.findById(memberContext.getMember().getId()).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
 
         // when, then
         assertThrows(Exception.class, () -> boardService.write(boardDto1, writer));

@@ -2,6 +2,7 @@ package com.io.rol.controller;
 
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.MemberRepository;
+import com.io.rol.security.context.MemberContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,10 +68,12 @@ class ContentsControllerTest {
         Member member = memberRepository.findByEmail(USERNAME).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole()));
+        roles.add(new SimpleGrantedAuthority(member.getRole().value()));
+
+        MemberContext memberContext = new MemberContext(member, roles);
 
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(member, null, roles));
+        securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(memberContext, null, roles));
         SecurityContextHolder.setContext(securityContext);
         clear();
     }

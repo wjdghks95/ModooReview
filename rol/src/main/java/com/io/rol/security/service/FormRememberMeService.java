@@ -116,7 +116,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
     @Override
     protected Authentication createSuccessfulAuthentication(HttpServletRequest request, UserDetails user) {
         MemberContext memberContext = (MemberContext) user;
-        RememberMeAuthenticationToken auth = new RememberMeAuthenticationToken(this.key, memberContext.getMember(), memberContext.getAuthorities());
+        RememberMeAuthenticationToken auth = new RememberMeAuthenticationToken(this.key, memberContext, memberContext.getAuthorities());
         auth.setDetails(this.authenticationDetailsSource.buildDetails(request));
         return auth;
     }
@@ -126,8 +126,8 @@ public class FormRememberMeService extends AbstractRememberMeServices {
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         super.logout(request, response, authentication);
         if (authentication != null) {
-            Member principal = (Member) authentication.getPrincipal();
-            this.tokenRepository.removeUserTokens(principal.getEmail());
+            MemberContext memberContext = (MemberContext) authentication.getPrincipal();
+            this.tokenRepository.removeUserTokens(memberContext.getMember().getEmail());
         }
     }
 

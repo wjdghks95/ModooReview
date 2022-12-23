@@ -1,5 +1,6 @@
 package com.io.rol.service.impl;
 
+import com.io.rol.domain.Role;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.MemberRepository;
@@ -60,7 +61,7 @@ class MemberServiceTest {
         assertEquals(memberDto.getZipcode(), member.getZipcode());
         assertEquals(memberDto.getAddress(), member.getAddress());
         assertEquals(memberDto.getDetailAddress(), member.getDetailAddress());
-        assertEquals(member.getRole(), "ROLE_USER");
+        assertEquals(member.getRole(), Role.USER);
     }
 
     @Test

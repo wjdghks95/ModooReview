@@ -26,7 +26,7 @@ public class FormUserDetailService implements UserDetailsService {
         Member member = memberRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole()));
+        roles.add(new SimpleGrantedAuthority(member.getRole().value()));
 
         MemberContext memberContext = new MemberContext(member, roles); // UserDetails 생성
 

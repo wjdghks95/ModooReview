@@ -4,19 +4,33 @@ import com.io.rol.domain.entity.Member;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Getter
-public class MemberContext implements UserDetails {
+public class MemberContext implements UserDetails, OAuth2User {
 
     private Member member;
     private List<GrantedAuthority> roles;
+    private Map<String, Object> attributes;
 
     public MemberContext(Member member, List<GrantedAuthority> roles) {
         this.member = member;
         this.roles = roles;
+    }
+
+    public MemberContext(Member member, List<GrantedAuthority> roles, Map<String, Object> attributes) {
+        this.member = member;
+        this.roles = roles;
+        this.attributes = attributes;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
     }
 
     @Override
@@ -52,5 +66,10 @@ public class MemberContext implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return member.getEmail();
     }
 }

@@ -1,5 +1,6 @@
 package com.io.rol.service.impl;
 
+import com.io.rol.domain.Role;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.MemberRepository;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
+
+import static com.io.rol.domain.Role.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
                 .zipcode(memberDto.getZipcode())
                 .address(memberDto.getAddress())
                 .detailAddress(memberDto.getDetailAddress())
-                .role("ROLE_USER")
+                .role(USER)
                 .build();
 
         Member savedMember = memberRepository.save(member);
