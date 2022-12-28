@@ -5,9 +5,25 @@ $('.board__like-button').on('click', function() {
 
 // 팔로우
 $('.board__follow-button').on('click', function() {
-    const followBtn = $(this).children();
-    
-    follow(followBtn);
+
+    if($(this).hasClass('anonymous')) {
+        alert('팔로우 서비스는 로그인 후 이용가능합니다.');
+    } else {
+        const followBtn = $(this).children();
+        const href = location.href;
+        const id = href.slice(-1);
+
+        $.ajax({
+            url: "/follow.do",
+            method: "GET",
+            data: {"id" : id},
+            success: function() {
+                follow(followBtn);
+            }, 
+            error: function() {
+            }
+        })
+    }
 })
 
 function follow(followBtn) {

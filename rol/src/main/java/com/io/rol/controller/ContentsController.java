@@ -17,7 +17,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -61,15 +60,20 @@ public class ContentsController {
      */
     @GetMapping("/board/{id}")
     public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        if (memberContext != null) {
-            Member member = memberService.findMember(memberContext.getMember().getId());
-            model.addAttribute("member", member);
-        }
-
         Board board = boardService.findBoard(id);
         board.incrementViews(); // 조회수 증가
 
         model.addAttribute("board", board);
+
+        if (memberContext != null) {
+            Long memberContextId = memberContext.getMember().getId();
+            Member loginMember = memberService.findMember(memberContextId);
+
+            boolean isFollow = memberService.isFollow(loginMember.getId(), board.getMember().getId());
+
+            model.addAttribute("loginMember", loginMember);
+            model.addAttribute("isFollow", isFollow);
+        }
 
         return "/contents/board";
     }
