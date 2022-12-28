@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/reviewForm.css" th:href="@{/css/reviewForm.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../css/swiper.css" th:href="@{/css/swiper.css}">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../js/swiper.js" th:src="@{/js/swiper.js}" defer></script>
+    <script src="../js/reviewForm.js" th:src="@{/js/reviewForm.js}" defer></script>
+    <title>리뷰 작성</title>
+</head>
+<body>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
+
+    <main class="review">
+        <div class="review__container container">
+            <header class="section__headings">
+                <h2 class="section__heading">리뷰 쓰기</h2>
+            </header>
+            <form action="reviewForm.html" th:action method="post" class="review__form" th:object="${reviewDto}" enctype="multipart/form-data">
+                <div class="form__row-wrapper">
+                    <div class="review__photo">
+                        <div class="photo-swiper swiper">
+                            <div class="swiper-wrapper">
+                                <button type="button" class="photo-btn">
+                                    <div class="photo-icon">
+                                        <img src="../icon/camera.svg" th:src="@{/icon/camera.svg}" alt="camera">
+                                    </div>
+                                    <p>사진 올리기</p>
+                                    <p><small>(* 최대 10장까지)</small></p>
+                                </button>
+                            </div>
+                            <div class="swiper-button-next" style="display: none"></div>
+                            <div class="swiper-button-prev" style="display: none"></div>
+                        </div>
+                        <div class="field-error" th:errors="*{multipartFiles}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
+                    </div>
+                    <input type="file" accept=".jpg, .png" required multiple style="display: none;" th:field="*{multipartFiles}" th:errorclass="field-error" >
+                    <div class="review__info">
+                        <div class="form__group">
+                            <label for="review-title" class="form__label">제목</label>
+                            <input type="text" id="review-title" th:field="*{title}" placeholder="제목" th:errorclass="field-error">
+                            <div class="field-error" th:errors="*{title}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
+                        </div>
+                        <div class="form__group">
+                            <label for="review-category" class="form__label">카테고리 선택</label>
+                            <select name="category" id="review-category" th:field="*{categoryName}">
+                                <option value="" disabled selected style="display: none;">카테고리</option>
+                                <option value="food">식품</option>
+                                <option value="cosmetic">미용/코스메틱</option>
+                                <option value="fashion">패션/잡화</option>
+                                <option value="nursing">출산/육아</option>
+                                <option value="digital">디지털/가전</option>
+                                <option value="sports">스포츠/건강</option>
+                                <option value="pet">반려동물</option>
+                                <option value="restaurant">맛집</option>
+                                <option value="travel">여행/숙박</option>
+                                <option value="culture">문화</option>
+                                <option value="interior">인테리어</option>
+                                <option value="etc">기타</option>
+                            </select>
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label">만족도</label>
+                            <div class="rating">
+                                <div class="rating__star">
+                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                    <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                </div>
+                            </div>
+                            <input type="hidden" class="rating__score" name="rating" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="review__description form__group">
+                    <label for="review-description" class="form__label">리뷰 작성</label>
+                    <textarea name="description" id="review-description" th:field="*{description}" rows="10" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)" th:errorclass="field-error"></textarea>
+                    <div class="field-error" th:errors="*{description}" th:classappend="error-message">알수없는 오류가 발생하였습니다.</div>
+                </div>
+                <div class="review__tag form__group">
+                    <div class="tag-in form__row-wrapper">
+                        <label for="review-tag" class="form__label">태그</label>
+                        <span class="sharp">#</span>
+                        <input type="text" id="review-tag" placeholder="키워드 (최대10개)">
+                        <div class="tag-in__add-button">
+                            <button type="button" class="add-btn">추가</button>
+                        </div>
+                    </div>
+                    <ul class="tag__list">
+                    </ul>
+                    <input type="hidden" value="" id="review-tags" th:field="*{tagNames}" />
+                </div>
+                <div class="review__submit-button">
+                    <button type="button" class="default-btn">작성하기</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
+</body>
+</html>

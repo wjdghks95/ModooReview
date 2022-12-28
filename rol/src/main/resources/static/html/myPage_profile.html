@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/myPage.css">
+    <script src="../js/myPage_profile.js" defer></script>
+    <title>프로필</title>
+</head>
+<body>
+    <header>
+        <div class="header__container container">
+            <div class="header__wrapper">
+                <div class="header__logo-area">
+                    <a href="index.html" class="header__logo">
+                        <img src="https://reviewshare.io/static/media/reviewshare_logo.057c3bd3.svg" alt="logo">
+                    </a>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__menu">
+                        <li class="header__menu-item">
+                            <a href="index.html" class="header__menu-link">Home</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="contents.html" class="header__menu-link">Contents</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
+                        </li>
+                    </ul>
+                    <ul class="header__util-buttons">
+                        <li class="header__util-button">
+                            <button type="button" class="util-btn" onclick="location.href='/logout'">Logout</button>
+                        </li>
+                        <li class="header__util-button">
+                            <button type="button" class="util-btn" onclick="location.href='reviewForm.html'">글쓰기</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- header -->
+
+    <main class="profile">
+        <section class="profile-info">
+            <div class="profile-info__container container">
+
+                <aside class="myPage-side-menu">
+                    <ul class="myPage-side-menu__list">
+                        <li class="myPage-side-menu__item active">
+                            <a href="myPage_profile.html" class="myPage-side-menu__link">프로필</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_myReview.html" class="myPage-side-menu__link">나의 리뷰</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_like.html" class="myPage-side-menu__link">좋아요</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_following.html" class="myPage-side-menu__link">팔로잉</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_withdrawal.html" class="myPage-side-menu__link">회원 탈퇴</a>
+                        </li>
+                    </ul>
+                </aside>
+                <!-- myPage-side-menu -->
+
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">프로필</h2>
+                    </header>
+                    <ul class="profile-info__list">
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">사진</div>
+                            <div class="profile-info__field-text">사진을 등록하세요</div>
+                            <figure class="profile-info__field-image">
+                                <img src="../img/profile.png" onerror="this.src='/images/profile'" alt="프로필">
+                                <form action="myPage_profile.html" method="post" enctype="multipart/form-data" class="profile-info__profileImg-form">
+                                    <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
+                                </form>
+                            </figure>
+                        </li>
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">이름</div>
+                            <div class="profile-info__field-text">NAME</div>
+                        </li>
+                        <li class="profile-info__item">
+                            <div class="profile-info__field">닉네임</div>
+                            <div class="profile-info__field-text profile-info__nickname">NICKNAME</div>
+                            <form action="myPage_profile.html" method="post" class="profile-info__nickname-form" id="nickname-form">
+                                <input type="text" name="nickname" class="profile-info__nickname-input" placeholder="특수문자를 포함하지 않은 2~16자를 입력하세요">
+                            </form>
+                            <div class="profile-info__field-button">
+                                <button type="button" class="default-btn modify-btn">변경</button>
+                                <button type="submit" class="default-btn update-btn" form="nickname-form">등록</button>
+                                <button type="button" class="default-btn cancel-btn">취소</button>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <!-- myPage-profile -->
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <header class="section__headings">
+                <h2 class="section__heading section__heading--white">Let's talk</h2>
+            </header>
+            <article class="section__content">
+                <ul class="footer__contact">
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/email.svg" alt="email">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/facebook.svg" alt="facebook">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/instagram.svg" alt="instagram">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/github.svg" alt="github">
+                        </a>
+                    </li>
+                </ul>
+                <p class="footer__copyright">
+                    Copyright ⓒ 2022 - All rights reserved by wjdghks95
+                </p>
+            </article>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+</html>

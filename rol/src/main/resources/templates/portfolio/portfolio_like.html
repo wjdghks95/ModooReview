@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/portfolio_detail.css" th:href="@{/css/portfolio_detail.css}">
+    <title>좋아요</title>
+</head>
+<body>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
+    <!-- header -->
+    
+    <main class="portfolio">
+        <div class="portfolio__container container">
+            <section class="profile" th:replace="~{fragment/fragment-portfolio :: portfolio}"></section>
+            <section class="content">
+                <div class="content__headings">
+                    <p class="content__header">좋아요<span class="content__count" th:text="${likeList.size()}">100</span></p>
+                </div>
+                <article class="section__content content__content">
+                    <ul class="content__list">
+                        <li class="content__item" th:each="like : ${likeList}">
+                            <a href="review.html" th:href="@{/review/{id}(id=${like.review.id})}" class="content__link">
+                                <div class="content__img">
+                                    <img src="../img/sample1.jpg" th:src="|/images/${like.review.thumbnail.getStoreFileName()}|" alt="썸네일">
+                                </div>
+                                <div class="content__item-info">
+                                    <div class="content__like">
+                                        <div class="content__like-img">
+                                            <img src="../icon/heart-solid.svg" th:src="@{/icon/heart-solid.svg}" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count" th:text="${like.review.likeCount}">100</strong>
+                                    </div>
+                                    <div class="rating" th:switch="${like.review.rating}">
+                                        <div class="rating__star" th:case=0>
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                        </div>
+                                        <div class="rating__star" th:case=1>
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                        </div>
+                                        <div class="rating__star" th:case=2>
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                        </div>
+                                        <div class="rating__star" th:case=3>
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                        </div>
+                                        <div class="rating__star" th:case=4>
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-regular.svg" th:src="@{/icon/star-regular.svg}" alt="star">
+                                        </div>
+                                        <div class="rating__star" th:case=5>
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                            <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star">
+                                        </div>
+                                        <span class="rating__score" th:text="${like.review.rating} + '.0'">5.0</span>
+                                    </div>
+                                </div>
+                                <h4 class="content__title" th:text="${like.review.title}">제목입니다제목입니다제목입니다제목입니다</h4>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </div>
+    </main>
+    <!-- header -->
+
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>
+

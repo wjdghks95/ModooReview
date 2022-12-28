@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/myPage.css" th:href="@{/css/myPage.css}">
+    <title>나의 리뷰</title>
+</head>
+<body>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
+    <!-- header -->
+
+    <main class="myReview">
+        <section class="myReview-content">
+            <div class="myReview-content__container container">
+
+                <aside class="myPage-side-menu">
+                    <ul class="myPage-side-menu__list">
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_profile.html" th:href="@{'/myPage/profile/'+${#authentication.principal.member.id}}" class="myPage-side-menu__link">프로필</a>
+                        </li>
+                        <li class="myPage-side-menu__item active">
+                            <a href="myPage_myReview.html" th:href="@{'/myPage/myReview/'+${#authentication.principal.member.id}}" class="myPage-side-menu__link">나의 리뷰</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_like.html" th:href="@{'/myPage/like/'+${#authentication.principal.member.id}}" class="myPage-side-menu__link">좋아요</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_following.html" th:href="@{'/myPage/following/'+${#authentication.principal.member.id}}" class="myPage-side-menu__link">팔로잉</a>
+                        </li>
+                        <li class="myPage-side-menu__item">
+                            <a href="myPage_withdrawal.html" th:href="@{'/myPage/withdrawal/'+${#authentication.principal.member.id}}" class="myPage-side-menu__link">회원 탈퇴</a>
+                        </li>
+                    </ul>
+                </aside>
+                <!-- myPage-side-menu -->
+
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">나의 리뷰</h2>
+                    </header>
+                    <ul class="myReview-content__list">
+                        <li class="myReview-content__item" th:each="review : ${reviewList}">
+                            <a href="review.html" th:href="@{/review/{id}(id=${review.id})}" class="myReview-content__link">
+                                <h4 class="myReview-content__title" th:text="${review.title}">리뷰입니다.</h4>
+                                <img src="../img/sample1.jpg" th:src="|/images/${review.thumbnail.getStoreFileName()}|" alt="썸네일">
+                            </a>
+                        </li>
+                    </ul>            
+                </article>
+            </div>
+        </section>
+        <!-- myPage-myReview -->
+    </main>
+
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

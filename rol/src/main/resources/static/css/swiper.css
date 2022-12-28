@@ -1,0 +1,9 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    transform: scale(0.5);
+}

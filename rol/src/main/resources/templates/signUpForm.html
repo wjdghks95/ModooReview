@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta author="LeeJeongHwan">
+        <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+        <link rel="shortcut icon">
+        <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+        <link rel="stylesheet" href="../css/signUpForm.css" th:href="@{/css/signUpForm.css}">
+        <script src="../js/signUpForm.js" th:src="@{/js/signUpForm.js}" defer></script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <title>회원가입</title>
+    </head>
+
+<body>
+    <header th:replace="~{fragment/fragment-header :: header}"></header>
+
+    <main class="sign-up">
+        <section class="banner">
+            <div class="banner__container container">
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">회원가입</h2>
+                    </header>
+                </article>
+            </div>
+        </section>
+        <!-- banner -->
+
+        <section class="sign-up-form">
+            <div class="sign-up-form__container container">
+                <article class="section__content">
+                    <form action="signUpForm.html" method="post" class="sign-up-form__form" th:action th:object="${memberDto}">
+                        <div class="form__group">
+                            <label for="user-phone" class="form__label">휴대폰 번호</label>
+                            <div class="form__row-wrapper">
+                                <div class="form__input-container">
+                                    <input type="text" name="phone" id="user-phone"
+                                           th:field="*{phone}" th:errorclass="field-error" placeholder="휴대폰 번호(-없이 입력해주세요)">
+                                </div>
+                                <div class="sign-up-form__send-sms-button">
+                                    <button type="button" class="default-btn">인증번호 발송</button>
+                                </div>
+                            </div>
+                            <div class="field-error" th:errors="*{phone}" th:classappend="error-message">text</div>
+
+                            <div class="sign-up-form__phone-check-area form__row-wrapper">
+                                <input type="text" id="phone-check-number" placeholder="인증번호">
+                                <div class="sign-up-form__phone-check-button">
+                                    <button type="button" class="default-btn">인증확인</button>
+                                </div>
+                                <div class="sign-up-form__resend-sms-button">
+                                    <button type="button" class="default-btn">재발송</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="user-phone-check" th:field="*{phoneCheck}" th:errorclass="field-error" value="false"/>
+                            <p class="field-error" th:errors="*{phoneCheck}" th:classappend="error-message">text</p>
+                        </div>
+                        <div class="form__group">
+                            <label for="user-email" class="form__label">이메일</label>
+                            <div class="form__row-wrapper">
+                                <input type="text" id="user-email" placeholder="이메일 ID">
+                                <span class="email-symbol">@</span>
+                                <input type="text" id="user-email-address">
+                                <select id="user-email-address-list">
+                                    <option value="" disabled selected style="display: none">이메일 주소</option>
+                                    <option value="type">직접입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="email" th:field="*{email}" th:errorclass="field-error" id="user-total-email">
+                            <div class="field-error" th:errors="*{email}" th:classappend="error-message">text</div>
+                        </div>
+                        <div class="form__group">
+                            <label for="user-password" class="form__label">비밀번호</label>
+                            <input type="password" name="password" id="user-password" th:field="*{password}" th:errorclass="field-error" placeholder="비밀번호(최소 8자 이상, 숫자와 하나 이상의 특수 문자 포함)">
+                            <div class="field-error" th:errors="*{password}" th:classappend="error-message">text</div>
+                            <input type="password" id="user-password-confirm" placeholder="비밀번호 확인">
+                            <input type="hidden" name="passwordCheck" th:field="*{passwordCheck}" th:errorclass="field-error" id="user-password-check" value="false" >
+                            <div class="field-error" th:errors="*{passwordCheck}" th:classappend="error-message">text</div>
+                        </div>
+                        <div class="form__group">
+                            <label for="user-name" class="form__label">이름</label>
+                            <input type="text" name="name" id="user-name" th:field="*{name}" th:errorclass="field-error" placeholder="이름">
+                            <div class="field-error" th:errors="*{name}" th:classappend="error-message">text</div>
+                        </div>
+                        <div class="form__group">
+                            <label for="user-nickname" class="form__label">닉네임</label>
+                            <input type="text" name="nickname" id="user-nickname" th:field="*{nickname}" th:errorclass="field-error" placeholder="닉네임(최소2자~8자)">
+                            <div class="field-error" th:errors="*{nickname}" th:classappend="error-message">text</div>
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label">주소</label>
+                            <div class="form__row-wrapper">
+                                <div class="form__input-container">
+                                    <input type="text" name="zipcode" id="user-zipcode" th:field="*{zipcode}" th:errorclass="field-error" placeholder="우편번호" readonly>
+                                </div>
+                                <div class="sign-up-form__search-address-button">
+                                    <button type="button" class="default-btn">주소 검색</button>
+                                </div>
+                            </div>
+                            <input type="text" name="address" id="user-address" th:field="*{address}" th:errorclass="field-error" placeholder="주소" readonly>
+                            <input type="text" name="detailAddress" id="user-detail-address" th:field="*{detailAddress}" th:errorclass="field-error" placeholder="상세주소">
+                            <div class="field-error" th:errors="*{zipcode}" th:classappend="error-message">text</div>
+                        </div>
+                    </form>
+                    <div class="sign-up-form__submit-button">
+                        <button type="button" class="default-btn">가입 완료하기</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- sign-up-form -->
+    </main>
+
+    <footer th:replace="~{fragment/fragment-footer :: footer}"></footer>
+</body>
+</html>
