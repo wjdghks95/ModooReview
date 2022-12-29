@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -54,4 +55,10 @@ public class BoardServiceImpl implements BoardService {
 
         return savedBoard.getId();
     }
+
+    @Override
+    public Board findBoard(Long id) {
+        return boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException("NoSuchElementException"));
+    }
+
 }

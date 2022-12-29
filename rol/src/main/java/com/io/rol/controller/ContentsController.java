@@ -1,6 +1,7 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.dto.BoardDto;
+import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +52,25 @@ public class ContentsController {
         }
 
         Member writer = memberService.findMember(memberContext.getMember().getId());
-        boardService.write(boardDto, writer);
-        return "redirect:/";
+        Long id = boardService.write(boardDto, writer);
+        return "redirect:/contents/board/" + id;
+    }
+
+    /**
+     * 게시글
+     */
+    @GetMapping("/board/{id}")
+    public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        if (memberContext != null) {
+            Member member = memberService.findMember(memberContext.getMember().getId());
+            model.addAttribute("member", member);
+        }
+
+        Board board = boardService.findBoard(id);
+        board.incrementViews(); // 조회수 증가
+
+        model.addAttribute("board", board);
+
+        return "/contents/board";
     }
 }

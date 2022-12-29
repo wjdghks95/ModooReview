@@ -52,6 +52,9 @@ public class Board extends BaseTimeEntity {
     @OneToMany(mappedBy = "board")
     private List<BoardTag> boardTagList = new ArrayList<>(); // boardTag 목록
 
+    @OneToMany(mappedBy = "board")
+    private List<Comment> comments = new ArrayList<>(); // 댓글 목록
+
     @Builder
     public Board(String title, Category category, String description, int rating) {
         this.title = title;
@@ -78,5 +81,12 @@ public class Board extends BaseTimeEntity {
      */
     public void setThumbnail(List<Image> images, int thumbnailIdx) {
         this.thumbnail = images.get(thumbnailIdx);
+    }
+
+    /**
+     * 조회수 증가
+     */
+    public void incrementViews() {
+        ++this.views;
     }
 }
