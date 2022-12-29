@@ -61,6 +61,10 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Follow> followerList = new ArrayList<>(); // 팔로워 목록
 
+    /* 회원 탈퇴시 회원의 좋아요 모두 삭제 */
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likeList = new ArrayList<>(); // 좋아요 목록
+
     @Builder
     public Member(String email, String password, String name, String nickname, String zipcode, String address, String detailAddress, String phone, String profileImage, Role role) {
         this.email = email;

@@ -170,8 +170,12 @@
                 </article>
                 <div class="board__action-buttons">
                     <div class="board__like">
-                        <div class="board__like-button">
+                        <div class="board__like-button anonymous" sec:authorize="isAnonymous()">
                             <button class="like-btn"></button>
+                        </div>
+                        <div class="board__like-button" sec:authorize="isAuthenticated()">
+                            <button class="like-btn" th:if="${isLike}"></button>
+                            <button class="like-btn active" th:unless="${isLike}"></button>
                         </div>
                         <span class="board__like-text">좋아요</span>
                         <span class="board__like-count" th:text="*{likeCount}">10</span>

@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 
     /**
      * 팔로우 여부
-     * 로그인한 member가 현재 page member를 팔로우하지 않은 경우 false
+     * 로그인한 member가 현재 page member를 팔로우하지 않은 경우 true
      */
     @Override
     public boolean isFollow(Long followerId, Long followingId) {
@@ -72,9 +72,9 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public void follow(Member follower, Member following) {
-        Optional<Follow> byFollow = followRepository.findFollowByFollowerIdAndFollowingId(follower.getId(), following.getId());
+        Optional<Follow> followOptional = followRepository.findFollowByFollowerIdAndFollowingId(follower.getId(), following.getId());
 
-        byFollow.ifPresentOrElse(
+        followOptional.ifPresentOrElse(
                 // 팔로우 되어 있는 경우 삭제
                 follow -> {
                     followRepository.delete(follow);

@@ -70,9 +70,11 @@ public class ContentsController {
             Member loginMember = memberService.findMember(memberContextId);
 
             boolean isFollow = memberService.isFollow(loginMember.getId(), board.getMember().getId());
+            boolean isLike = boardService.isLike(loginMember.getId(), board.getId());
 
             model.addAttribute("loginMember", loginMember);
             model.addAttribute("isFollow", isFollow);
+            model.addAttribute("isLike", isLike);
         }
 
         return "/contents/board";

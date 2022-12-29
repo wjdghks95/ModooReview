@@ -1,6 +1,27 @@
 // 좋아요
 $('.board__like-button').on('click', function() {
-    $(this).children().toggleClass('active');
+
+    if($(this).hasClass('anonymous')) {
+        alert('좋아요 서비스는 로그인 후 이용가능합니다.');
+    } else {
+        const likeBtn = $(this).children();
+        const href = location.href;
+        const id = href.slice(-1);
+
+        $.ajax({
+            url: "/like.do",
+            method: "GET",
+            data: {"id" : id},
+            success: function(result) {
+                likeBtn.toggleClass('active');
+                $('.board__like-count').text(result);
+            }, 
+            error: function() {
+                console.log("ajax 통신 실패");
+            }
+        })
+    }
+
 })
 
 // 팔로우
@@ -21,6 +42,7 @@ $('.board__follow-button').on('click', function() {
                 follow(followBtn);
             }, 
             error: function() {
+                console.log("ajax 통신 실패");
             }
         })
     }

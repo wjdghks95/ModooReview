@@ -52,8 +52,13 @@ public class Board extends BaseTimeEntity {
     @OneToMany(mappedBy = "board")
     private List<BoardTag> boardTagList = new ArrayList<>(); // boardTag 목록
 
-    @OneToMany(mappedBy = "board")
+    /* 게시글이 삭제되면 게시글에 작성된 댓글 모두 삭제 */
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>(); // 댓글 목록
+
+    /* 게시글이 삭제되면 게시글 좋아요 모두 삭제 */
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likeList = new ArrayList<>(); // 좋아요 목록
 
     @Builder
     public Board(String title, Category category, String description, int rating) {
@@ -88,5 +93,19 @@ public class Board extends BaseTimeEntity {
      */
     public void incrementViews() {
         ++this.views;
+    }
+
+    /**
+     * 좋아요 수
+     */
+    public void updateLikeCount() {
+        this.likeCount = this.likeList.size();
+    }
+
+    /**
+     * 좋아요 제거
+     */
+    public void removeLike(Like like) {
+        this.likeList.remove(like);
     }
 }

@@ -10,4 +10,6 @@ public interface BoardService {
 
     Long write(BoardDto boardDto, Member writer) throws IOException;
     Board findBoard(Long id);
+    boolean isLike(Long memberId, Long boardId);
+    void like(Member member, Board board);
 }
