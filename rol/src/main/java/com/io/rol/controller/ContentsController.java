@@ -76,7 +76,8 @@ public class ContentsController {
         }
 
         if (memberContext != null) {
-            Member loginMember = memberContext.getMember();
+            Long memberContextId = memberContext.getMember().getId();
+            Member loginMember = memberService.findMember(memberContextId);
             boolean isFollow = memberService.isFollow(loginMember.getId(), board.getMember().getId());
             boolean isLike = boardService.isLike(loginMember.getId(), board.getId());
 
