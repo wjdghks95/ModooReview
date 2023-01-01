@@ -218,6 +218,11 @@
     display: inline-block;
     word-wrap: break-word;
     word-break: break-word;
+    margin-right: 1rem;
+}
+
+.comments__del-button {
+    width: 4.375rem;
 }
 
 .del-btn {

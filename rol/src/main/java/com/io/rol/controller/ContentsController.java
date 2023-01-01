@@ -2,12 +2,15 @@ package com.io.rol.controller;
 
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Board;
+import com.io.rol.domain.entity.Comment;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
+import com.io.rol.service.CommentService;
 import com.io.rol.service.MemberService;
 import com.io.rol.validator.FileValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +31,7 @@ public class ContentsController {
     private final BoardService boardService;
     private final MemberService memberService;
     private final FileValidator fileValidator;
+    private final CommentService commentService;
 
     @InitBinder("boardDto")
     public void boardValidation(WebDataBinder dataBinder) {
@@ -62,13 +68,15 @@ public class ContentsController {
     public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Board board = boardService.findBoard(id);
         board.incrementViews(); // 조회수 증가
-
         model.addAttribute("board", board);
 
-        if (memberContext != null) {
-            Long memberContextId = memberContext.getMember().getId();
-            Member loginMember = memberService.findMember(memberContextId);
+        List<Comment> comments = commentService.getList(id);
+        if (comments != null && !comments.isEmpty()) {
+            model.addAttribute("comments", comments);
+        }
 
+        if (memberContext != null) {
+            Member loginMember = memberContext.getMember();
             boolean isFollow = memberService.isFollow(loginMember.getId(), board.getMember().getId());
             boolean isLike = boardService.isLike(loginMember.getId(), board.getId());
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta author="LeeJeongHwan">
     <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
     <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="../css/board.css" th:href="@{/css/board.css}">
@@ -209,17 +211,17 @@
                                 </div>
                                 <span class="comments__author-nickname" th:text="${loginMember.nickname}">nickname</span>
                             </div>
-                            <form action="board.html" th:action method="post" class="comments__form">
-                                <input type="text" name="comment" class="comments__input" placeholder="칭찬과 격려의 글을 남겨주세요 :)">
+                            <form onsubmit="javascript:checkComment()" method="post" class="comments__form">
+                                <input type="text" name="content" class="comments__input" placeholder="칭찬과 격려의 글을 남겨주세요 :)">
                                 <div class="comments__submit-button">
-                                    <button type="submit" class="in-btn">입력</button>
+                                    <button type="button" class="in-btn">입력</button>
                                 </div>
-                                <p class="error-msg">댓글을 입력해주세요.</p>
+                                <p class="error-msg"></p>
                             </form>
                         </div>
                     </div>
-                    <ul class="comments__comments">
-                        <li class="comments__item" th:each="comment : *{comments}">
+                    <ul class="comments__comments" id="commentList">
+                        <li class="comments__item" th:each="comment : ${comments}" th:data-idx="${comment.id}">
                             <div class="comments__author">
                                 <a href="profile.html" th:href="@{/profile/{id}(id=${comment.member.id})}" class="comments__author-link">
                                     <div class="comments__author-image">
@@ -231,7 +233,7 @@
                             </div>
                             <div class="comments__comment">
                                 <span class="comments__comment-content" th:text="${comment.content}">댓글</span>
-                                <div class="comments__del-button" th:if="${comment.member.id} == ${loginMember.id}">
+                                <div class="comments__del-button" th:if="${loginMember} != null and ${comment.member.id} == ${loginMember.id}">
                                     <button class="default-btn del-btn">삭제</button>
                                 </div>
                             </div>

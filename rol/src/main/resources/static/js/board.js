@@ -57,3 +57,69 @@ function follow(followBtn) {
         $(followBtn).html('+ 팔로우');
     }
 }
+
+// 댓글 작성
+$('.comments__submit-button').on('click', function() {
+    addComment();
+})
+
+$('.comments__form').on('keydown', function(e) {
+    if(e.code === "Enter") {
+        e.preventDefault();
+        addComment();
+    }
+})
+
+function addComment() {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    const href = location.href;
+    const id = href.slice(-1);
+    const content = $('.comments__input').val();
+
+    if(content === "" || content === null) {
+        $(".error-msg").text('댓글을 입력해주세요.');
+    } else {
+        $(".error-msg").text('');
+        $.ajax({
+            url: "/comment.do",
+            method: "POST",
+            data: {"id" : id,
+                    "content" : content},
+            beforeSend : function(xhr){
+                    xhr.setRequestHeader(header, token);
+            },
+            success: function(result) {
+                $('#commentList').replaceWith(result);
+            },
+            error: function() {
+                console.log("ajax 통신 실패");
+            }
+        })
+        $('.comments__input').val("");
+        $('.comments__input').focus();
+    }
+}
+
+// 댓글 삭제
+$(document).on('click', '.comments__del-button', function() {
+    if(confirm('댓글을 삭제하시겠습니까?')) {
+        const href = location.href;
+        const id = href.slice(-1);
+        const index = $(this).parents('.comments__item').attr('data-idx');
+
+        $.ajax({
+            url: "/comment.de",
+            method: "GET",
+            data: {"id" : id,
+                    "index" : index},
+            success: function(result) {
+                $('#commentList').replaceWith(result);
+            },
+            error: function() {
+                console.log("ajax 통신 실패");
+            }
+        })
+    }
+})
