@@ -52,12 +52,6 @@ class MemberControllerTest {
     private static String SIGN_UP_URL = "/signUp";
     private static String LOGIN_URL = "/login";
 
-    @BeforeEach
-    void clearDb() {
-        memberRepository.deleteAll();
-        clear();
-    }
-
     private void clear(){
         em.flush();
         em.clear();

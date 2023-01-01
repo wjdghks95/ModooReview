@@ -39,7 +39,7 @@ public class InitDB {
     public void init() throws IOException {
         Member member = Member.builder()
                 .phone("01012345678")
-                .email("test@test.com")
+                .email("user@test.com")
                 .password(passwordEncoder.encode("asdf1234!"))
                 .name("이름")
                 .nickname("닉네임")

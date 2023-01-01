@@ -45,7 +45,7 @@ class BoardServiceTest {
     @Value("${resource.path.fileStore}/")
     private String fileDirPath;
 
-    private static String USERNAME = "test@test.com";
+    private static String USERNAME = "user@test.com";
     private static int THUMBIDX = 0;
     private static String TITLE = "제목";
     private static String CATEGORY = "food";

@@ -27,12 +27,6 @@ class MemberServiceTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
-    @BeforeEach
-    void clearDb() {
-        memberRepository.deleteAll();
-        clear();
-    }
-
     /**
      * 회원가입
      *    회원가입 시 핸드폰 번호, 이메일, 비밀번호, 이름, 닉네임, 주소를 입력하지 않으면 오류
@@ -81,17 +75,17 @@ class MemberServiceTest {
     void join_failure_empty_field() {
         // given
         MemberDto memberDto1 = new MemberDto(null, "test@test.com", "asdf1234!",
-                "이름", "닉네임", "12345", "경기도 고양시 현중로 10", "101동 101호");
+                "이름", "테스트", "12345", "경기도 고양시 현중로 10", "101동 101호");
         MemberDto memberDto2 = new MemberDto("01012345678", null, "asdf1234!",
-                "이름", "닉네임", "12345", "경기도 고양시 현중로 10", "101동 101호");
+                "이름", "테스트", "12345", "경기도 고양시 현중로 10", "101동 101호");
         MemberDto memberDto3 = new MemberDto("01012345678", "test@test.com", null,
-                "이름", "닉네임", "12345", "경기도 고양시 현중로 10", "101동 101호");
+                "이름", "테스트", "12345", "경기도 고양시 현중로 10", "101동 101호");
         MemberDto memberDto4 = new MemberDto("01012345678", "test@test.com", "asdf1234!",
-                null, "닉네임", "12345", "경기도 고양시 현중로 10", "101동 101호");
+                null, "테스트", "12345", "경기도 고양시 현중로 10", "101동 101호");
         MemberDto memberDto5 = new MemberDto("01012345678", "test@test.com", "asdf1234!",
                 "이름", null, "12345", "경기도 고양시 현중로 10", "101동 101호");
         MemberDto memberDto6 = new MemberDto("01012345678", "test@test.com", "asdf1234!",
-                "이름", "닉네임", null, null, null);
+                "이름", "테스트", null, null, null);
 
         // when, then
         assertThrows(Exception.class, () -> memberService.join(memberDto1));
@@ -113,7 +107,7 @@ class MemberServiceTest {
                 .email("test@test.com")
                 .password("asdf1234!")
                 .name("이름")
-                .nickname("닉네임")
+                .nickname("테스트")
                 .zipcode("12345")
                 .address("경기도 고양시 현중로 10")
                 .detailAddress("101동 101호")

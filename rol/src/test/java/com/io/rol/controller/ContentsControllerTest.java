@@ -46,7 +46,7 @@ class ContentsControllerTest {
     @Value("${resource.path.fileStore}/")
     private String fileDirPath;
 
-    private static String USERNAME = "test@test.com";
+    private static String USERNAME = "user@test.com";
     private static String IMAGE1 = "sample1.jpg";
     private static String IMAGE2 = "sample2.jpg";
     private static int THUMBIDX = 0;
@@ -80,7 +80,7 @@ class ContentsControllerTest {
 
     /**
      * 게시글 작성
-     *    게시글 작성 시 업도르한 이미지가 한 개라도 없으면 오류
+     *    게시글 작성 시 업로드한 이미지가 한 개라도 없으면 오류
      *    제목과 내용을 입력하지 않거나 카테고리를 선택하지 않으면 오류
      *    제목이 50자 이상인 경우 오류
      *    설명이 20자 이하인 경우 오류
