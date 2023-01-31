@@ -5,11 +5,14 @@ import com.io.rol.domain.entity.*;
 import com.io.rol.respository.BoardRepository;
 import com.io.rol.respository.CategoryRepository;
 import com.io.rol.respository.LikeRepository;
+import com.io.rol.respository.query.BoardQueryRepository;
 import com.io.rol.service.BoardService;
 import com.io.rol.service.BoardTagService;
 import com.io.rol.service.ImageService;
 import com.io.rol.service.TagService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,7 @@ public class BoardServiceImpl implements BoardService {
     private final TagService tagService;
     private final BoardTagService boardTagService;
     private final BoardRepository boardRepository;
+    private final BoardQueryRepository boardQueryRepository;
     private final CategoryRepository categoryRepository;
     private final LikeRepository likeRepository;
 
@@ -97,6 +101,15 @@ public class BoardServiceImpl implements BoardService {
                     likeRepository.save(like);
                 }
         );
+    }
+
+    /**
+     * 게시글 목록 페이징 조회
+     *   - 카테고리 또는 키워드가 있는 경우 해당 목록 페이징 조회
+     */
+    @Override
+    public Page<Board> getList(Pageable pageable, String category, String keyword) {
+        return boardQueryRepository.findAllPagingByKeyword(pageable, category, keyword);
     }
 
 }

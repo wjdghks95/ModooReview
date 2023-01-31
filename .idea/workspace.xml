@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="458da68f-f497-40be-9c91-155a8793617c" name="Changes" comment="" />
+    <list default="true" id="458da68f-f497-40be-9c91-155a8793617c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/config/InitDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/config/InitDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/controller/ContentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/impl/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/impl/BoardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/resources/static/js/contents.js" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/resources/static/js/contents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rol/src/main/resources/templates/fragment/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/resources/templates/fragment/header.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +29,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/IntelliJ-work/project"
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/IntelliJ-work/finalPro/lawservice101",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -32,7 +42,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671291544089</updated>
+      <workItem from="1673486768446" duration="15000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

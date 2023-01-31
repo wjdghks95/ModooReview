@@ -3,6 +3,8 @@ package com.io.rol.service;
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
 
@@ -12,4 +14,6 @@ public interface BoardService {
     Board findBoard(Long id);
     boolean isLike(Long memberId, Long boardId);
     void like(Member member, Board board);
+
+    Page<Board> getList(Pageable pageable, String category, String keyword);
 }

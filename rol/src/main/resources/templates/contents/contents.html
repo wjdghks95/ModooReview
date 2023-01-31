@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/contents.css" th:href="@{/css/contents.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/contents.js" th:src="@{/js/contents.js}" defer></script>
+    <title>콘텐츠</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="contents">
+        <section class="banner">
+            <div class="banner__container container">
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">콘텐츠</h2>
+                        <p class="section__subheading">원하는 카테고리를 선택하여 다양한 리뷰를 만나보세요</p>
+                    </header>
+                </article>
+            </div>
+        </section>
+        <!-- banner -->
+
+        <section class="content">
+            <div class="content__container container">
+                <div class="slider">
+                    <div class="slider-container">
+                        <ul class="content__categories slides">
+                            <li class="content__category slide">
+                                <button class="category-btn active" value="" onclick="paging">전체</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="food">식품</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="beauty">미용</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="cosmetic">코스메틱</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="fashion">패션/잡화</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="nursing">출산/육아</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="digital">디지털/가전</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="sports">스포츠/건강</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="pet">반려동물</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="restaurant">맛집</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="travel">여행/숙박</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="culture">지역/문화</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="interior">인테리어</button>
+                            </li>
+                            <li class="content__category slide">
+                                <button class="category-btn" value="etc">기타</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="arrow-button">
+                        <button class="arrow-btn arrow-btn--prev"></button>
+                        <button class="arrow-btn arrow-btn--next"></button>
+                    </div>
+                </div>
+
+                <ul class="content__views">
+                    <li class="content__view">
+                        <button type="button" class="view-btn active" style="background-image: url(../icon/grid.svg); transform: scale(1.1);"></button>
+                    </li>
+                    <li class="content__view">
+                        <button type="button" class="view-btn" style="background-image: url(../icon/list.svg)"></button>
+                    </li>
+                    <li class="content__view">
+                        <button type="button" class="view-btn" style="background-image: url(../icon/tag.svg)"></button>
+                    </li>
+                </ul>
+
+                <article class="content__content" id="contents">
+                    <div class="content__boards">
+                        <ul class="content__boards--gallery">
+                            <li class="content__board" th:each="board : ${boardList}">
+                                <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="content__board-link">
+                                    <div class="content__board-img-container">
+                                        <img src="../img/sample1.jpg" th:src="|/images/${board.thumbnail.getStoreFileName()}|" alt="썸네일">
+                                    </div>
+                                    <div class="content__board-content">
+                                        <h4 class="content__board-title" th:text="${board.title}">제목</h4>
+                                        <div class="rating" th:switch="${board.rating}">
+                                            <th:block th:case="0">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="1">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="2">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="3">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="4">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="5">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- boards--gallery -->
+
+                    <table class="content__boards content__boards--list" style="table-layout: fixed">
+                        <thead>
+                            <th style="width: 5%;">번호</th>
+                            <th style="width:10%">작성자</th>
+                            <th style="width:45%">제목</th>
+                            <th style="width:15%">평점</th>
+                            <th style="width:9%">등록일</th>
+                            <th style="width:9%">수정일</th>
+                            <th style="width:7%">조회수</th>
+                        </thead>
+                        <tbody>
+                            <tr th:each="board : ${boardList}">
+                                <td th:text="${board.id}">
+                                </td>
+                                <td>
+                                    <div class="content__board-author">
+                                        <a href="profile.html" th:href="@{/profile/{id}(id=${board.member.id})}" th:text="${board.member.nickname}" class="content__board-author-link">회원</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="content__board-title">
+                                        <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" th:text="${board.title}" class="content__board-title-link">제목</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="rating" th:switch="${board.rating}">
+                                        <th:block th:case="0">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                        </th:block>
+                                        <th:block th:case="1">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                        </th:block>
+                                        <th:block th:case="2">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                        </th:block>
+                                        <th:block th:case="3">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                        </th:block>
+                                        <th:block th:case="4">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                        </th:block>
+                                        <th:block th:case="5">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </td>
+                                <td th:text="${#temporals.format(board.createdDate, 'yyyy/MM/dd a HH:mm')}">2022.09.20</td>
+                                <td th:text="${#temporals.format(board.lastModifiedDate, 'yyyy/MM/dd a HH:mm')}">2022.10.20</td>
+                                <td th:text="${board.views}">100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- boards--list -->
+                    
+                    <div class="content__boards">
+                        <ul class="content__boards--board">
+                            <li class="content__board" th:each="board : ${boardList}">
+                                <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="content__board-title">제목</a>
+                                <ul class="content__board-tags">
+                                    <li class="content__board-tag" th:each="boardTag : ${board.boardTagList}" >
+                                        <a href="hashTag.html" th:href="@{/contents/hashTag(tagName='${boardTag.tag.name}'}" th:text="'#'+${boardTag.tag.name}" class="content__board-tag-link">#태그1</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- boards--board -->
+
+                    <div class="pagination">
+                        <button type="button" th:onclick="|javascript:paging('${page.getCurPage()-1}')|" th:style="${page.isPrev() == false ? 'pointer-events:none' : 'pointer-events:auto'}"
+                         class="pagination-btn pagination-prev-btn">Prev</button>
+                        <button type="button" class="pagination-btn"
+                                th:each="num, index: ${#numbers.sequence(page.getStartPage(), page.getEndPage())}"
+                                th:onclick="|javascript:paging('${index.current-1}')|"
+                                th:text="${num}" th:classappend="${page.getCurPage()+1} == ${num} ? active">1</button>
+                        <button type="button" th:onclick="|javascript:paging('${page.getCurPage()+1}')|" th:style="${page.isNext() == false ? 'pointer-events:none' : 'pointer-events:auto'}"
+                         class="pagination-btn pagination-next-btn">Next</button>
+                    </div>
+                    <!-- pagination -->
+
+                </article>
+
+                <div class="search-form">
+                    <div class="search-form__searchBar">
+                        <input type="search" class="search-form__input" name="keyword" placeholder="검색어를 입력하세요">
+                        <button type="button" class="search-form__submit">Search</button>
+                    </div>
+                </div>
+                <!-- search-form -->
+            </div>
+        </section>
+        <!-- content -->
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

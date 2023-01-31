@@ -50,14 +50,10 @@ public class InitDB {
                 .build();
 
         Member savedMember = memberRepository.save(member);
-        write(savedMember, "제목", 5, CategoryName.ETC.getCategory(), "내용");
-    }
 
-    /**
-     * 카테고리 저장
-     */
-    @PostConstruct
-    public void saveCategory() {
+        /**
+         * 카테고리 저장
+         */
         categoryRepository.save(createCategory(CategoryName.FOOD));
         categoryRepository.save(createCategory(CategoryName.COSMETIC));
         categoryRepository.save(createCategory(CategoryName.FASHION));
@@ -70,6 +66,20 @@ public class InitDB {
         categoryRepository.save(createCategory(CategoryName.CULTURE));
         categoryRepository.save(createCategory(CategoryName.INTERIOR));
         categoryRepository.save(createCategory(CategoryName.ETC));
+
+        for (int i = 0; i < 5; i++) {
+            write(savedMember, "FOOD", 5, "food", "내용1");
+            write(savedMember, "COSMETIC", 4, "cosmetic", "내용2");
+            write(savedMember, "FASHION", 3, "fashion", "내용3");
+            write(savedMember, "NURSING", 2, "nursing", "내용4");
+            write(savedMember, "DIGITAL", 1, "digital", "내용5");
+            write(savedMember, "SPORTS", 0, "sports", "내용6");
+            write(savedMember, "PET", 1, "pet", "내용7");
+            write(savedMember, "RESTAURANT", 2, "restaurant", "내용8");
+            write(savedMember, "TRAVEL", 3, "travel", "내용9");
+            write(savedMember, "CULTURE", 4, "culture", "내용10");
+            write(savedMember, "ETC", 5, "etc", "내용11");
+        }
     }
 
     /**

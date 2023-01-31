@@ -1,6 +1,7 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.dto.BoardDto;
+import com.io.rol.domain.dto.PageDto;
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
 import com.io.rol.domain.entity.Member;
@@ -10,7 +11,9 @@ import com.io.rol.service.CommentService;
 import com.io.rol.service.MemberService;
 import com.io.rol.validator.FileValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +23,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -87,5 +89,35 @@ public class ContentsController {
         }
 
         return "/contents/board";
+    }
+
+    /**
+     * 콘텐츠
+     */
+    @GetMapping
+    public String contents(@PageableDefault(size = 12) Pageable pageable, Model model,
+                           @RequestParam(required = false) String category,
+                           @RequestParam(required = false) String keyword) {
+        Page<Board> boardList = boardService.getList(pageable, category, keyword);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("page", new PageDto(boardList.getTotalElements(), pageable));
+
+        return "/contents/contents";
+    }
+
+    /**
+     * 콘텐츠 로드
+     */
+    @GetMapping("/loadContents")
+    public String loadContents(@PageableDefault(size = 12) Pageable pageable, Model model,
+                               @RequestParam(required = false) String category,
+                               @RequestParam(required = false) String keyword) {
+        Page<Board> boardList = boardService.getList(pageable, category, keyword);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("page", new PageDto(boardList.getTotalElements(), pageable));
+
+        return "/contents/contents :: #contents";
     }
 }
