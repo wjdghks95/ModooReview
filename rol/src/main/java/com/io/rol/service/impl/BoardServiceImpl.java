@@ -113,9 +113,20 @@ public class BoardServiceImpl implements BoardService {
         return boardQueryRepository.findAllPagingByKeyword(pageable, category, keyword);
     }
 
+    /**
+     * 정렬된 게시글 목록 조회
+     */
     @Override
     public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
         return boardQueryRepository.findAllByOrder(orderSpecifier);
     }
 
+    /**
+     * 조회수 증가
+     */
+    @Override
+    @Transactional
+    public void incrementViews(Board board) {
+        board.incrementViews();
+    }
 }

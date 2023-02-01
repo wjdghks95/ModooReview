@@ -69,7 +69,7 @@ public class ContentsController {
     @GetMapping("/board/{id}")
     public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Board board = boardService.findBoard(id);
-        board.incrementViews(); // 조회수 증가
+        boardService.incrementViews(board); // 조회수 증가
         model.addAttribute("board", board);
 
         List<Comment> comments = commentService.getList(id);

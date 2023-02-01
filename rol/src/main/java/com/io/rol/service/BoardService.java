@@ -20,4 +20,6 @@ public interface BoardService {
     Page<Board> getList(Pageable pageable, String category, String keyword);
 
     List<Board> getListBySort(OrderSpecifier<?> orderSpecifier);
+
+    void incrementViews(Board board);
 }
