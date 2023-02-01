@@ -6,7 +6,7 @@ $('.board__like-button').on('click', function() {
     } else {
         const likeBtn = $(this).children();
         const href = location.href;
-        const id = href.slice(-1);
+        const id = href.substring(href.indexOf('board/')+6);
 
         $.ajax({
             url: "/like.do",
@@ -15,7 +15,7 @@ $('.board__like-button').on('click', function() {
             success: function(result) {
                 likeBtn.toggleClass('active');
                 $('.board__like-count').text(result);
-            }, 
+            },
             error: function() {
                 console.log("ajax 통신 실패");
             }
@@ -32,7 +32,7 @@ $('.board__follow-button').on('click', function() {
     } else {
         const followBtn = $(this).children();
         const href = location.href;
-        const id = href.slice(-1);
+        const id = href.substring(href.indexOf('board/')+6);
 
         $.ajax({
             url: "/follow.do",
@@ -40,7 +40,7 @@ $('.board__follow-button').on('click', function() {
             data: {"id" : id},
             success: function() {
                 follow(followBtn);
-            }, 
+            },
             error: function() {
                 console.log("ajax 통신 실패");
             }
@@ -63,9 +63,8 @@ $('.comments__submit-button').on('click', function() {
     addComment();
 })
 
-$('.comments__form').on('keydown', function(e) {
+$('.comments__input').on('keypress', function(e) {
     if(e.code === "Enter") {
-        e.preventDefault();
         addComment();
     }
 })
@@ -75,7 +74,7 @@ function addComment() {
     var header = $("meta[name='_csrf_header']").attr("content");
 
     const href = location.href;
-    const id = href.slice(-1);
+    const id = href.substring(href.indexOf('board/')+6);
     const content = $('.comments__input').val();
 
     if(content === "" || content === null) {
@@ -92,13 +91,13 @@ function addComment() {
             },
             success: function(result) {
                 $('#commentList').replaceWith(result);
+                $('.comments__input').val("");
+                $('.comments__input').focus();
             },
             error: function() {
                 console.log("ajax 통신 실패");
             }
         })
-        $('.comments__input').val("");
-        $('.comments__input').focus();
     }
 }
 
@@ -106,7 +105,7 @@ function addComment() {
 $(document).on('click', '.comments__del-button', function() {
     if(confirm('댓글을 삭제하시겠습니까?')) {
         const href = location.href;
-        const id = href.slice(-1);
+        const id = href.substring(href.indexOf('board/')+6);
         const index = $(this).parents('.comments__item').attr('data-idx');
 
         $.ajax({

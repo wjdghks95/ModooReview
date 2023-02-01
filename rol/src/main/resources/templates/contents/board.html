@@ -211,13 +211,13 @@
                                 </div>
                                 <span class="comments__author-nickname" th:text="${loginMember.nickname}">nickname</span>
                             </div>
-                            <form onsubmit="javascript:checkComment()" method="post" class="comments__form">
+                            <div class="comments__form">
                                 <input type="text" name="content" class="comments__input" placeholder="칭찬과 격려의 글을 남겨주세요 :)">
                                 <div class="comments__submit-button">
                                     <button type="button" class="in-btn">입력</button>
                                 </div>
                                 <p class="error-msg"></p>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <ul class="comments__comments" id="commentList">
