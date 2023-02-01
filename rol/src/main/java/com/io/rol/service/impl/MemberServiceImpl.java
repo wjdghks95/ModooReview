@@ -2,6 +2,7 @@ package com.io.rol.service.impl;
 
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Follow;
+import com.io.rol.domain.entity.Image;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.FollowRepository;
 import com.io.rol.respository.MemberRepository;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static com.io.rol.domain.Role.*;
+import static com.io.rol.domain.Role.USER;
 
 @Service
 @RequiredArgsConstructor
@@ -90,9 +91,21 @@ public class MemberServiceImpl implements MemberService {
         );
     }
 
+    /**
+     * 닉네임 변경
+     */
     @Override
     @Transactional
     public void nicknameModify(Member member, String nickname) {
         member.setNickname(nickname);
+    }
+
+    /**
+     * 프로필 이미지 변경
+     */
+    @Override
+    @Transactional
+    public void profileImgModify(Member member, Image image) {
+        member.setProfileImg(image.getStoreFileName());
     }
 }

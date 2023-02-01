@@ -65,7 +65,7 @@
                                 <img src="../img/profile.png" th:if="*{profileImage} != null" th:src="*{profileImage}" alt="프로필이미지">
                                 <img src="../img/profile.png" th:unless="*{profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
                             </div>
-                            <form action="myPage_profile.html" method="post" enctype="multipart/form-data" class="profile__img-form">
+                            <form action="myPage_profile.html" th:action="@{/myPage/profile/{id}/profileImg(id=*{id})}" method="post" enctype="multipart/form-data" class="profile__img-form">
                                 <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
                             </form>
                         </li>

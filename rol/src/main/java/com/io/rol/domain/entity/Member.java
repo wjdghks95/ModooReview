@@ -83,4 +83,9 @@ public class Member extends BaseTimeEntity {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    /** 프로필 사진 변경 */
+    public void setProfileImg(String storeFileName) {
+        this.profileImage = "/image/" + storeFileName;
+    }
 }

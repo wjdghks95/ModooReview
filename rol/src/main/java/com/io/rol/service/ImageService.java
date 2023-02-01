@@ -9,5 +9,6 @@ import java.util.List;
 public interface ImageService {
 
     List<Image> saveImages(List<MultipartFile> multipartFileList) throws IOException;
+    Image saveImage(MultipartFile multipartFile) throws IOException;
     List<Image> findImages();
 }
