@@ -1,6 +1,7 @@
 package com.io.rol.respository.query;
 
 import com.io.rol.domain.entity.Board;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -36,6 +37,13 @@ public class BoardQueryRepositoryImpl implements BoardQueryRepository{
         JPAQuery<Long> count = getCount(category, keyword);
 
         return PageableExecutionUtils.getPage(boardList, pageable, () -> count.fetchOne());
+    }
+
+    @Override
+    public List<Board> findAllByOrder(OrderSpecifier<?> orderSpecifier) {
+        return queryFactory.selectFrom(board)
+                .orderBy(orderSpecifier)
+                .fetch();
     }
 
     private JPAQuery<Long> getCount(String category, String keyword) {

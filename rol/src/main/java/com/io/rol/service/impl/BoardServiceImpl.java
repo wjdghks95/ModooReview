@@ -10,6 +10,7 @@ import com.io.rol.service.BoardService;
 import com.io.rol.service.BoardTagService;
 import com.io.rol.service.ImageService;
 import com.io.rol.service.TagService;
+import com.querydsl.core.types.OrderSpecifier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -110,6 +111,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Page<Board> getList(Pageable pageable, String category, String keyword) {
         return boardQueryRepository.findAllPagingByKeyword(pageable, category, keyword);
+    }
+
+    @Override
+    public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
+        return boardQueryRepository.findAllByOrder(orderSpecifier);
     }
 
 }

@@ -49,12 +49,13 @@ public class InitDB {
                 .role(Role.USER)
                 .build();
 
-        Member savedMember = memberRepository.save(member);
+        memberRepository.save(member);
 
         /**
          * 카테고리 저장
          */
         categoryRepository.save(createCategory(CategoryName.FOOD));
+        categoryRepository.save(createCategory(CategoryName.BEAUTY));
         categoryRepository.save(createCategory(CategoryName.COSMETIC));
         categoryRepository.save(createCategory(CategoryName.FASHION));
         categoryRepository.save(createCategory(CategoryName.NURSING));
@@ -67,32 +68,6 @@ public class InitDB {
         categoryRepository.save(createCategory(CategoryName.INTERIOR));
         categoryRepository.save(createCategory(CategoryName.ETC));
 
-        for (int i = 0; i < 5; i++) {
-            write(savedMember, "FOOD", 5, "food", "내용1");
-            write(savedMember, "COSMETIC", 4, "cosmetic", "내용2");
-            write(savedMember, "FASHION", 3, "fashion", "내용3");
-            write(savedMember, "NURSING", 2, "nursing", "내용4");
-            write(savedMember, "DIGITAL", 1, "digital", "내용5");
-            write(savedMember, "SPORTS", 0, "sports", "내용6");
-            write(savedMember, "PET", 1, "pet", "내용7");
-            write(savedMember, "RESTAURANT", 2, "restaurant", "내용8");
-            write(savedMember, "TRAVEL", 3, "travel", "내용9");
-            write(savedMember, "CULTURE", 4, "culture", "내용10");
-            write(savedMember, "ETC", 5, "etc", "내용11");
-        }
-    }
-
-    /**
-     * 카테고리 생성
-     */
-    private Category createCategory(CategoryName categoryName) {
-        return Category.builder().name(categoryName.getCategory()).build();
-    }
-
-    /**
-     * 게시글 작성
-     */
-    private void write(Member savedMember, String title, int rating, String category, String content) throws IOException {
         File file = new File(resource.getURI());
         FileItem fileItem = new DiskFileItem("file", Files.probeContentType(file.toPath()), false, file.getName(), (int) file.length(), file.getParentFile());
         InputStream inputStream = new FileInputStream(file);
@@ -103,18 +78,24 @@ public class InitDB {
         List<MultipartFile> multipartFiles = new ArrayList<>();
         multipartFiles.add(multipartFile);
 
-        BoardDto boardDto = new BoardDto();
-        boardDto.setFile(multipartFiles);
-        boardDto.setTitle(title);
-        boardDto.setRating(rating);
-        boardDto.setCategory(category);
-        boardDto.setDescription(content);
-
         List<String> tagNames = new ArrayList<>();
         tagNames.add("태그1");
         tagNames.add("태그2");
-        boardDto.setTagNames(tagNames);
+        tagNames.add("태그3");
 
-        boardService.write(boardDto, savedMember);
+        for (int i = 0; i < 15; i++) {
+            boardService.write(new BoardDto(multipartFiles, "음식", "food", "음식", 0, 3, tagNames), member);
+            boardService.write(new BoardDto(multipartFiles, "미용", "beauty", "미용", 0, 4, tagNames), member);
+            boardService.write(new BoardDto(multipartFiles, "코스메틱", "cosmetic", "코스메틱", 0, 1, tagNames), member);
+            boardService.write(new BoardDto(multipartFiles, "패션/잡화", "fashion", "패션/잡화", 0, 0, tagNames), member);
+            boardService.write(new BoardDto(multipartFiles, "출산/육아", "nursing", "출산/육아", 0, 5, tagNames), member);
+        }
+    }
+
+    /**
+     * 카테고리 생성
+     */
+    private Category createCategory(CategoryName categoryName) {
+        return Category.builder().name(categoryName.getCategory()).build();
     }
 }
