@@ -89,4 +89,10 @@ public class MemberServiceImpl implements MemberService {
                 }
         );
     }
+
+    @Override
+    @Transactional
+    public void nicknameModify(Member member, String nickname) {
+        member.setNickname(nickname);
+    }
 }

@@ -8,4 +8,6 @@ public interface MemberService {
     Member findMember(Long id);
     boolean isFollow(Long followerId, Long followingId);
     void follow(Member follower, Member following);
+
+    void nicknameModify(Member member, String nickname);
 }
