@@ -3,10 +3,12 @@ package com.io.rol.controller;
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.dto.PageDto;
 import com.io.rol.domain.entity.Board;
+import com.io.rol.domain.entity.BoardTag;
 import com.io.rol.domain.entity.Comment;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
+import com.io.rol.service.BoardTagService;
 import com.io.rol.service.CommentService;
 import com.io.rol.service.MemberService;
 import com.io.rol.validator.FileValidator;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +37,7 @@ public class ContentsController {
     private final MemberService memberService;
     private final FileValidator fileValidator;
     private final CommentService commentService;
+    private final BoardTagService boardTagService;
 
     @InitBinder("boardDto")
     public void boardValidation(WebDataBinder dataBinder) {
@@ -119,5 +123,35 @@ public class ContentsController {
         model.addAttribute("page", new PageDto(boardList.getTotalElements(), pageable));
 
         return "/contents/contents :: #contents";
+    }
+
+    /**
+     * 해시태그 목록
+     */
+    @GetMapping("/hashTag")
+    public String hashTag(@RequestParam String tagName, @PageableDefault(size = 12) Pageable pageable,
+                          Model model) {
+        Page<BoardTag> boardTagList = boardTagService.getListByTagName(pageable, tagName);
+        List<Board> boardList = boardTagList.stream().map(boardTag -> boardTag.getBoard()).collect(Collectors.toList());
+
+        model.addAttribute("totalElement", boardTagList.getTotalElements());
+        model.addAttribute("totalPage", boardTagList.getTotalPages());
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("tagName", tagName);
+        return "/contents/hashTag";
+    }
+
+    /**
+     * 해시태그 목록 스크롤 페이징 조회
+     */
+    @GetMapping("/hashTag/loadBoardList")
+    public String loadHashTagBoardList(@PageableDefault(size = 12) Pageable pageable,
+                                       @RequestParam String tagName, Model model) {
+        Page<BoardTag> boardTagList = boardTagService.getListByTagName(pageable, tagName);
+        List<Board> boardList = boardTagList.stream().map(boardTag -> boardTag.getBoard()).collect(Collectors.toList());
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("tagName", tagName);
+        return "/contents/hashTag :: .content__item";
     }
 }

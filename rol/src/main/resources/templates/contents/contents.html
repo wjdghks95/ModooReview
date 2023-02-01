@@ -360,10 +360,10 @@
                     <div class="content__boards">
                         <ul class="content__boards--board">
                             <li class="content__board" th:each="board : ${boardList}">
-                                <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="content__board-title">제목</a>
+                                <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="content__board-title" th:text="${board.title}"></a>
                                 <ul class="content__board-tags">
                                     <li class="content__board-tag" th:each="boardTag : ${board.boardTagList}" >
-                                        <a href="hashTag.html" th:href="@{/contents/hashTag(tagName='${boardTag.tag.name}'}" th:text="'#'+${boardTag.tag.name}" class="content__board-tag-link">#태그1</a>
+                                        <a href="hashTag.html" th:href="@{/contents/hashTag(tagName=${boardTag.tag.name})}" th:text="|#${boardTag.tag.name}|" class="content__board-tag-link"></a>
                                     </li>
                                 </ul>
                             </li>
