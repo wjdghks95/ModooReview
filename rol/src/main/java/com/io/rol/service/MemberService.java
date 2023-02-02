@@ -13,4 +13,6 @@ public interface MemberService {
     void nicknameModify(Member member, String nickname);
 
     void profileImgModify(Member member, Image image);
+
+    void withdrawal(Member member);
 }

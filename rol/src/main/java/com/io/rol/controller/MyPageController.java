@@ -7,6 +7,8 @@ import com.io.rol.service.ImageService;
 import com.io.rol.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ public class MyPageController {
 
     private final MemberService memberService;
     private final ImageService imageService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/{id}/profile")
     public String profile(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
@@ -116,5 +119,31 @@ public class MyPageController {
         model.addAttribute("followingMembers", followingMembers);
 
         return "myPage/myPage_following";
+    }
+
+    @GetMapping("/{id}/withdrawal")
+    public String withdrawalForm(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
+        Member member = memberService.findMember(id);
+
+        if (member.getId() != memberContext.getMember().getId()) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("member", member);
+
+        return "myPage/myPage_withdrawal";
+    }
+
+    @PostMapping("/{id}/withdrawal")
+    @ResponseBody
+    public boolean withdrawal(@PathVariable Long id, @RequestParam String pwd) {
+        Member member = memberService.findMember(id);
+        if (passwordEncoder.matches(pwd, member.getPassword())) {
+            memberService.withdrawal(member);
+            SecurityContextHolder.clearContext();
+            return true;
+        }
+
+        return false;
     }
 }

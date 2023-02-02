@@ -49,7 +49,8 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member; // 회원
 
-    @OneToMany(mappedBy = "board")
+    /* 게시글이 삭제되면 게시글 태그 모두 삭제 */
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BoardTag> boardTagList = new ArrayList<>(); // boardTag 목록
 
     /* 게시글이 삭제되면 게시글에 작성된 댓글 모두 삭제 */

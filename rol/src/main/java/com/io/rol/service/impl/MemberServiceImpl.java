@@ -108,4 +108,13 @@ public class MemberServiceImpl implements MemberService {
     public void profileImgModify(Member member, Image image) {
         member.setProfileImg(image.getStoreFileName());
     }
+
+    /**
+     * 회원 탈퇴
+     */
+    @Override
+    @Transactional
+    public void withdrawal(Member member) {
+        memberRepository.delete(member);
+    }
 }
