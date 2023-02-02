@@ -34,13 +34,13 @@
             <aside class="side-menu">
                 <ul class="side-menu__list">
                     <li class="side-menu__item active">
-                        <a href="myPage_profile.html" th:href="@{/myPage/profile/{id}(id=${member.id})}" class="side-menu__link">프로필</a>
+                        <a href="myPage_profile.html" th:href="@{/myPage/{id}/profile(id=${member.id})}" class="side-menu__link">프로필</a>
                     </li>
                     <li class="side-menu__item">
-                        <a href="myPage_myReview.html" class="side-menu__link">나의 리뷰</a>
+                        <a href="myPage_myReview.html" th:href="@{/myPage/{id}/myReview(id=${member.id})}" class="side-menu__link">나의 리뷰</a>
                     </li>
                     <li class="side-menu__item">
-                        <a href="myPage_like.html" class="side-menu__link">좋아요</a>
+                        <a href="myPage_like.html" th:href="@{/myPage/{id}/like(id=${member.id})}" class="side-menu__link">좋아요</a>
                     </li>
                     <li class="side-menu__item">
                         <a href="myPage_following.html" class="side-menu__link">팔로잉</a>
@@ -65,7 +65,7 @@
                                 <img src="../img/profile.png" th:if="*{profileImage} != null" th:src="*{profileImage}" alt="프로필이미지">
                                 <img src="../img/profile.png" th:unless="*{profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
                             </div>
-                            <form action="myPage_profile.html" th:action="@{/myPage/profile/{id}/profileImg(id=*{id})}" method="post" enctype="multipart/form-data" class="profile__img-form">
+                            <form action="myPage_profile.html" th:action="@{/myPage/{id}/profile/profileImg(id=*{id})}" method="post" enctype="multipart/form-data" class="profile__img-form">
                                 <input type="file" accept=".jpg, .png" name="multipartFile" required style="display: none;">
                             </form>
                         </li>
@@ -76,7 +76,7 @@
                         <li class="profile__item">
                             <div class="profile__field">닉네임</div>
                             <div class="profile__text profile__nickname" th:text="*{nickname}"></div>
-                            <form action="myPage_profile.html" th:action="@{/myPage/profile/{id}/nickname(id=*{id})}" method="post" class="profile__nick-form" id="nick-form">
+                            <form action="myPage_profile.html" th:action="@{/myPage/{id}/profile/nickname(id=*{id})}" method="post" class="profile__nick-form" id="nick-form">
                                 <input type="text" name="nickname" placeholder="특수문자를 포함하지 않은 2~16자를 입력하세요">
                             </form>
                             <div class="profile__buttons">
