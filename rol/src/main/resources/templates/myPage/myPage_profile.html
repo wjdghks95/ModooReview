@@ -43,7 +43,7 @@
                         <a href="myPage_like.html" th:href="@{/myPage/{id}/like(id=${member.id})}" class="side-menu__link">좋아요</a>
                     </li>
                     <li class="side-menu__item">
-                        <a href="myPage_following.html" class="side-menu__link">팔로잉</a>
+                        <a href="myPage_following.html" th:href="@{/myPage/{id}/following(id=${member.id})}" class="side-menu__link">팔로잉</a>
                     </li>
                     <li class="side-menu__item">
                         <a href="myPage_withdrawal.html" class="side-menu__link">회원 탈퇴</a>

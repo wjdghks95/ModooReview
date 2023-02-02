@@ -32,7 +32,7 @@ $('.board__follow-button').on('click', function() {
     } else {
         const followBtn = $(this).children();
         const href = location.href;
-        const id = href.substring(href.indexOf('board/')+6);
+        const id = $(".board__author").attr("data-index");
 
         $.ajax({
             url: "/follow.do",

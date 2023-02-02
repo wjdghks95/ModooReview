@@ -24,7 +24,7 @@
         <div class="board__container container">
             <section class="board">
                 <header class="board__header">
-                    <div class="board__author">
+                    <div class="board__author" th:data-index="*{member.id}">
                         <a href="profile.html" th:href="@{/profile/{id}(id=*{member.id})}" class="board__author-info">
                             <div class="board__author-image">
                                 <img src="../img/profile.png" th:if="*{member.profileImage} != null" th:src="*{member.profileImage}" alt="프로필이미지">

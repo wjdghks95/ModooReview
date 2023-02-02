@@ -1,10 +1,7 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.dto.NicknameDto;
-import com.io.rol.domain.entity.Board;
-import com.io.rol.domain.entity.Image;
-import com.io.rol.domain.entity.Like;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.domain.entity.*;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.ImageService;
 import com.io.rol.service.MemberService;
@@ -99,5 +96,25 @@ public class MyPageController {
         model.addAttribute("member", member);
         model.addAttribute("boardList", boardList);
         return "myPage/myPage_like";
+    }
+
+    @GetMapping("/{id}/following")
+    public String following(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
+        Member member = memberService.findMember(id);
+
+        if (member.getId() != memberContext.getMember().getId()) {
+            return "redirect:/";
+        }
+
+        List<Follow> followingList = member.getFollowerList();
+        List<Member> followingMembers = new ArrayList<>();
+        for (Follow follow : followingList) {
+            followingMembers.add(follow.getFollowing());
+        }
+
+        model.addAttribute("member", member);
+        model.addAttribute("followingMembers", followingMembers);
+
+        return "myPage/myPage_following";
     }
 }
