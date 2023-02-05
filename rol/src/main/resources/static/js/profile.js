@@ -1,8 +1,27 @@
 // 팔로우
 $('.profile__follow-button').on('click', function() {
     const followBtn = $(this).children();
-    
-    follow(followBtn);
+
+    if($(this).hasClass('anonymous')) {
+        alert('팔로우 서비스는 로그인 후 이용가능합니다.');
+    } else {
+        const followBtn = $(this).children();
+        const href = location.href;
+        const id = $(".profile__follow-button").attr("data-index");
+
+        $.ajax({
+            url: "/follow.do",
+            method: "GET",
+            data: {"id" : id},
+            success: function(data) {
+                follow(followBtn);
+                $(".profile__follower-count").text(data);
+            },
+            error: function() {
+                console.log("ajax 통신 실패");
+            }
+        })
+    }
 })
 
 function follow(followBtn) {

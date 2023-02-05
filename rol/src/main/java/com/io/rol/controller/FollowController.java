@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,11 +20,13 @@ public class FollowController {
      * 팔로우
      */
     @GetMapping("/follow.do")
-    public String follow(@AuthenticationPrincipal MemberContext memberContext, @RequestParam Long id) {
+    @ResponseBody
+    public int follow(@AuthenticationPrincipal MemberContext memberContext, @RequestParam Long id) {
         Member loginMember = memberService.findMember(memberContext.getMember().getId());
         Member writer = memberService.findMember(id);
 
         memberService.follow(loginMember, writer);
-        return "";
+        int size = writer.getFollowingList().size();
+        return size;
     }
 }

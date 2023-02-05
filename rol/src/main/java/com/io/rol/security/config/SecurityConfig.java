@@ -57,6 +57,7 @@ public class SecurityConfig {
                 .antMatchers("/", "/login", "/signUp/**", "/logout").permitAll()
                 .antMatchers("/contents/board/new").hasAnyAuthority(USER.value())
                 .antMatchers("/contents/**").permitAll()
+                .antMatchers("/profile/**").permitAll()
                 .anyRequest().authenticated()
 
                 /**
