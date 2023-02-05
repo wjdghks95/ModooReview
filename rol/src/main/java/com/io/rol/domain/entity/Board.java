@@ -7,13 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board extends BaseTimeEntity {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +46,10 @@ public class Board extends BaseTimeEntity {
 
     private int likeCount; // 좋아요수
 
+    private LocalDateTime createdDate; // 생성일
+
+    private LocalDateTime lastModifiedDate; // 마지막 수정일
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member; // 회원
@@ -69,6 +74,8 @@ public class Board extends BaseTimeEntity {
         this.rating = rating;
         this.views = 0;
         this.likeCount = 0;
+        this.createdDate = LocalDateTime.now();
+        this.lastModifiedDate = createdDate;
     }
 
     /** 연관관계 편의 메서드 */
