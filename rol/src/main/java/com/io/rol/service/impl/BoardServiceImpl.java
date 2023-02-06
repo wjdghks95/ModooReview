@@ -129,4 +129,40 @@ public class BoardServiceImpl implements BoardService {
     public void incrementViews(Board board) {
         board.incrementViews();
     }
+
+    /**
+     * 게시글 수정
+     */
+    @Override
+    @Transactional
+    public void edit(Board board, BoardDto boardDto) throws IOException {
+        // 이미지 저장
+        imageService.deleteImages(board.getImages()); // 저장소에 저장된 이미지 삭제
+        board.getImages().clear(); // 배열 안 이미지 제거
+
+        List<Image> images = imageService.saveImages(boardDto.getFile());
+        board.setThumbnail(images, boardDto.getThumbnailIdx());
+        images.forEach(image -> image.setBoard(board));
+
+        // 카테고리 수정
+        Category category = categoryRepository.findByName(boardDto.getCategory());
+        board.setCategory(category);
+
+        // 제목, 평점, 설명, 수정일 수정
+        board.updateBoard(boardDto.getTitle(), boardDto.getRating(), boardDto.getDescription());
+
+        // 태그 저장
+        List<Tag> tagList = tagService.saveTags(boardDto.getTagNames());
+        board.getBoardTagList().clear(); // 배열 안 태그 목록 제거
+        boardTagService.saveBoardTags(tagList, board);
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @Override
+    @Transactional
+    public void remove(Board board) {
+        boardRepository.delete(board);
+    }
 }

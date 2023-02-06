@@ -187,8 +187,7 @@
                              th:onclick="|location.href='@{/contents/board/{id}/edit(id=*{id})}'|">
                             <button class="default-btn">리뷰 수정</button>
                         </div>
-                        <div class="board__edit-button board__edit-button--delete"
-                             th:onclick="|location.href='@{/contents/board/{id}/delete(id=*{id})}'|">
+                        <div class="board__edit-button board__edit-button--delete" th:onclick="deleteBoard([[*{id}]]);">
                             <button class="default-btn">리뷰 삭제</button>
                         </div>
                     </div>

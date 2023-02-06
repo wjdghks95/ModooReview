@@ -22,4 +22,8 @@ public interface BoardService {
     List<Board> getListBySort(OrderSpecifier<?> orderSpecifier);
 
     void incrementViews(Board board);
+
+    void edit(Board board, BoardDto boardDto) throws IOException;
+
+    void remove(Board board);
 }

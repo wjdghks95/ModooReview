@@ -116,4 +116,14 @@ public class Board {
     public void removeLike(Like like) {
         this.likeList.remove(like);
     }
+
+    /**
+     * 수정
+     */
+    public void updateBoard(String title, int rating, String description) {
+        this.title = title;
+        this.rating = rating;
+        this.description = description;
+        this.lastModifiedDate = LocalDateTime.now();
+    }
 }

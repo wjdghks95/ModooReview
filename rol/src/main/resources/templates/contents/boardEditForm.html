@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="../css/boardForm.css" th:href="@{/css/boardForm.css}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="../js/boardForm.js" th:src="@{/js/boardForm.js}" defer></script>
+    <script src="../js/boardEditForm.js" th:src="@{/js/boardEditForm.js}" defer></script>
     <title>글쓰기</title>
 </head>
 <body>
@@ -36,7 +36,6 @@
                             <div class="write__photo-container slider-container">
                                 <ul class="write__photo-list slides">
                                 </ul>
-
                                 <div class="arrow-button">
                                     <button type="button" class="arrow-btn arrow-btn--prev"></button>
                                     <button type="button" class="arrow-btn arrow-btn--next"></button>
@@ -94,7 +93,7 @@
                                         <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
                                     </div>
                                 </div>
-                                <input type="hidden" class="rating__score" name="rating" value="0">
+                                <input type="hidden" class="rating__score" name="rating" value="0" th:value="${board.rating}">
                             </div>
 
                         </div>
@@ -115,10 +114,10 @@
                             </div>
                         </div>
                         <ul class="write__tags">
-                            <!--<li class="write__tag">
-                                <span class="write__tag-text">#태그</span>
+                            <li class="write__tag" th:each="boardTag : ${board.boardTagList}">
+                                <span class="write__tag-text" th:text="|#${boardTag.tag.name}|">#태그</span>
                                 <button class="remove-btn">x</button>
-                            </li>-->
+                            </li>
                         </ul>
                         <input type="hidden" th:field="*{tagNames}" value="" id="board-tags"/>
                     </div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -45,5 +46,17 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public List<Image> findImages() {
         return imageRepository.findAll();
+    }
+
+    /**
+     * 이미지 삭제
+     */
+    @Override
+    @Transactional
+    public void deleteImages(List<Image> images) {
+        images.forEach(image -> {
+            new File(fileStore.createPath(image.getStoreFileName())).delete();
+            imageRepository.delete(image);
+        });
     }
 }

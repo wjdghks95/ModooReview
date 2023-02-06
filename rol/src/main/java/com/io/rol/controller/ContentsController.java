@@ -96,6 +96,55 @@ public class ContentsController {
     }
 
     /**
+     * 게시글 수정
+     */
+    @GetMapping("/board/{id}/edit")
+    public String boardEditForm(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        Board board = boardService.findBoard(id);
+        if (memberContext.getMember().getId() != board.getMember().getId() || memberContext.getMember() == null) {
+            return "redirect:/";
+        }
+
+        BoardDto boardDto = new BoardDto();
+        boardDto.setTitle(board.getTitle());
+        boardDto.setCategory(board.getCategory().getName());
+        boardDto.setDescription(board.getDescription());
+
+        model.addAttribute("board", board);
+        model.addAttribute("boardDto", boardDto);
+
+        return "/contents/boardEditForm";
+    }
+
+    @PostMapping("/board/{id}/edit")
+    public String edit(@PathVariable Long id, @Validated @ModelAttribute BoardDto boardDto,
+                       BindingResult bindingResult, Model model) throws IOException {
+        Board board = boardService.findBoard(id);
+        model.addAttribute("board", board);
+
+        if (bindingResult.hasErrors()) {
+            return "/contents/boardEditForm";
+        }
+
+        boardService.edit(board, boardDto);
+
+        return "redirect:/contents/board/" + id;
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @DeleteMapping("/board/{id}/edit")
+    @ResponseBody
+    public void deleteReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
+        Board board = boardService.findBoard(id);
+        if (memberContext.getMember().getId() != board.getMember().getId() || memberContext.getMember() == null) {
+            throw new IllegalStateException();
+        }
+        boardService.remove(board);
+    }
+
+    /**
      * 콘텐츠
      */
     @GetMapping

@@ -23,6 +23,9 @@ public class ProfileController {
 
     private final MemberService memberService;
 
+    /**
+     * 프로필
+     */
     @GetMapping("/{id}")
     public String portfolio(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);
@@ -45,6 +48,9 @@ public class ProfileController {
         return "profile/profile";
     }
 
+    /**
+     * 프로필 작성 게시글 목록
+     */
     @GetMapping("/{id}/boardList")
     public String reviewList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);
@@ -63,6 +69,9 @@ public class ProfileController {
         return "profile/profile_review";
     }
 
+    /**
+     * 프로필 좋아요한 게시글 목록
+     */
     @GetMapping("/{id}/likeList")
     public String likeList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);

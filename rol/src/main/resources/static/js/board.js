@@ -122,3 +122,23 @@ $(document).on('click', '.comments__del-button', function() {
         })
     }
 })
+
+// 게시글 삭제
+function deleteBoard(id) {
+    if(confirm("게시글을 삭제하시겠습니까?")) {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        $.ajax({
+            url: "/contents/board/" + id +"/edit",
+            method: "DELETE",
+            beforeSend : function(xhr){
+                xhr.setRequestHeader(header, token);
+            },
+            success: function() {
+                alert("게시글이 삭제되었습니다.");
+                location.href = "/";
+            }
+        })
+    }
+}

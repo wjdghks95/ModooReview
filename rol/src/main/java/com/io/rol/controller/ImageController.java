@@ -20,6 +20,9 @@ public class ImageController {
     @Value("classpath:${resource.path.fileStore}")
     private Resource resource;
 
+    /**
+     * 이미지
+     */
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws IOException {
         return new UrlResource("file:" + fileStore.createPath(filename));
