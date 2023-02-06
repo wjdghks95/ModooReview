@@ -1,8 +1,10 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.entity.Board;
+import com.io.rol.domain.entity.Member;
 import com.io.rol.domain.entity.QBoard;
 import com.io.rol.service.BoardService;
+import com.io.rol.service.MemberService;
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import static com.io.rol.domain.entity.QBoard.*;
 @RequiredArgsConstructor
 public class HomeController {
 
+    private final MemberService memberService;
     private final BoardService boardService;
 
     @GetMapping("/")
@@ -34,6 +37,11 @@ public class HomeController {
         model.addAttribute("likeCountSortedBoardList", likeCountSortedBoardList);
         model.addAttribute("createdDateSortedBoardList", createdDateSortedBoardList);
         model.addAttribute("viewsSortedBoardList", viewsSortedBoardList);
+
+        // 관리자 등록
+        Member admin = memberService.findMember(1L);
+        List<Board> adminBoardList = admin.getBoardList();
+        model.addAttribute("adminBoardList", adminBoardList);
 
         return "index";
     }

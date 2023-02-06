@@ -46,81 +46,230 @@
                 <article class="section__content">
                     <ul class="rol-pick__list">
                         <li class="rol-pick__left">
-                            <div class="rol-pick__item">
-                                <a href="board.html" class="rol-pick__link">
+                            <div class="rol-pick__item" th:each="board, boardStat : ${adminBoardList}" th:if="${boardStat.index} == 0">
+                                <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="rol-pick__link">
                                     <div class="rol-pick__content">
-                                        <h3 class="rol-pick__title">제목</h3>
-                                        <div class="rating">
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
+                                        <h3 class="rol-pick__title" th:text="${board.title}">제목</h3>
+                                        <div class="rating" th:switch="${board.rating}">
+                                            <th:block th:case="0">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="1">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="2">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="3">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="4">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="5">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                            </th:block>
                                         </div>
                                     </div>
-                                    <img src="../img/sample1.jpg" alt="썸네일" class="rol-pick__img">
+                                    <img src="../img/sample1.jpg" alt="썸네일" th:src="|/images/${board.thumbnail.getStoreFileName()}|" class="rol-pick__img">
                                 </a>
                             </div>
                         </li>
                         <ul class="rol-pick__right">
-                            <li class="rol-pick__item">
-                                <a href="board.html" class="rol-pick__link">
+                            <li class="rol-pick__item" th:each="board, boardStat : ${adminBoardList}" th:if="${boardStat.index} > 0">
+                                <a href="board.html" class="rol-pick__link" th:href="@{/contents/board/{id}(id=${board.id})}">
                                     <div class="rol-pick__content">
-                                        <h3 class="rol-pick__title">제목</h3>
-                                        <div class="rating">
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
+                                        <h3 class="rol-pick__title" th:text="${board.title}">제목</h3>
+                                        <div class="rating" th:switch="${board.rating}">
+                                            <th:block th:case="0">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="1">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="2">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="3">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="4">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                                </div>
+                                            </th:block>
+                                            <th:block th:case="5">
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                                <div class="rating__star">
+                                                    <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                                </div>
+                                            </th:block>
                                         </div>
                                     </div>
-                                    <img src="../img/sample1.jpg" alt="썸네일" class="rol-pick__img">
-                                </a>
-                            </li>
-                            <li class="rol-pick__item">
-                                <a href="board.html" class="rol-pick__link">
-                                    <div class="rol-pick__content">
-                                        <h3 class="rol-pick__title">제목</h3>
-                                        <div class="rating">
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                            <div class="rating__star">
-                                                <img src="../icon/star-solid.svg" alt="star" class="rating__img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="../img/sample1.jpg" alt="썸네일" class="rol-pick__img">
+                                    <img src="../img/sample1.jpg" alt="썸네일" th:src="|/images/${board.thumbnail.getStoreFileName()}|" class="rol-pick__img">
                                 </a>
                             </li>
                         </ul>
