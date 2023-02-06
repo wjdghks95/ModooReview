@@ -10,7 +10,7 @@ import javax.persistence.*;
 /**
  * ManyToMany 양방향 연결 테이블
  */
-@Entity
+@Entity(name = "board_tag")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardTag {

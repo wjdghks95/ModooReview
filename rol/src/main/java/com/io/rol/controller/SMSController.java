@@ -22,7 +22,7 @@ public class SMSController {
     public String sendSMS(@RequestParam("phone") String phoneNumber) {
         int randomNumber = (int)((Math.random() * (9999 - 1000 + 1)) + 1000); // 난수 생성
 
-//        smsService.certifiedPhoneNumber(phoneNumber, randomNumber);
+        smsService.certifiedPhoneNumber(phoneNumber, randomNumber);
         log.info("randomNumber: {}", randomNumber);
         return Integer.toString(randomNumber); // data 반환
     }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "follow")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Follow {

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "board")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board {

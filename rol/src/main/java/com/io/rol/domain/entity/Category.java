@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "category")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category {

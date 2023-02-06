@@ -35,6 +35,7 @@ public class ImageServiceImpl implements ImageService {
      * 이미지 저장
      */
     @Override
+    @Transactional
     public Image saveImage(MultipartFile multipartFile) throws IOException {
         Image image = fileStore.storeFile(multipartFile);
         return imageRepository.save(image);
