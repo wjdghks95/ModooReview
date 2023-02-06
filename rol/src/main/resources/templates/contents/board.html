@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/board.css" th:href="@{/css/board.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/board.js" th:src="@{/js/board.js}" defer></script>
+    <title>리뷰</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+
+    <main class="main" th:object="${board}">
+        <div class="board__container container">
+            <section class="board">
+                <header class="board__header">
+                    <div class="board__author" th:data-index="*{member.id}">
+                        <a href="profile.html" th:href="@{/profile/{id}(id=*{member.id})}" class="board__author-info">
+                            <div class="board__author-image">
+                                <img src="../img/profile.png" th:if="*{member.profileImage} != null" th:src="*{member.profileImage}" alt="프로필이미지">
+                                <img src="../img/profile.png" th:unless="*{member.profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
+                            </div>
+                            <span class="board__author-nickname" th:text="*{member.nickname}">nickname</span>
+                        </a>
+                        <div class="board__follow-button anonymous" sec:authorize="isAnonymous()">
+                            <button class="follow-btn">+ 팔로우</button>
+                        </div>
+                        <div class="board__follow-button" th:if="*{member} != ${loginMember}" sec:authorize="isAuthenticated()">
+                            <button class="follow-btn" th:if="${isFollow}">+ 팔로우</button>
+                            <button class="follow-btn active" th:unless="${isFollow}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:10px; height:10px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 팔로잉
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="board__tags">
+                        <li class="board__tag" th:each="boardTag : *{boardTagList}">
+                            <a href="hashTag.html" th:href="@{/contents/hashTag(tagName=${boardTag.tag.name})}"
+                               class="board__tag-link" th:text="'#' + ${boardTag.tag.name}">#태그</a>
+                        </li>
+                    </ul>
+                </header>
+                <article class="board__content">
+                    <h2 class="section__heading" th:text="*{title}">제목</h2>
+                    <ul class="board__photo-list" th:each="image : *{images}">
+                        <li class="board__photo">
+                            <img src="../img/sample1.jpg" th:src="|/images/${image.getStoreFileName()}|" alt="썸네일">
+                        </li>
+                    </ul>
+                    <div class="board__metadata">
+                        <div class="board__rating">
+                            <span>만족도</span>
+                            <div class="rating" th:switch="*{rating}">
+                                <th:block th:case="0">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </th:block>
+                                <th:block th:case="1">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </th:block>
+                                <th:block th:case="2">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </th:block>
+                                <th:block th:case="3">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </th:block>
+                                <th:block th:case="4">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </th:block>
+                                <th:block th:case="5">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <span th:text="*{#temporals.format(createdDate, 'yyyy/MM/dd a HH:mm')}">2022.09.26</span>
+                    </div>
+                    <div class="board__description" th:text="*{description}">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </div>
+                </article>
+                <div class="board__action-buttons">
+                    <div class="board__like">
+                        <div class="board__like-button anonymous" sec:authorize="isAnonymous()">
+                            <button class="like-btn"></button>
+                        </div>
+                        <div class="board__like-button" sec:authorize="isAuthenticated()">
+                            <button class="like-btn" th:if="${isLike}"></button>
+                            <button class="like-btn active" th:unless="${isLike}"></button>
+                        </div>
+                        <span class="board__like-text">좋아요</span>
+                        <span class="board__like-count" th:text="*{likeCount}">10</span>
+                    </div>
+                    <div class="board__edit-buttons" th:if="${loginMember} != null and *{member.id} == ${loginMember.id}">
+                        <div class="board__edit-button board__edit-button--modify" onclick="location.href='boardEdit.html'"
+                             th:onclick="|location.href='@{/contents/board/{id}/edit(id=*{id})}'|">
+                            <button class="default-btn">리뷰 수정</button>
+                        </div>
+                        <div class="board__edit-button board__edit-button--delete" th:onclick="deleteBoard([[*{id}]]);">
+                            <button class="default-btn">리뷰 삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- board -->
+    
+            <section class="comments">
+                <article class="section__content">
+                    <header class="section__headings comments__headings">
+                        <h3 class="section__heading comments__heading">댓글</h3>
+                        <p class="section__subheading comments__subheading" sec:authorize="isAnonymous()">댓글 작성은 로그인후 이용할 수 있습니다.</p>
+                    </header>
+                    <div class="comments__write" sec:authorize="isAuthenticated()">
+                        <div class="form__row-wrapper">
+                            <div class="comments__author">
+                                <div class="comments__author-image">
+                                    <img src="../img/profile.png" th:if="${loginMember.profileImage} != null" th:src="${loginMember.profileImage}">
+                                    <img src="../img/profile.png" th:unless="${loginMember.profileImage} != null" th:src="@{/img/profile.png}">
+                                </div>
+                                <span class="comments__author-nickname" th:text="${loginMember.nickname}">nickname</span>
+                            </div>
+                            <div class="comments__form">
+                                <input type="text" name="content" class="comments__input" placeholder="칭찬과 격려의 글을 남겨주세요 :)">
+                                <div class="comments__submit-button">
+                                    <button type="button" class="in-btn">입력</button>
+                                </div>
+                                <p class="error-msg"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="comments__comments" id="commentList">
+                        <li class="comments__item" th:each="comment : ${comments}" th:data-idx="${comment.id}">
+                            <div class="comments__author">
+                                <a href="profile.html" th:href="@{/profile/{id}(id=${comment.member.id})}" class="comments__author-link">
+                                    <div class="comments__author-image">
+                                        <img src="../img/profile.png" th:if="${comment.member.profileImage} != null" th:src="${comment.member.profileImage}">
+                                        <img src="../img/profile.png" th:unless="${comment.member.profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
+                                    </div>
+                                    <span class="comments__author-nickname" th:text="${comment.member.nickname}">nickname</span>
+                                </a>
+                            </div>
+                            <div class="comments__comment">
+                                <span class="comments__comment-content" th:text="${comment.content}">댓글</span>
+                                <div class="comments__del-button" th:if="${loginMember} != null and ${comment.member.id} == ${loginMember.id}">
+                                    <button class="default-btn del-btn">삭제</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <!-- comments -->
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

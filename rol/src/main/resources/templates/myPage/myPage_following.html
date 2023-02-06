@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/myPage.css" th:href="@{/css/myPage.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/myPage_following.js" th:src="@{/js/myPage_following.js}" defer></script>
+    <title>마이페이지 - 팔로잉</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="myPage">
+        <div class="myPage__container container">
+
+            <aside class="side-menu">
+                <ul class="side-menu__list">
+                    <li class="side-menu__item">
+                        <a href="myPage_profile.html" th:href="@{/myPage/{id}/profile(id=${member.id})}" class="side-menu__link">프로필</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_myReview.html" th:href="@{/myPage/{id}/myReview(id=${member.id})}" class="side-menu__link">나의 리뷰</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_like.html" th:href="@{/myPage/{id}/like(id=${member.id})}" class="side-menu__link">좋아요</a>
+                    </li>
+                    <li class="side-menu__item active">
+                        <a href="myPage_following.html" th:href="@{/myPage/{id}/following(id=${member.id})}" class="side-menu__link">팔로잉</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_withdrawal.html" th:href="@{/myPage/{id}/withdrawal(id=${member.id})}" class="side-menu__link">회원 탈퇴</a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- side-menu -->
+
+            <section class="following">
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">팔로잉</h2>
+                    </header>
+                    <ul class="following__list">
+                        <li class="following__item" th:each="followingMember : ${followingMembers}" th:data-index="${followingMember.id}">
+                            <div class="following__info">
+                                <a href="profile.html" th:href="@{/profile/{id}(id=${followingMember.id})}" class="following__link">
+                                    <div class="following__image">
+                                        <img src="../img/profile.png" th:if="${followingMember.profileImage} != null" th:src="${followingMember.profileImage}" alt="프로필이미지">
+                                        <img src="../img/profile.png" th:unless="${followingMember.profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
+                                    </div>
+                                    <span class="following__nickname" th:text="${followingMember.nickname}"></span>
+                                </a>
+                            </div>
+                            <div class="following__button">
+                                <button class="follow-btn active">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:10px; height:10px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 팔로잉
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <!-- following -->
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

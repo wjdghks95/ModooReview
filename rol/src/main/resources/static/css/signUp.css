@@ -1,0 +1,88 @@
+.sign-up-modal__container {
+    max-width: 768px;
+}
+
+.sign-up-modal__form {
+    padding: 4rem;
+    border: 2px solid var(--color-gray);
+    border-radius: 20px;
+}
+
+.form__label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.form__row-wrapper {
+    justify-content: flex-start;
+}
+
+.sign-up-modal__sms-button {
+    width: 8.75rem;
+    margin-left: 1rem;
+}
+
+.default-btn {
+    padding: 0.65rem;
+    font-size: var(--font-micro);
+}
+
+.sign-up-modal__phoneChk {
+    display: none;
+    width: 80%;
+    margin-top: .5rem;
+}
+
+.sign-up-modal__phoneChk-button {
+    width: 8.125rem;
+    margin: 0 1rem;
+}
+
+.sign-up-modal__resend-sms-button {
+    width: 8.125rem;
+}
+
+#user-email {
+    width: 50%;
+}
+
+#user-email-addr {
+    display: none;
+    width: 50%;
+    margin-right: .3rem;
+}
+
+#user-email-addr-list {
+    width: 50%;
+}
+
+#email-symbol {
+    margin: 0 0.5rem;
+    line-height: 2.5rem;
+}
+
+.sign-up-modal__passwordChk {
+    margin-top: .5rem;
+}
+
+.sign-up-modal__pwdChk-error-msg {
+    margin-top: .5rem;
+}
+
+#user-zipcode {
+    width: 40%;
+}
+
+.sign-up-modal__search-addr-button {
+    margin-left: 1rem;
+}
+
+#user-addr,
+#user-detail-addr {
+    margin-top: .5rem;
+}
+
+.sign-up-modal__submit-button {
+    width: 20%;
+    margin: 1.625rem auto 0;
+}

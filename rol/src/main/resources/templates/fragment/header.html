@@ -1,0 +1,32 @@
+<header xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
+    <div class="header__container container">
+        <div class="header__logo">
+            <a href="index.html" th:href="@{/}" class="header__logo-link">
+                <img src="../img/logo.png" th:src="@{/img/logo.png}" alt="로고" class="header__logo-img">
+            </a>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item">
+                    <a href="index.html" th:href="@{/}" class="header__menu-link">Home</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="contents.html" th:href="@{/contents}" class="header__menu-link">Contents</a>
+                </li>
+                <li class="header__menu-item" th:if="${#authorization.expr('isAuthenticated()')}">
+                    <a href="myPage_profile.html" th:href="@{'/myPage/'+${#authentication.principal.member.id}}+'/profile'" class="header__menu-link">MyPage</a>
+                </li>
+            </ul>
+            <ul class="header__account-menu">
+                <li class="header__account-item">
+                    <a href="login.html" th:href="@{/login}" class="header__account-link" sec:authorize="isAnonymous()">Login</a>
+                    <a href="login.html" th:href="@{/logout}" class="header__account-link" sec:authorize="isAuthenticated()">Logout</a>
+                </li>
+                <li class="header__account-item">
+                    <a href="signUp.html" th:href="@{/signUp}" class="header__account-link" sec:authorize="isAnonymous()">SignUp</a>
+                    <a href="signUp.html" th:href="@{/contents/board/new}" class="header__account-link" sec:authorize="isAuthenticated()">글쓰기</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

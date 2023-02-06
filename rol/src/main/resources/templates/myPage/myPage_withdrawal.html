@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/myPage.css" th:href="@{/css/myPage.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/myPage_withdrawal.js" th:src="@{/js/myPage_withdrawal.js}" defer></script>
+    <title>마이페이지 - 회원탈퇴</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="myPage">
+        <div class="myPage__container container">
+
+            <aside class="side-menu">
+                <ul class="side-menu__list">
+                    <li class="side-menu__item">
+                        <a href="myPage_profile.html" th:href="@{/myPage/{id}/profile(id=${member.id})}" class="side-menu__link">프로필</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_myReview.html" th:href="@{/myPage/{id}/myReview(id=${member.id})}" class="side-menu__link">나의 리뷰</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_like.html" th:href="@{/myPage/{id}/like(id=${member.id})}" class="side-menu__link">좋아요</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_following.html" th:href="@{/myPage/{id}/following(id=${member.id})}" class="side-menu__link">팔로잉</a>
+                    </li>
+                    <li class="side-menu__item active">
+                        <a href="myPage_withdrawal.html" th:href="@{/myPage/{id}/withdrawal(id=${member.id})}" class="side-menu__link">회원 탈퇴</a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- side-menu -->
+
+            <section class="withdrawal">
+                <article class="section__content withdrawal__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">회원 탈퇴</h2>
+                    </header>
+                    <div class="withdrawal__group">
+                        <span class="withdrawal__description withdrawal__description--red">
+                            탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
+                        </span>
+                    </div>
+                    <form action="index.html" class="withdrawal__form">
+                        <div class="withdrawal__group">
+                            <span class="withdrawal__description">회원탈퇴 완료 후 복구가 불가한 것에 대해 인지하였으며 동의합니다.</span>
+                            <label class="withdrawal__label">
+                                <input type="checkbox" id="checkbox1"> 동의
+                            </label>
+                        </div>
+                        <div class="withdrawal__group">
+                            <span class="withdrawal__description">회원탈퇴 시 주의사항에 대해 확인하였으며 회원탈퇴에 동의합니다.</span>
+                            <label class="withdrawal__label">
+                                <input type="checkbox" id="checkbox2"> 동의
+                            </label>
+                        </div>
+                        <div class="withdrawal__group withdrawal__pwdChk">
+                            <label class="form__label">비밀번호 확인</label>
+                            <input type="password" name="pwdChk" placeholder="비밀번호를 입력해주세요">
+                        </div>
+                        <ul class="withdrawal__buttons">
+                            <li class="withdrawal__button">
+                                <button type="button" class="default-btn" id="withdrawalBtn">확인</button>
+                            </li>
+                            <li class="withdrawal__button">
+                                <button type="button" class="default-btn default-btn--white" onclick="location='myPage_profile.html'">취소</button>
+                            </li>
+                        </ul>
+                        <input type="hidden" name="id" th:value="${member.id}">
+                    </form>
+                </article>
+            </div>
+        </section>
+        <!-- myPage-withdrawal -->
+    </main>
+    <!-- withdrawal -->
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

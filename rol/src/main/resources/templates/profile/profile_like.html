@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/profile.css" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" href="../css/profile_likeAndReview.css" th:href="@{/css/profile_likeAndReview.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/profile.js" defer th:src="@{/js/profile.js}"></script>
+    <title>프로필 - 좋아요</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+    
+    <main class="main">
+        <div class="profile__container container">
+            <section class="profile" th:object="${member}">
+                <div class="profile__content">
+                    <div class="profile__info">
+                        <div class="profile__image">
+                            <img src="../img/profile.png" th:if="*{profileImage} != null" th:src="*{profileImage}" alt="프로필이미지">
+                            <img src="../img/profile.png" th:unless="*{profileImage} != null" th:src="@{/img/profile.png}" alt="프로필이미지">
+                        </div>
+                        <h3 class="profile__nickname">닉네임</h3>
+                        <div class="profile__follow">
+                            <div class="profile__follower">
+                                <span>팔로워</span><strong class="profile__follower-count" th:text="*{followingList.size()}">100</strong>
+                            </div>
+                            <div class="profile__following">
+                                <span>팔로잉</span><strong class="profile__following-count" th:text="*{followerList.size()}">100</strong>
+                            </div>
+                        </div>
+                        <div class="profile__edit-button" th:if="${loginMember} != null and *{id} == ${loginMember.id}">
+                            <button onclick="location.href='myPage_profile.html'" th:onclick="|location.href='@{/myPage/{id}/profile(id=*{id})}'|" class="default-btn">설정</button>
+                        </div>
+                        <div class="profile__follow-button anonymous" sec:authorize="isAnonymous()">
+                            <button class="follow-btn">+ 팔로우</button>
+                        </div>
+                        <div class="profile__follow-button" th:if="*{id} != ${loginMember.id}" th:data-index="*{id}" sec:authorize="isAuthenticated()">
+                            <button class="follow-btn" th:if="${isFollow}">+ 팔로우</button>
+                            <button class="follow-btn active" th:unless="${isFollow}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:10px; height:10px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 팔로잉
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile__grade">
+                        <img src="../img/bronze.png" th:if="*{boardList.size()} < 10 " th:src="@{/img/bronze.png}" alt="브론즈">
+                        <img src="../img/silver.png" th:if="*{boardList.size()} >= 10 and *{boardList.size()} < 50" th:src="@{/img/silver.png}" alt="실버">
+                        <img src="../img/gold.png" th:if="*{boardList.size()} >= 50 and *{boardList.size()} < 100" th:src="@{/img/gold.png}" alt="골드">
+                        <img src="../img/platinum.png" th:if="*{boardList.size()} >= 100 and *{following.size()} >= 50 and *{following.size()} < 100" th:src="@{/img/platinum.png}" alt="플래티넘">
+                        <img src="../img/dia.png" th:if="*{boardList.size()} >= 100 and *{following.size()} >= 100" th:src="@{/img/dia.png}" alt="다이아">
+                    </div>
+                </div>
+            </section>
+            <!-- profile -->
+
+            <section class="content">
+                <header class="section__headings">
+                    <h2 class="section__heading">좋아요<span class="content__count" th:text="${likeList.size()}">100</span></h2>
+                </header>
+                <article class="section__content">
+                    <ul class="content__list">
+                        <li class="content__item" th:each="like : ${likeList}">
+                            <a href="board.html"  th:href="@{/contents/board/{id}(id=${like.id})}" class="content__link">
+                                <div class="content__image">
+                                    <img src="../img/sample1.jpg" th:src="|/images/${like.board.thumbnail.getStoreFileName()}|" alt="썸네일">
+                                </div>
+                                <div class="content__info">
+                                    <div class="content__like">
+                                        <div class="content__like-image">
+                                            <img src="../icon/heart-solid.svg" th:src="@{/icon/heart-solid.svg}" alt="하트">
+                                        </div>
+                                        <span>좋아요</span><strong class="content__like-count" th:text="${like.board.likeCount}">100</strong>
+                                    </div>
+                                    <div class="rating" th:switch="${like.board.rating}">
+                                        <th:block th:case="0">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                        <th:block th:case="1">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                        <th:block th:case="2">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                        <th:block th:case="3">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                        <th:block th:case="4">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                        <th:block th:case="5">
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <div class="rating__star">
+                                                <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img checked">
+                                            </div>
+                                            <span class="rating__score" th:text="|${like.board.rating}.0|"></span>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <h4 class="content__title" th:text="${like.board.title}">제목</h4>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <!-- content -->
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/boardForm.css" th:href="@{/css/boardForm.css}">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="../js/boardEditForm.js" th:src="@{/js/boardEditForm.js}" defer></script>
+    <title>글쓰기</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="main">
+        <div class="boardForm__container container">
+            <section class="write">
+                <header class="section__headings">
+                    <h2 class="section__heading">리뷰 작성</h2>
+                </header>
+                <form action="board.html" method="post" th:action class="write__form" enctype="multipart/form-data" th:object="${boardDto}">
+                    <div class="form__row-wrapper">
+                        <div class="write__group">
+                            <div class="write__photo-button">
+                                <div class="write__photo-icon">
+                                    <img src="../icon/camera.svg" th:src="@{/icon/camera.svg}" alt="camera" class="write__photo-img">
+                                </div>
+                                <p>사진 올리기</p>
+                                <p><small>(* 최대 10장까지)</small></p>
+                            </div>
+                            <div class="write__photo-container slider-container">
+                                <ul class="write__photo-list slides">
+                                </ul>
+                                <div class="arrow-button">
+                                    <button type="button" class="arrow-btn arrow-btn--prev"></button>
+                                    <button type="button" class="arrow-btn arrow-btn--next"></button>
+                                </div>
+                            </div>
+                            <p class="write__photo-error-msg error-msg" th:errors="*{file}">사진을 한 개 이상 등록해주세요.</p>
+                            <input type="file" accept=".jpg, .png" th:field="*{file}" required multiple style="display: none;">
+                            <input type="hidden" name="thumbnailIdx" value="">
+                        </div>
+
+                        <div class="write__group">
+                            <div class="form__group">
+                                <label for="board-title" class="form__label">제목</label>
+                                <input type="text" name="title" th:field="*{title}" id="board-title" placeholder="제목">
+                                <p class="error-msg" th:errors="*{title}">제목을 입력해주세요.</p>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="board-categories" class="form__label">카테고리 선택</label>
+                                <select name="category" id="board-categories" th:value="*{category}">
+                                    <option value="" disabled selected style="display: none;">카테고리</option>
+                                    <option value="food" th:selected="*{category} == 'food'">식품</option>
+                                    <option value="food" th:selected="*{category} == 'beauty'">미용</option>
+                                    <option value="cosmetic" th:selected="*{category} == 'cosmetic'">코스메틱</option>
+                                    <option value="fashion" th:selected="*{category} == 'fashion'">패션/잡화</option>
+                                    <option value="nursing" th:selected="*{category} == 'nursing'">출산/육아</option>
+                                    <option value="digital" th:selected="*{category} == 'digital'">디지털/가전</option>
+                                    <option value="sports" th:selected="*{category} == 'sports'">스포츠/건강</option>
+                                    <option value="pet" th:selected="*{category} == 'pet'">반려동물</option>
+                                    <option value="restaurant" th:selected="*{category} == 'restaurant'">맛집</option>
+                                    <option value="travel" th:selected="*{category} == 'travel'">여행/숙박</option>
+                                    <option value="culture" th:selected="*{category} == 'culture'">문화</option>
+                                    <option value="interior" th:selected="*{category} == 'interior'">인테리어</option>
+                                    <option value="etc" th:selected="*{category} == 'etc'">기타</option>
+                                </select>
+                                <p class="error-msg" th:errors="*{category}">카테고리를 선택해주세요.</p>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">만족도</label>
+                                <div class="rating">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" th:src="@{/icon/star-solid.svg}" alt="star" class="rating__img">
+                                    </div>
+                                </div>
+                                <input type="hidden" class="rating__score" name="rating" value="0" th:value="${board.rating}">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <label for="board-description" class="form__label">리뷰 작성</label>
+                        <textarea name="description" th:field="*{description}" id="board-description" rows="10" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
+                        <div class="error-msg" th:errors="*{description}">리뷰를 최소 20자 이상 작성해주세요.</div>
+                    </div>
+
+                    <div class="write__tag-container form__group">
+                        <div class="write__tag-form">
+                            <label for="board-tag" class="form__label">태그</label>
+                            <span id="sharp">#</span>
+                            <input type="text" id="board-tag" placeholder="키워드 (최대 5개)">
+                            <div class="write__tag-add-button">
+                                <button type="button" class="in-btn">추가</button>
+                            </div>
+                        </div>
+                        <ul class="write__tags">
+                            <li class="write__tag" th:each="boardTag : ${board.boardTagList}">
+                                <span class="write__tag-text" th:text="|#${boardTag.tag.name}|">#태그</span>
+                                <button class="remove-btn">x</button>
+                            </li>
+                        </ul>
+                        <input type="hidden" th:field="*{tagNames}" value="" id="board-tags"/>
+                    </div>
+
+                    <div class="write__submit-button">
+                        <button type="button" class="default-btn">작성하기</button>
+                    </div>
+                </form>
+            </section>
+            <!-- write -->
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

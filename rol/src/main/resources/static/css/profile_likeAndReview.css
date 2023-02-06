@@ -1,0 +1,60 @@
+.content__item {
+    margin-right: 2%;
+    margin-bottom: 4%;
+    height: auto;
+    width: 31%;
+}
+
+.content__item:hover .content__image > img {
+    transform: scale(1.1);
+}
+
+.content__link {
+    border-radius: 0;
+}
+
+.content__image {
+    height: 12.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.content__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content__like {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-small);
+    font-weight: bold;
+}
+
+.content__like-image {
+    margin-top: 0.3rem;
+    margin-right: .2rem;
+}
+
+.content__like-image > img {
+    width: 1rem;
+    filter: invert(13%) sepia(44%) saturate(7357%) hue-rotate(355deg) brightness(109%) contrast(117%);
+}
+
+.content__like-count {
+    margin-left: .2rem;
+}
+
+.rating__score {
+    color: var(--color-black);
+    font-weight: bold;
+}
+
+.content__title {
+    display:-webkit-box;
+	-webkit-line-clamp:3; /* 라인수 */
+	-webkit-box-orient:vertical;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}

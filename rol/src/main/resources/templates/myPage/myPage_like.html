@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png" th:href="@{/icon/favicon.png}">
+    <link rel="stylesheet" href="../css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../css/myPage.css" th:href="@{/css/myPage.css}">
+    <title>마이페이지 - 좋아요</title>
+</head>
+<body>
+    <header th:replace="~{/fragment/header.html :: header}"></header>
+    <!-- header -->
+
+    <main class="myPage">
+        <div class="myPage__container container">
+
+            <aside class="side-menu">
+                <ul class="side-menu__list">
+                    <li class="side-menu__item">
+                        <a href="myPage_profile.html" th:href="@{/myPage/{id}/profile(id=${member.id})}" class="side-menu__link">프로필</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_myReview.html" th:href="@{/myPage/{id}/myReview(id=${member.id})}" class="side-menu__link">나의 리뷰</a>
+                    </li>
+                    <li class="side-menu__item active">
+                        <a href="myPage_like.html" th:href="@{/myPage/{id}/like(id=${member.id})}" class="side-menu__link">좋아요</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_following.html" th:href="@{/myPage/{id}/following(id=${member.id})}" class="side-menu__link">팔로잉</a>
+                    </li>
+                    <li class="side-menu__item">
+                        <a href="myPage_withdrawal.html" th:href="@{/myPage/{id}/withdrawal(id=${member.id})}" class="side-menu__link">회원 탈퇴</a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- side-menu -->
+
+            <section class="like">
+                <article class="section__content">
+                    <header class="section__headings">
+                        <h2 class="section__heading">좋아요</h2>
+                    </header>
+                    <ul class="like__list">
+                        <li class="like__item" th:each="board : ${boardList}">
+                            <a href="board.html" th:href="@{/contents/board/{id}(id=${board.id})}" class="like__link">
+                                <h4 class="like__title" th:text="${board.title}"></h4>
+                                <img src="../img/sample1.jpg" th:src="|/images/${board.thumbnail.getStoreFileName()}|" alt="썸네일">
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+            <!-- like -->
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragment/footer.html :: footer}"></footer>
+    <!-- footer -->
+</body>
+</html>

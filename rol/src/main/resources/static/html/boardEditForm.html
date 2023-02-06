@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/boardForm.css">
+    <title>글수정</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo">
+                <a href="index.html" class="header__logo-link">
+                    <img src="../img/logo.png" alt="로고" class="header__logo-img">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li class="header__menu-item">
+                        <a href="index.html" class="header__menu-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="contents.html" class="header__menu-link">Contents</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
+                    </li>
+                </ul>
+                <ul class="header__account-menu">
+                    <li class="header__account-item">
+                        <a href="login.html" class="header__account-link">Login</a>
+                    </li>
+                    <li class="header__account-item">
+                        <a href="signUp.html" class="header__account-link">SignUp</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header -->
+
+    <main class="main">
+        <div class="boardForm__container container">
+            <section class="write">
+                <header class="section__headings">
+                    <h2 class="section__heading">리뷰 수정</h2>
+                </header>
+                <form action="board.html" class="write__form" enctype="multipart/form-data">
+                    <div class="form__row-wrapper">
+                        <div class="write__group">
+                            <div class="write__photo">
+                                <div class="write__photo-icon">
+                                    <img src="../icon/camera.svg" alt="camera" class="write__photo-img">
+                                </div>
+                                <p>사진 올리기</p>
+                                <p><small>(* 최대 10장까지)</small></p>
+                            </div>
+                            <p class="error-msg">사진을 한 개 이상 등록해주세요.</p>
+                            <input type="file" accept=".jpg, .png" required multiple style="display: none;">
+                        </div>
+
+                        <div class="write__group">
+                            <div class="form__group">
+                                <label for="board-title" class="form__label">제목</label>
+                                <input type="text" id="board-title" placeholder="제목">
+                                <p class="error-msg">제목을 입력해주세요.</p>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="board-categories" class="form__label">카테고리 선택</label>
+                                <select name="category" id="board-categories">
+                                    <option value="" disabled selected style="display: none;">카테고리</option>
+                                    <option value="food">식품</option>
+                                    <option value="cosmetic">미용/코스메틱</option>
+                                    <option value="fashion">패션/잡화</option>
+                                    <option value="nursing">출산/육아</option>
+                                    <option value="digital">디지털/가전</option>
+                                    <option value="sports">스포츠/건강</option>
+                                    <option value="pet">반려동물</option>
+                                    <option value="restaurant">맛집</option>
+                                    <option value="travel">여행/숙박</option>
+                                    <option value="culture">문화</option>
+                                    <option value="interior">인테리어</option>
+                                    <option value="etc">기타</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="form__label">만족도</label>
+                                <div class="rating">
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                    </div>
+                                    <div class="rating__star">
+                                        <img src="../icon/star-solid.svg" alt="star" class="rating__img">
+                                    </div>
+                                </div>
+                                <input type="hidden" class="rating__score" name="rating" value="0">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <label for="board-description" class="form__label">리뷰 작성</label>
+                        <textarea name="description" id="board-description" rows="10" placeholder="자세하고 솔직한 리뷰는 다른 고객에게 큰 도움이 됩니다.(최소 20자 이상)"></textarea>
+                        <div class="error-msg">리뷰를 최소 20자 이상 작성해주세요.</div>
+                    </div>
+
+                    <div class="write__tag-container form__group">
+                        <div class="write__tag-form">
+                            <label for="board-tag" class="form__label">태그</label>
+                            <span id="sharp">#</span>
+                            <input type="text" id="board-tag" placeholder="키워드 (최대 5개)">
+                            <div class="write__tag-add-button">
+                                <button type="button" class="in-btn">추가</button>
+                            </div>
+                        </div>
+                        <ul class="write__tags">
+                            <li class="write__tag">
+                                <span class="write__tag-text">#태그</span>
+                                <button class="remove-btn">x</button>
+                            </li>
+                            <li class="write__tag">
+                                <span class="write__tag-text">#태그</span>
+                                <button class="remove-btn">x</button>
+                            </li>
+                        </ul>
+                        <input type="hidden" value="" id="board-tags"/>
+                    </div>
+
+                    <div class="write__submit-button">
+                        <button type="button" class="default-btn">작성하기</button>
+                    </div>
+                </form>
+            </section>
+            <!-- write -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <h2 class="footer__heading">Let's talk</h2>
+            <article class="footer__content">
+                <ul class="footer__contact">
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/email.svg" alt="email" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/facebook.svg" alt="facebook" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/instagram.svg" alt="instagram" class="footer__contact-img">
+                        </a>
+                    </li>
+                    <li class="footer__contact-item">
+                        <a href="#" class="footer__contact-link">
+                            <img src="../icon/github.svg" alt="github" class="footer__contact-img">
+                        </a>
+                    </li>
+                </ul>
+                <p class="footer__copyright">
+                    Copyright ⓒ 2022 - All rights reserved by wjdghks95
+                </p>
+            </article>
+        </div>
+    </footer>
+    <!-- footer -->
+</body>
+</html>
