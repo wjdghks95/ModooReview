@@ -1,14 +1,13 @@
-# Project
-## 리뷰 종합 사이트
+# 리뷰오브레전드
 
-### 아이디어 선정 동기
+### 🤔아이디어 선정 동기
 
 세상에는 우리가 물건을 하나 사서 그것을 사용하려고 할때 수많은 정보들에 의해 쉽게 결정을 내리기 어려울것이다. 그럴때마다 우리는 먼저 그 물건을 사용해본 사람들의 후기를 참고하여 선택의 폭을 좁히고 결정을 하게 된다. 만약 그런 후기들을 한곳에 모아 많은 사람들과 공유한다면 우리의 선택은 더 빠르고 정확해지지 않을까?
 
-### 목표
+### 🚩목표
 내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션 개발
 
-### 요구사항
+### ✏️요구사항
 | NO | 요구사항명 | 요구사항 상세설명 | 비고 |
 | --- | --- | --- | --- |
 | 1 | 회원가입 | - 회원가입시 휴대폰 번호, 이메일 아이디, 비밀번호, 이름, 닉네임, 주소를 입력해야 한다.<br>- 휴대폰 번호를 입력후 sms 인증을 통한 본인확인이 필요하다.<br>- 이메일 아이디는 중복될 수 없다.<br>- 비밀번호는 특수문자를 포함한 문자와 숫자 8~12자로 구성한다.<br>- 닉네임은 중복될 수 없다.<br>- 주소는 우편번호, 주소, 상세주소로 입력하고 상세주소는 입력하지 않아도 된다. | https://coolsms.co.kr/ 를 통한 sms 문자 메시지 발송 |
@@ -33,5 +32,125 @@
 | 20 | 프로필 확인 | - 모든 유저는 사이트내에 회원으로 등록된 유저들의 프로필을 확인할 수 있도록 한다.<br>- 프로필에서는 회원의 닉네임, 팔로워 수, 팔로잉 수, 회원등급, 등록한 게시글 목록, 좋아요한 목록들을 볼 수 있도록 한다. |  |
 | 21 | 회원등급 | - 회원등급은 [브론즈], [실버], [골드], [플래티넘], [다이아]로 구성되어 있다.<br>- 게시글이 10개 이하인 경우 브론즈,<br> 게시글이 50개 이하인 경우 실버,<br> 게시글이 100개 이하인 경우 골드,<br> 게시글이 100개 이상이고 팔로워가 50명 이상인 경우 플래티넘,<br> 게시글이 100개 이상이고 팔로워가 100명 이상인 경우 다이아 등급이 부여된다. |  |
 
-### ERD 설계
+### 💡주요 기능
+- ✅ SNS 로그인
+- ✅ 게시글 검색 및 카테고리별 분류
+- ✅ 팔로우
+- ✅ 게시글 좋아요
+- ✅ 휴대폰 인증 
+
+### ✔️ERD
 <img src=/ERD/Rol_ERD.png>
+
+### 🔨사용기술
+<div style="display: flex; align-items: center; margin-bottom: 12px;">
+<strong style="display: inline-block; margin-right: 6px;">Frontend: </strong> 
+<img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/jQUERY-0769AD?style=for-the-badge&logo=jQuery&logoColor=white" style="display: inline-block; margin-right: 6px;">
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 12px;">
+<strong style="display: inline-block; margin-right: 6px;">Backend: </strong> 
+<img src="https://img.shields.io/badge/JAVA-5283a3?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iY29sb3I6IHdoaXRlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjEuMSBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMiBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTI3Ny43NCAzMTIuOWM5LjgtNi43IDIzLjQtMTIuNSAyMy40LTEyLjVzLTM4LjcgNy03Ny4yIDEwLjJjLTQ3LjEgMy45LTk3LjcgNC43LTEyMy4xIDEuMy02MC4xLTggMzMtMzAuMSAzMy0zMC4xcy0zNi4xLTIuNC04MC42IDE5Yy01Mi41IDI1LjQgMTMwIDM3IDIyNC41IDEyLjF6bS04NS40LTMyLjFjLTE5LTQyLjctODMuMS04MC4yIDAtMTQ1LjhDMjk2IDUzLjIgMjQyLjg0IDAgMjQyLjg0IDBjMjEuNSA4NC41LTc1LjYgMTEwLjEtMTEwLjcgMTYyLjYtMjMuOSAzNS45IDExLjcgNzQuNCA2MC4yIDExOC4yem0xMTQuNi0xNzYuMmMuMSAwLTE3NS4yIDQzLjgtOTEuNSAxNDAuMiAyNC43IDI4LjQtNi41IDU0LTYuNSA1NHM2Mi43LTMyLjQgMzMuOS03Mi45Yy0yNi45LTM3LjgtNDcuNS01Ni42IDY0LjEtMTIxLjN6bS02LjEgMjcwLjVhMTIuMTkgMTIuMTkgMCAwIDEtMiAyLjZjMTI4LjMtMzMuNyA4MS4xLTExOC45IDE5LjgtOTcuM2ExNy4zMyAxNy4zMyAwIDAgMC04LjIgNi4zIDcwLjQ1IDcwLjQ1IDAgMCAxIDExLTNjMzEtNi41IDc1LjUgNDEuNS0yMC42IDkxLjR6TTM0OCA0MzcuNHMxNC41IDExLjktMTUuOSAyMS4yYy01Ny45IDE3LjUtMjQwLjggMjIuOC0yOTEuNi43LTE4LjMtNy45IDE2LTE5IDI2LjgtMjEuMyAxMS4yLTIuNCAxNy43LTIgMTcuNy0yLTIwLjMtMTQuMy0xMzEuMyAyOC4xLTU2LjQgNDAuMkMyMzIuODQgNTA5LjQgNDAxIDQ2MS4zIDM0OCA0MzcuNHpNMTI0LjQ0IDM5NmMtNzguNyAyMiA0Ny45IDY3LjQgMTQ4LjEgMjQuNWExODUuODkgMTg1Ljg5IDAgMCAxLTI4LjItMTMuOGMtNDQuNyA4LjUtNjUuNCA5LjEtMTA2IDQuNS0zMy41LTMuOC0xMy45LTE1LjItMTMuOS0xNS4yem0xNzkuOCA5Ny4yYy03OC43IDE0LjgtMTc1LjggMTMuMS0yMzMuMyAzLjYgMC0uMSAxMS44IDkuNyA3Mi40IDEzLjYgOTIuMiA1LjkgMjMzLjgtMy4zIDIzNy4xLTQ2LjkgMCAwLTYuNCAxNi41LTc2LjIgMjkuN3pNMjYwLjY0IDM1M2MtNTkuMiAxMS40LTkzLjUgMTEuMS0xMzYuOCA2LjYtMzMuNS0zLjUtMTEuNi0xOS43LTExLjYtMTkuNy04Ni44IDI4LjggNDguMiA2MS40IDE2OS41IDI1LjlhNjAuMzcgNjAuMzcgMCAwIDEtMjEuMS0xMi44eiIgZmlsbD0id2hpdGUiPjwvcGF0aD48L3N2Zz4=&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/SPRING-6DB33F?style=for-the-badge&logo=Spring&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/THYMELEAF-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/JPA-40AEF0?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/QUERYDSL-008FC7?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/GRADLE-02303A?style=for-the-badge&logo=Gradle&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/JUNIT5-25A162?style=for-the-badge&logo=JUnit5&logoColor=white" style="display: inline-block; margin-right: 6px;">
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 12px;">
+<strong style="display: inline-block; margin-right: 6px;">Database: </strong> 
+<img src="https://img.shields.io/badge/MARIADB-003545?style=for-the-badge&logo=MariaDB&logoColor=white" style="display: inline-block; margin-right: 6px;">
+</div>
+
+### ⚡Advanced Feature
+#### OAuth2 로그인
+- CustomOAuth2UserService: OAuth2UserService 인터페이스를 구현하여 OAuth2 로그인 시 RegistrationId 에 따라 정보를 가지고옴
+```java
+@Service
+@RequiredArgsConstructor
+public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+
+    private final PasswordEncoder passwordEncoder;
+    private final MemberRepository memberRepository;
+
+    @Override
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+        OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService(); // DefaultOAuth2UserService 를 통해 User 정보를 가져와야 하기 때문에 대리자 생성
+        OAuth2User oAuth2User = delegate.loadUser(userRequest); // User 정보를 가지고옴
+
+        OAuth2UserInfo oAuth2UserInfo = null; // OAuth2 로그인시 회원정보를 가져오는 인터페이스
+
+        if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
+            // 구글 로그인 요청
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+            // 네이버 로그인 요청
+            oAuth2UserInfo = new NaverUserInfo((Map<String, Object>) oAuth2User.getAttributes().get("response"));
+        } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+            // 카카오 로그인 요청
+            oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+        }
+
+        ...
+
+        List<GrantedAuthority> roles = new ArrayList<>();
+        roles.add(new SimpleGrantedAuthority(member.getRole().value()));
+
+        return new MemberContext(member, roles, oAuth2User.getAttributes());
+    }
+}
+```
+- OAuth2UserInfo: OAuth2 로그인시 회원정보를 가져오는 인터페이스
+```java
+public interface OAuth2UserInfo {
+    String getPhone();
+    String getEmail();
+    String getName();
+    String getNickname();
+    String getZipcode();
+    String getAddress();
+    String getDetailAddress();
+    String getPicture();
+}
+```
+#### Remember-me 로그인
+- PersistentTokenBasedRememberMeServices: DB에 저장된 토큰과 사용자가 request header에 담아서 보낸 토큰을 비교하여 인증 수행 (영구적인 방법)
+```java
+public PersistentTokenRepository tokenRepository() {
+    JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+    jdbcTokenRepository.setDataSource(dataSource); // DataSource 설정
+    return jdbcTokenRepository;
+}
+```
+- JdbcTokenRepositoryImpl: PersistentTokenRepository 인터페이스를 구현하고 있는 클래스
+    - JdbcTokenRepositoryImpl 는 내부적으로 DB 테이블(persistent_logins)을 이용하는데, 이 테이블은 수동으로 만들어주어야함
+    - JPA를 사용하기 때문에 직접 만들지 않고, JPA 객체로 정의 (PersistentLogins)
+```java
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class PersistentLogins {
+
+    @Id
+    @Column(length = 64)
+    private String series;
+
+    @Column(length = 64)
+    private String username;
+
+    @Column(length = 64)
+    private String token;
+
+    @Column(name = "last_used", length = 64)
+    private Date lastUsed;
+}
+```
+
+### 🔥개선사항
+- AOP를 이용한 보안, 예외처리
+- 지연로딩과 조회 성능 최적화
+- 관리자 페이지 (이달의 리뷰)
