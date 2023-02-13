@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="LeeJeongHwan">
+    <meta description="내가 내돈으로 직접 주고 산 제품이나 경험과 같은 모든 것들의 좋았던 점 또는 아쉬웠던 점을 사람들과 공유할 수 있는 웹 애플리케이션">
+    <link rel="shortcut icon" href="../icon/favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/find-account.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>아이디 찾기</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__logo">
+                <a href="index.html" class="header__logo-link">
+                    <img src="../img/logo.png" alt="로고" class="header__logo-img">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li class="header__menu-item">
+                        <a href="index.html" class="header__menu-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="contents.html" class="header__menu-link">Contents</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="myPage_profile.html" class="header__menu-link">MyPage</a>
+                    </li>
+                </ul>
+                <ul class="header__account-menu">
+                    <li class="header__account-item">
+                        <a href="login.html" class="header__account-link">Login</a>
+                    </li>
+                    <li class="header__account-item">
+                        <a href="signUp.html" class="header__account-link">SignUp</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header -->
+
+    <main class="find-account">
+        <div class="find-account__container container">
+            <div class="status-box">
+                <a href="find-id.html" class="status-box__link active">아이디 찾기</a>
+                <a href="find-password.html" class="status-box__link">비밀번호 찾기</a>
+            </div>
+            <div class="find-account-content">
+                <p class="find-account-content__title">회원 정보에 등록한 <span class="find-account-content__emphasis-title">이름</span>과 <span class="find-account-content__emphasis-title">휴대폰 번호</span>를 입력해주세요</p>
+                <div class="find-account-content__field">
+                    <label for="find-id-name">이름</label>
+                    <input type="text" id="find-id-name" placeholder="이름">
+                </div>
+                <div class="find-account-content__field">
+                    <div class="check-phone-number">
+                        <label for="find-id-phone" class="check-phone-number__label">휴대폰 번호</label>
+                        <div class="check-phone-number__inner">
+                            <input type="text" id="find-id-phone" class="check-phone-number__phone-number" placeholder="-없이 입력해 주세요.">
+                            <button class="check-phone-number__send-btn">인증번호 발송</button>
+                        </div>
+                        <p class="error-msg">휴대폰 번호를 입력하세요</p>
+                    </div>
+                    <div class="check-auth-number">
+                        <label for="find-id-auth-num" class="check-auth-number__label">인증 번호</label>
+                        <div class="check-auth-number__inner">
+                            <input type="text" id="find-id-auth-num" class="check-auth-number__auth-number" placeholder="-없이 입력해 주세요." disabled>
+                            <button class="check-auth-number__btn" disabled>인증</button>
+                        </div>
+                        <p class="error-msg">인증번호가 일치하지 않습니다</p>
+                    </div>
+                </div>
+                <div class="find-account__find-button">
+                    <button class="default-btn" disabled>아이디 찾기</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

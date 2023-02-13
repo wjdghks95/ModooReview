@@ -166,6 +166,10 @@ textarea::placeholder {
     background-color: var(--color-dark-white);
 }
 
+.default-btn:disabled {
+    background-color: var(--color-light-gray);
+}
+
 .follow-btn {
     width: 100%;
     height: 100%;
