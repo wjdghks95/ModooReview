@@ -18,11 +18,11 @@ public class SMSController {
      * coolsms api 를 이용한 SMS 문자 인증
      * 인증번호 발송 버튼 클릭시 비동기로 전달
      */
-    @GetMapping("/signUp/sendSMS")
+    @GetMapping("/sendSMS")
     public String sendSMS(@RequestParam("phone") String phoneNumber) {
         int randomNumber = (int)((Math.random() * (9999 - 1000 + 1)) + 1000); // 난수 생성
 
-        smsService.certifiedPhoneNumber(phoneNumber, randomNumber);
+//        smsService.certifiedPhoneNumber(phoneNumber, randomNumber);
         log.info("randomNumber: {}", randomNumber);
         return Integer.toString(randomNumber); // data 반환
     }

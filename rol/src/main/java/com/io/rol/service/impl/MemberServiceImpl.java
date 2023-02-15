@@ -1,5 +1,6 @@
 package com.io.rol.service.impl;
 
+import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Follow;
 import com.io.rol.domain.entity.Image;
@@ -116,5 +117,13 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public void withdrawal(Member member) {
         memberRepository.delete(member);
+    }
+
+    /**
+     * 아이디 찾기
+     */
+    @Override
+    public Member findId(FindIdDto findIdDto) {
+        return memberRepository.findByNameAndPhone(findIdDto.getName(), findIdDto.getPhone());
     }
 }

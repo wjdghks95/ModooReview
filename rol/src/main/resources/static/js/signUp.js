@@ -10,7 +10,7 @@ $('.sign-up-modal__sms-button').on('click', function() {
         $.ajax({
             /* 요청 시작 부분 */
             type: "GET", // 전송 타입
-            url: "/signUp/sendSMS?phone="+phoneNum, //주소
+            url: "/sendSMS?phone="+phoneNum, //주소
             async: true, // 비동기 여부
 
             /* 응답 확인 부분 */
