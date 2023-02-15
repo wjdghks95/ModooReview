@@ -94,3 +94,23 @@
 .check-auth-number__btn {
     width: 5rem;
 }
+
+.find-account-content__img {
+    width: 9.375rem;
+    margin: 4rem auto 2rem;
+}
+
+.find-account-content__result {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: var(--font-medium);
+    font-weight: bold;
+}
+
+.find-account__buttons {
+    display: flex;
+}
+
+.find-account__buttons > button {
+    margin: 0 1rem;
+}
