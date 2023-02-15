@@ -1,8 +1,10 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.dto.FindIdDto;
+import com.io.rol.domain.dto.FindPwdDto;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Member;
+import com.io.rol.service.MailService;
 import com.io.rol.service.MemberService;
 import com.io.rol.validator.MemberDuplicateValidator;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberDuplicateValidator memberDuplicateValidator;
+    private final MailService mailService;
 
     @InitBinder("memberDto")
     public void memberValidation(WebDataBinder dataBinder) {
@@ -99,5 +102,44 @@ public class MemberController {
         }
         model.addAttribute("email", email);
         return "find-id-result";
+    }
+
+    /**
+     * 비밀번호 찾기
+     */
+    @GetMapping("/find/password")
+    public String findPasswordForm(Model model) {
+        model.addAttribute("findPwdDto", new FindPwdDto());
+        return "find-password";
+    }
+
+    @PostMapping("/find/password")
+    public String findPassword(@Validated @ModelAttribute FindPwdDto findPwdDto, BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "find-password";
+        }
+
+        Member member = memberService.findPassword(findPwdDto);
+        if (member != null) {
+            String tempPwd = mailService.findPassword(member.getEmail());
+            memberService.passwordModify(member, tempPwd);
+            redirectAttributes.addFlashAttribute("message", "비밀번호가 이메일로 발송되었습니다");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "일치하는 아이디가 없습니다");
+        }
+
+        return "redirect:/find/password/result";
+    }
+
+    @GetMapping("/find/password/result")
+    public String findPasswordResult(HttpServletRequest request, Model model) {
+        String message = null;
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+        if (inputFlashMap != null) {
+            message = (String) inputFlashMap.get("message");
+        }
+        model.addAttribute("message", message);
+        return "find-password-result";
     }
 }

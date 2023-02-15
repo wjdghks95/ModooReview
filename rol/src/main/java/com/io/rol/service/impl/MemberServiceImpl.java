@@ -1,6 +1,7 @@
 package com.io.rol.service.impl;
 
 import com.io.rol.domain.dto.FindIdDto;
+import com.io.rol.domain.dto.FindPwdDto;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Follow;
 import com.io.rol.domain.entity.Image;
@@ -125,5 +126,22 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member findId(FindIdDto findIdDto) {
         return memberRepository.findByNameAndPhone(findIdDto.getName(), findIdDto.getPhone());
+    }
+
+    /**
+     * 비밀번호 찾기
+     */
+    @Override
+    public Member findPassword(FindPwdDto findPwdDto) {
+        return memberRepository.findByEmailAndPhone(findPwdDto.getEmail(), findPwdDto.getPhone());
+    }
+
+    /**
+     * 비밀번호 변경
+     */
+    @Override
+    @Transactional
+    public void passwordModify(Member member, String tempPwd) {
+        member.setPassword(passwordEncoder.encode(tempPwd));
     }
 }

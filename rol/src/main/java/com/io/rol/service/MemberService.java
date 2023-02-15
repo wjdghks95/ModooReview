@@ -1,6 +1,7 @@
 package com.io.rol.service;
 
 import com.io.rol.domain.dto.FindIdDto;
+import com.io.rol.domain.dto.FindPwdDto;
 import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Image;
 import com.io.rol.domain.entity.Member;
@@ -17,4 +18,7 @@ public interface MemberService {
 
     void withdrawal(Member member);
     Member findId(FindIdDto findIdDto);
+    Member findPassword(FindPwdDto findPwdDto);
+
+    void passwordModify(Member member, String tempPwd);
 }

@@ -88,4 +88,9 @@ public class Member extends BaseTimeEntity {
     public void setProfileImg(String storeFileName) {
         this.profileImage = "/image/" + storeFileName;
     }
+
+    /** 비밀번호 변경 */
+    public void setPassword(String tempPwd) {
+        this.password = tempPwd;
+    }
 }
