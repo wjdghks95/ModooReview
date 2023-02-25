@@ -55,8 +55,10 @@
 <strong style="display: inline-block; margin-right: 6px;">Backend: </strong> 
 <img src="https://img.shields.io/badge/JAVA-5283a3?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iY29sb3I6IHdoaXRlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjEuMSBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMiBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTI3Ny43NCAzMTIuOWM5LjgtNi43IDIzLjQtMTIuNSAyMy40LTEyLjVzLTM4LjcgNy03Ny4yIDEwLjJjLTQ3LjEgMy45LTk3LjcgNC43LTEyMy4xIDEuMy02MC4xLTggMzMtMzAuMSAzMy0zMC4xcy0zNi4xLTIuNC04MC42IDE5Yy01Mi41IDI1LjQgMTMwIDM3IDIyNC41IDEyLjF6bS04NS40LTMyLjFjLTE5LTQyLjctODMuMS04MC4yIDAtMTQ1LjhDMjk2IDUzLjIgMjQyLjg0IDAgMjQyLjg0IDBjMjEuNSA4NC41LTc1LjYgMTEwLjEtMTEwLjcgMTYyLjYtMjMuOSAzNS45IDExLjcgNzQuNCA2MC4yIDExOC4yem0xMTQuNi0xNzYuMmMuMSAwLTE3NS4yIDQzLjgtOTEuNSAxNDAuMiAyNC43IDI4LjQtNi41IDU0LTYuNSA1NHM2Mi43LTMyLjQgMzMuOS03Mi45Yy0yNi45LTM3LjgtNDcuNS01Ni42IDY0LjEtMTIxLjN6bS02LjEgMjcwLjVhMTIuMTkgMTIuMTkgMCAwIDEtMiAyLjZjMTI4LjMtMzMuNyA4MS4xLTExOC45IDE5LjgtOTcuM2ExNy4zMyAxNy4zMyAwIDAgMC04LjIgNi4zIDcwLjQ1IDcwLjQ1IDAgMCAxIDExLTNjMzEtNi41IDc1LjUgNDEuNS0yMC42IDkxLjR6TTM0OCA0MzcuNHMxNC41IDExLjktMTUuOSAyMS4yYy01Ny45IDE3LjUtMjQwLjggMjIuOC0yOTEuNi43LTE4LjMtNy45IDE2LTE5IDI2LjgtMjEuMyAxMS4yLTIuNCAxNy43LTIgMTcuNy0yLTIwLjMtMTQuMy0xMzEuMyAyOC4xLTU2LjQgNDAuMkMyMzIuODQgNTA5LjQgNDAxIDQ2MS4zIDM0OCA0MzcuNHpNMTI0LjQ0IDM5NmMtNzguNyAyMiA0Ny45IDY3LjQgMTQ4LjEgMjQuNWExODUuODkgMTg1Ljg5IDAgMCAxLTI4LjItMTMuOGMtNDQuNyA4LjUtNjUuNCA5LjEtMTA2IDQuNS0zMy41LTMuOC0xMy45LTE1LjItMTMuOS0xNS4yem0xNzkuOCA5Ny4yYy03OC43IDE0LjgtMTc1LjggMTMuMS0yMzMuMyAzLjYgMC0uMSAxMS44IDkuNyA3Mi40IDEzLjYgOTIuMiA1LjkgMjMzLjgtMy4zIDIzNy4xLTQ2LjkgMCAwLTYuNCAxNi41LTc2LjIgMjkuN3pNMjYwLjY0IDM1M2MtNTkuMiAxMS40LTkzLjUgMTEuMS0xMzYuOCA2LjYtMzMuNS0zLjUtMTEuNi0xOS43LTExLjYtMTkuNy04Ni44IDI4LjggNDguMiA2MS40IDE2OS41IDI1LjlhNjAuMzcgNjAuMzcgMCAwIDEtMjEuMS0xMi44eiIgZmlsbD0id2hpdGUiPjwvcGF0aD48L3N2Zz4=&logoColor=white" style="display: inline-block; margin-right: 6px;">
 <img src="https://img.shields.io/badge/SPRING-6DB33F?style=for-the-badge&logo=Spring&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/SPRING BOOT-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/SPRING SECURITY-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white" style="display: inline-block; margin-right: 6px;">
 <img src="https://img.shields.io/badge/THYMELEAF-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white" style="display: inline-block; margin-right: 6px;">
-<img src="https://img.shields.io/badge/JPA-40AEF0?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin-right: 6px;">
+<img src="https://img.shields.io/badge/SPRING DATA JPA-6DB33F?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin-right: 6px;">
 <img src="https://img.shields.io/badge/QUERYDSL-008FC7?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin-right: 6px;">
 <img src="https://img.shields.io/badge/GRADLE-02303A?style=for-the-badge&logo=Gradle&logoColor=white" style="display: inline-block; margin-right: 6px;">
 <img src="https://img.shields.io/badge/JUNIT5-25A162?style=for-the-badge&logo=JUnit5&logoColor=white" style="display: inline-block; margin-right: 6px;">
@@ -68,87 +70,370 @@
 </div>
 
 ### ⚡Advanced Feature
-#### OAuth2 로그인
-- CustomOAuth2UserService: OAuth2UserService 인터페이스를 구현하여 OAuth2 로그인 시 RegistrationId 에 따라 정보를 가지고옴
-```java
-@Service
-@RequiredArgsConstructor
-public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+#### OAuth2.0을 이용한 SNS 로그인
+- **SecurityConfig**
+    ```java
+    @Configuration
+    @RequiredArgsConstructor
+    public class SecurityConfig {
+        private final OAuth2UserService oAuth2UserService;
+        
+        .and()
+        .oauth2Login() // OAuth2기반의 로그인인 경우
+        .loginPage("/login") // 인증이 필요한 URL에 접근시 해당 페이지로 이동
+        .defaultSuccessUrl("/") // 로그인 성공하면 "/" 으로 이동
+        .failureUrl("/login") // 로그인 실패 시
+        .userInfoEndpoint() // 로그인 성공 후 사용자 정보를 가져온다
+        .userService(oAuth2UserService); //사용자 정보를 처리할 때 사용
+    }
+    ```
 
-    private final PasswordEncoder passwordEncoder;
-    private final MemberRepository memberRepository;
+- **CustomOAuth2UserService**: OAuth2UserService 인터페이스를 구현하여 OAuth2 로그인 시 RegistrationId 에 따라 정보를 가지고옴
+    ```java
+    @Service
+    @RequiredArgsConstructor
+    public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService(); // DefaultOAuth2UserService 를 통해 User 정보를 가져와야 하기 때문에 대리자 생성
-        OAuth2User oAuth2User = delegate.loadUser(userRequest); // User 정보를 가지고옴
+        private final PasswordEncoder passwordEncoder;
+        private final MemberRepository memberRepository;
 
-        OAuth2UserInfo oAuth2UserInfo = null; // OAuth2 로그인시 회원정보를 가져오는 인터페이스
+        @Override
+        public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+            OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService(); // DefaultOAuth2UserService 를 통해 User 정보를 가져와야 하기 때문에 대리자 생성
+            OAuth2User oAuth2User = delegate.loadUser(userRequest); // User 정보를 가지고옴
 
-        if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
-            // 구글 로그인 요청
-            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
-        } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
-            // 네이버 로그인 요청
-            oAuth2UserInfo = new NaverUserInfo((Map<String, Object>) oAuth2User.getAttributes().get("response"));
-        } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
-            // 카카오 로그인 요청
-            oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+            OAuth2UserInfo oAuth2UserInfo = null; // OAuth2 로그인시 회원정보를 가져오는 인터페이스
+
+            if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
+                // 구글 로그인 요청
+                oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+            } else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+                // 네이버 로그인 요청
+                oAuth2UserInfo = new NaverUserInfo((Map<String, Object>) oAuth2User.getAttributes().get("response"));
+            } else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+                // 카카오 로그인 요청
+                oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+            }
+
+            ...
+
+            List<GrantedAuthority> roles = new ArrayList<>();
+            roles.add(new SimpleGrantedAuthority(member.getRole().value()));
+
+            return new MemberContext(member, roles, oAuth2User.getAttributes());
+        }
+    }
+    ```
+
+- **MemberContext**: UserDetails 인터페이스를 구현한 MemberContext에 OAuth2User 인터페이스를 다중 상속 하여 일반 유저와 OAuth2 로그인 유저의 정보를 가지고 오는 객체를 통합
+
+    ```java
+    @Getter
+    public class MemberContext implements UserDetails, OAuth2User {
+
+        private Member member;
+        private List<GrantedAuthority> roles;
+        private Map<String, Object> attributes;
+
+        public MemberContext(Member member, List<GrantedAuthority> roles) {
+            this.member = member;
+            this.roles = roles;
         }
 
-        ...
+        public MemberContext(Member member, List<GrantedAuthority> roles, Map<String, Object> attributes) {
+            this.member = member;
+            this.roles = roles;
+            this.attributes = attributes;
+        }
 
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(member.getRole().value()));
+        @Override
+        public Map<String, Object> getAttributes() {
+            return attributes;
+        }
 
-        return new MemberContext(member, roles, oAuth2User.getAttributes());
+        // 계정의 권한 목록
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return roles;
+        }
+
+        // 계정의 비밀번호
+        @Override
+        public String getPassword() {
+            return member.getPassword();
+        }
+
+        // 계정의 고유한 값
+        @Override
+        public String getUsername() {
+            return member.getEmail();
+        }
+
+        // 계정의 만료 여부
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
+
+        // 계정의 잠김 여부
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
+
+        // 비밀번호 만료 여부
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
+
+        // 계정의 활성화 여부
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+
+        // 계정의 고유한 값
+        @Override
+        public String getName() {
+            return member.getEmail();
+        }
     }
-}
-```
-- OAuth2UserInfo: OAuth2 로그인시 회원정보를 가져오는 인터페이스
-```java
-public interface OAuth2UserInfo {
-    String getPhone();
-    String getEmail();
-    String getName();
-    String getNickname();
-    String getZipcode();
-    String getAddress();
-    String getDetailAddress();
-    String getPicture();
-}
-```
-#### Remember-me 로그인
-- PersistentTokenBasedRememberMeServices: DB에 저장된 토큰과 사용자가 request header에 담아서 보낸 토큰을 비교하여 인증 수행 (영구적인 방법)
-```java
-public PersistentTokenRepository tokenRepository() {
-    JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
-    jdbcTokenRepository.setDataSource(dataSource); // DataSource 설정
-    return jdbcTokenRepository;
-}
-```
-- JdbcTokenRepositoryImpl: PersistentTokenRepository 인터페이스를 구현하고 있는 클래스
+    ```
+
+- **OAuth2UserInfo**: OAuth2 로그인시 회원정보를 가져오는 인터페이스
+    ```java
+    public interface OAuth2UserInfo {
+        String getPhone();
+        String getEmail();
+        String getName();
+        String getNickname();
+        String getZipcode();
+        String getAddress();
+        String getDetailAddress();
+        String getPicture();
+    }
+    ```
+
+- GoogleUserInfo
+    
+    ```java
+    public class GoogleUserInfo implements OAuth2UserInfo{
+    
+        private Map<String, Object> attributes;
+    
+        public GoogleUserInfo(Map<String, Object> attributes) {
+            this.attributes = attributes;
+        }
+    
+        @Override
+        public String getPhone() {
+            return null;
+        }
+    
+        @Override
+        public String getEmail() {
+            return (String) attributes.get("email");
+        }
+    
+        @Override
+        public String getName() {
+            return (String) attributes.get("name");
+        }
+    
+        @Override
+        public String getNickname() {
+            return null;
+        }
+    
+        @Override
+        public String getZipcode() {
+            return null;
+        }
+    
+        @Override
+        public String getAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getDetailAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getPicture() {
+            return (String) attributes.get("picture");
+        }
+    }
+    ```
+- NaverUserInfo
+    ```java
+    public class NaverUserInfo implements OAuth2UserInfo {
+        private Map<String, Object> attributes;
+    
+        public NaverUserInfo(Map<String, Object> attributes) {
+            this.attributes = attributes;
+        }
+    
+        @Override
+        public String getPhone() {
+            return (String) attributes.get("mobile");
+        }
+    
+        @Override
+        public String getEmail() {
+            return (String) attributes.get("email");
+        }
+    
+        @Override
+        public String getName() {
+            return (String) attributes.get("name");
+        }
+    
+        @Override
+        public String getNickname() {
+            return (String) attributes.get("nickname");
+        }
+    
+        @Override
+        public String getZipcode() {
+            return null;
+        }
+    
+        @Override
+        public String getAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getDetailAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getPicture() {
+            return (String) attributes.get("profile_image");
+        }
+    }
+    ```
+- KakaoUserInfo
+    ```java
+    public class KakaoUserInfo implements OAuth2UserInfo{
+    
+        private Map<String, Object> attributes;
+    
+        public KakaoUserInfo(Map<String, Object> attributes) {
+            this.attributes = attributes;
+        }
+    
+        @Override
+        public String getPhone() {
+            return null;
+        }
+    
+        @Override
+        public String getEmail() {
+            Map<String, Object> kakaoAccount = getKakaoAccount();
+            return (String) kakaoAccount.get("email");
+        }
+    
+        @Override
+        public String getName() {
+            return null;
+        }
+    
+        @Override
+        public String getNickname() {
+            Map<String, Object> kakaoAccount = getKakaoAccount();
+            Map<String, Object> profile = getProfile(kakaoAccount);
+            return (String) profile.get("nickname");
+        }
+    
+        @Override
+        public String getZipcode() {
+            return null;
+        }
+    
+        @Override
+        public String getAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getDetailAddress() {
+            return null;
+        }
+    
+        @Override
+        public String getPicture() {
+            Map<String, Object> kakaoAccount = getKakaoAccount();
+            Map<String, Object> profile = getProfile(kakaoAccount);
+            return (String) profile.get("profile_image_url");
+        }
+    
+        private Map<String, Object> getProfile(Map<String, Object> kakaoAccount) {
+            return (Map<String, Object>) kakaoAccount.get("profile");
+        }
+    
+        private Map<String, Object> getKakaoAccount() {
+            Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+            return kakaoAccount;
+        }
+    }
+    ```
+  
+#### PersistentTokenBasedRememberMeServices 방식 Remember-me 로그인 구현
+- **SecurityConfig**
+    ```java
+    // Remember-me
+    .and()
+    .rememberMe()
+    .tokenValiditySeconds(3600) // 쿠키 만료 시간 (Default 14일)
+    .rememberMeServices(rememberMeServices(tokenRepository())); // PersistentTokenBasedRememberMeServices (DB 저장 방식) 등록
+
+    // 사용자 정의 RememberMeServices
+    public RememberMeServices rememberMeServices(PersistentTokenRepository tokenRepository) {
+        return new FormRememberMeService("rememberMeKey", userDetailsService, tokenRepository);
+    }
+
+    // PersistentTokenBasedRememberMeServices 를 위한 저장소
+    public PersistentTokenRepository tokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource); // DataSource 설정
+        return jdbcTokenRepository;
+    }
+    ```
+- **PersistentTokenBasedRememberMeServices** : DB에 저장된 토큰과 사용자가 request header에 담아서 보낸 토큰을 비교하여 인증 수행 (영구적인 방법)
+    ```java
+    public PersistentTokenRepository tokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource); // DataSource 설정
+        return jdbcTokenRepository;
+    }
+    ```
+- **JdbcTokenRepositoryImpl**: PersistentTokenRepository 인터페이스를 구현하고 있는 클래스
     - JdbcTokenRepositoryImpl 는 내부적으로 DB 테이블(persistent_logins)을 이용하는데, 이 테이블은 수동으로 만들어주어야함
-    - JPA를 사용하기 때문에 직접 만들지 않고, JPA 객체로 정의 (PersistentLogins)
-```java
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PersistentLogins {
+    - JPA를 사용하기 때문에 직접 만들지 않고, JPA 객체로 정의 **(PersistentLogins)**
+        ```java
+        @Entity
+        @NoArgsConstructor(access = AccessLevel.PROTECTED)
+        public class PersistentLogins {
 
-    @Id
-    @Column(length = 64)
-    private String series;
+            @Id
+            @Column(length = 64)
+            private String series;
 
-    @Column(length = 64)
-    private String username;
+            @Column(length = 64)
+            private String username;
 
-    @Column(length = 64)
-    private String token;
+            @Column(length = 64)
+            private String token;
 
-    @Column(name = "last_used", length = 64)
-    private Date lastUsed;
-}
-```
+            @Column(name = "last_used", length = 64)
+            private Date lastUsed;
+        }
+        ```
 
 ### 🔥개선사항
 - AOP를 이용한 보안, 예외처리
