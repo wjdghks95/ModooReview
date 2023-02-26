@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static com.io.rol.domain.Role.USER;
 
+// 회원 서비스
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -28,9 +29,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final FollowRepository followRepository;
 
-    /**
-     * 회원가입
-     */
+    // 회원가입
     @Transactional
     @Override
     public Long join(MemberDto memberDto) {
@@ -51,27 +50,23 @@ public class MemberServiceImpl implements MemberService {
         return savedMember.getId();
     }
 
-    /**
-     * 회원 조회
-     */
+    // 단일 회원 조회
     @Override
     public Member findMember(Long id) {
         return memberRepository.findById(id).orElseThrow(() ->
                 new NoSuchElementException("NoSuchElementException"));
     }
 
-    /**
-     * 팔로우 여부
-     * 로그인한 member가 현재 page member를 팔로우하지 않은 경우 true
+    /*
+       팔로우 여부
+       로그인한 member가 현재 page member를 팔로우하지 않은 경우 true
      */
     @Override
     public boolean isFollow(Long followerId, Long followingId) {
         return followRepository.findFollowByFollowerIdAndFollowingId(followerId, followingId).isEmpty();
     }
 
-    /**
-     * 팔로우
-     */
+    // 팔로우
     @Transactional
     @Override
     public void follow(Member follower, Member following) {
@@ -93,52 +88,40 @@ public class MemberServiceImpl implements MemberService {
         );
     }
 
-    /**
-     * 닉네임 변경
-     */
+    // 닉네임 변경
     @Override
     @Transactional
     public void nicknameModify(Member member, String nickname) {
         member.setNickname(nickname);
     }
 
-    /**
-     * 프로필 이미지 변경
-     */
+    // 프로필 이미지 변경
     @Override
     @Transactional
     public void profileImgModify(Member member, Image image) {
         member.setProfileImg(image.getStoreFileName());
     }
 
-    /**
-     * 회원 탈퇴
-     */
+    // 회원 탈퇴
     @Override
     @Transactional
     public void withdrawal(Member member) {
         memberRepository.delete(member);
     }
 
-    /**
-     * 아이디 찾기
-     */
+    // 아이디 찾기
     @Override
     public Member findId(FindIdDto findIdDto) {
         return memberRepository.findByNameAndPhone(findIdDto.getName(), findIdDto.getPhone());
     }
 
-    /**
-     * 비밀번호 찾기
-     */
+    // 비밀번호 찾기
     @Override
     public Member findPassword(FindPwdDto findPwdDto) {
         return memberRepository.findByEmailAndPhone(findPwdDto.getEmail(), findPwdDto.getPhone());
     }
 
-    /**
-     * 비밀번호 변경
-     */
+    // 비밀번호 변경
     @Override
     @Transactional
     public void passwordModify(Member member, String tempPwd) {

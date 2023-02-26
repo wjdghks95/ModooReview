@@ -69,9 +69,9 @@ class CommentServiceTest {
         clear();
     }
 
-    /**
-     * 댓글 작성
-     *    댓글 작성시 내용을 입력하지 않으면 오류
+    /*
+       댓글 작성
+          댓글 작성시 내용을 입력하지 않으면 오류
      */
     @Test
     @DisplayName("댓글 작성")
@@ -102,9 +102,7 @@ class CommentServiceTest {
         assertThrows(Exception.class, () -> commentService.insert(board, memberContext.getMember(), null));
     }
 
-    /**
-     * 댓글 삭제
-     */
+    // 댓글 삭제
     @Test
     @DisplayName("댓글 삭제")
     void removeComment() {

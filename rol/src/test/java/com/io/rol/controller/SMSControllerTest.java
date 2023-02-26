@@ -23,14 +23,14 @@ class SMSControllerTest {
 
     @Autowired MockMvc mockMvc;
 
-    private static String sendSmsURL = "/signUp/sendSMS";
+    private static String sendSmsURL = "/sendSMS";
     private String phoneNumber = "01012345678";
 
-    /**
-     * SMS 인증번호 발송
-     *    인증번호 발송 버튼 클릭시 /signUp/sendSMS 로 전달
-     *    파라미터로 휴대폰 번호를 같이 전달
-     *    4자리의 임의의 수 반환
+    /*
+       SMS 인증번호 발송
+          인증번호 발송 버튼 클릭시 /signUp/sendSMS 로 전달
+          파라미터로 휴대폰 번호를 같이 전달
+          4자리의 임의의 수 반환
      */
     @Test
     @DisplayName("SMS 인증번호 발송")

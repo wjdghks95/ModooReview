@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// 콘텐츠 컨트롤러
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/contents")
@@ -45,15 +46,14 @@ public class ContentsController {
         dataBinder.addValidators(fileValidator); // 이미지 파일 업로드 여부 검사
     }
 
-    /**
-     * 게시글 등록
-     */
+    // 게시글 등록 화면
     @GetMapping("/board/new")
     public String boardForm(Model model) {
         model.addAttribute("boardDto", new BoardDto());
         return "contents/boardForm";
     }
 
+    // 게시글 등록
     @PostMapping("/board/new")
     public String newBoard(@Validated @ModelAttribute BoardDto boardDto, BindingResult bindingResult,
                            @AuthenticationPrincipal MemberContext memberContext) throws IOException {
@@ -67,9 +67,7 @@ public class ContentsController {
         return "redirect:/contents/board/" + id;
     }
 
-    /**
-     * 게시글
-     */
+    // 게시글
     @GetMapping("/board/{id}")
     public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Board board = boardService.findBoard(id);
@@ -95,9 +93,7 @@ public class ContentsController {
         return "/contents/board";
     }
 
-    /**
-     * 게시글 수정
-     */
+    // 게시글 수정 화면
     @GetMapping("/board/{id}/edit")
     public String boardEditForm(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Board board = boardService.findBoard(id);
@@ -116,6 +112,7 @@ public class ContentsController {
         return "/contents/boardEditForm";
     }
 
+    // 게시글 수정
     @PostMapping("/board/{id}/edit")
     public String edit(@PathVariable Long id, @Validated @ModelAttribute BoardDto boardDto,
                        BindingResult bindingResult, Model model) throws IOException {
@@ -131,9 +128,7 @@ public class ContentsController {
         return "redirect:/contents/board/" + id;
     }
 
-    /**
-     * 게시글 삭제
-     */
+    // 게시글 삭제
     @DeleteMapping("/board/{id}/edit")
     @ResponseBody
     public void deleteReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
@@ -144,9 +139,7 @@ public class ContentsController {
         boardService.remove(board);
     }
 
-    /**
-     * 콘텐츠
-     */
+    // 게시글 목록
     @GetMapping
     public String contents(@PageableDefault(size = 12) Pageable pageable, Model model,
                            @RequestParam(required = false) String category,
@@ -159,9 +152,7 @@ public class ContentsController {
         return "/contents/contents";
     }
 
-    /**
-     * 콘텐츠 로드
-     */
+    // 페이징 게시글 목록
     @GetMapping("/loadContents")
     public String loadContents(@PageableDefault(size = 12) Pageable pageable, Model model,
                                @RequestParam(required = false) String category,
@@ -174,9 +165,7 @@ public class ContentsController {
         return "/contents/contents :: #contents";
     }
 
-    /**
-     * 해시태그 목록
-     */
+    // 해시태그 목록
     @GetMapping("/hashTag")
     public String hashTag(@RequestParam String tagName, @PageableDefault(size = 12) Pageable pageable,
                           Model model) {
@@ -190,9 +179,7 @@ public class ContentsController {
         return "/contents/hashTag";
     }
 
-    /**
-     * 해시태그 목록 스크롤 페이징 조회
-     */
+    // 해시태그 목록 스크롤 페이징 조회
     @GetMapping("/hashTag/loadBoardList")
     public String loadHashTagBoardList(@PageableDefault(size = 12) Pageable pageable,
                                        @RequestParam String tagName, Model model) {

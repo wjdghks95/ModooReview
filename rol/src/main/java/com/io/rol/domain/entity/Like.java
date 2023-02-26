@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+// 좋아요 Entity
 @Table(name = "likes")
 @Entity
 @Getter

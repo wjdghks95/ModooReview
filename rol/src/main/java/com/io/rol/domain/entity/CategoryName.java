@@ -3,6 +3,7 @@ package com.io.rol.domain.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+// 카테고리 이름
 @Getter
 @RequiredArgsConstructor
 public enum CategoryName {

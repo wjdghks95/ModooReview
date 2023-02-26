@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+// 팔로우 컨트롤러
 @RestController
 @RequiredArgsConstructor
 public class FollowController {
 
     private final MemberService memberService;
 
-    /**
-     * 팔로우
-     */
+    // 팔로우
     @GetMapping("/follow.do")
     @ResponseBody
     public int follow(@AuthenticationPrincipal MemberContext memberContext, @RequestParam Long id) {

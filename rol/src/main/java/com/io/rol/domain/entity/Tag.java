@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// 태그 Entity
 @Entity(name = "tag")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

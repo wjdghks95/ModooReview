@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="458da68f-f497-40be-9c91-155a8793617c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/config/InitDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/config/InitDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/controller/ContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/BoardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/impl/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/java/com/io/rol/service/impl/BoardServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/resources/static/js/contents.js" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/resources/static/js/contents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rol/src/main/resources/templates/fragment/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/rol/src/main/resources/templates/fragment/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/IntelliJ-work/finalPro/lawservice101",
+    "last_opened_file_path": "D:/IntelliJ-work/project/rol",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

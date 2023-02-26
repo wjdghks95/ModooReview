@@ -2,6 +2,7 @@ package com.io.rol.security.oauth2;
 
 import java.util.Map;
 
+// 카카오
 public class KakaoUserInfo implements OAuth2UserInfo{
 
     private Map<String, Object> attributes;

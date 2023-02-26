@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+// 태그 서비스
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -17,9 +18,7 @@ public class TagServiceImpl implements TagService {
 
     private final TagRepository tagRepository;
 
-    /**
-     * 태그 저장
-     */
+    // 태그 저장
     @Transactional
     @Override
     public List<Tag> saveTags(List<String> tagNames) {

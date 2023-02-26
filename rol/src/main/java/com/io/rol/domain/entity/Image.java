@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+// 리뷰 게시글 이미지 Entity
 @Entity(name = "image")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,7 +29,7 @@ public class Image {
         this.storeFileName = storeFileName;
     }
 
-    /** 연관관계 편의 메서드 */
+    // 연관관계 편의 메서드
     public void setBoard(Board board) {
         this.board = board;
         board.getImages().add(this);

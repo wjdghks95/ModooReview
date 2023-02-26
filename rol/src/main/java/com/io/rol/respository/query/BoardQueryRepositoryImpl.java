@@ -21,6 +21,7 @@ public class BoardQueryRepositoryImpl implements BoardQueryRepository{
 
     private final JPAQueryFactory queryFactory;
 
+    // 키워드나 카테고리에 맞는 게시글 목록을 페이징 처리하여 조회
     @Override
     public Page<Board> findAllPagingByKeyword(Pageable pageable, String category, String keyword) {
         List<Board> boardList = queryFactory
@@ -39,6 +40,7 @@ public class BoardQueryRepositoryImpl implements BoardQueryRepository{
         return PageableExecutionUtils.getPage(boardList, pageable, () -> count.fetchOne());
     }
 
+    // 지정한 필드에 따른 순서로 게시글 전체 조회
     @Override
     public List<Board> findAllByOrder(OrderSpecifier<?> orderSpecifier) {
         return queryFactory.selectFrom(board)
@@ -52,6 +54,7 @@ public class BoardQueryRepositoryImpl implements BoardQueryRepository{
                 .from(board)
                 .where(categoryCon(category), titleCon(keyword));
     }
+
     private BooleanExpression categoryCon(String category) {
         return category == null || category.equals("") ? null : board.category.name.eq(category);
     }

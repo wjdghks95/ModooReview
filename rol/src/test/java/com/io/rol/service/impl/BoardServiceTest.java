@@ -1,12 +1,14 @@
 package com.io.rol.service.impl;
 
 import com.io.rol.domain.dto.BoardDto;
+import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.BoardRepository;
 import com.io.rol.respository.MemberRepository;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
+import com.io.rol.service.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,18 +43,19 @@ class BoardServiceTest {
     @Autowired private BoardService boardService;
     @Autowired private MemberRepository memberRepository;
     @Autowired private BoardRepository boardRepository;
+    @Autowired private MemberService memberService;
 
     @Value("${resource.path.fileStore}/")
     private String fileDirPath;
 
-    private static String USERNAME = "user@test.com";
+    private static String USERNAME = "admin@admin.com";
     private static int THUMBIDX = 0;
     private static String TITLE = "제목";
     private static String CATEGORY = "food";
     private static int RATING = 5;
     private String DESCRIPTION = "테스트를 하기 위한 20자 이상의 내용입니다.";
-    private static String IMAGE1 = "sample1.jpg";
-    private static String IMAGE2= "sample2.jpg";
+    private static String IMAGE1 = "sample1.png";
+    private static String IMAGE2= "sample2.png";
 
     private void clear() {
         em.flush();
@@ -74,10 +77,10 @@ class BoardServiceTest {
         clear();
     }
 
-    /**
-     * 게시글 작성
-     *    업도르한 이미지가 한 개라도 없으면 오류
-     *    제목과 내용을 입력하지 않거나 카테고리를 선택하지 않으면 오류
+    /*
+       게시글 작성
+          업도르한 이미지가 한 개라도 없으면 오류
+          제목과 내용을 입력하지 않거나 카테고리를 선택하지 않으면 오류
      */
     @Test
     @DisplayName("게시글 작성_성공")

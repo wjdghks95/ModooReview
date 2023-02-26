@@ -11,6 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
+// JPA Auditing을 이용한 등록일, 수정일
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 @Getter

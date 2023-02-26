@@ -1,5 +1,6 @@
 package com.io.rol.domain;
 
+// 권한
 public enum Role {
     ADMIN("ROLE_ADMIN"), USER("ROLE_USER");
 

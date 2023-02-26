@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+// 리뷰 게시글 이미지 컨트롤러
 @RestController
 @RequiredArgsConstructor
 public class ImageController {
@@ -20,9 +21,7 @@ public class ImageController {
     @Value("classpath:${resource.path.fileStore}")
     private Resource resource;
 
-    /**
-     * 이미지
-     */
+    // 이미지 불러오기
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws IOException {
         return new UrlResource("file:" + fileStore.createPath(filename));

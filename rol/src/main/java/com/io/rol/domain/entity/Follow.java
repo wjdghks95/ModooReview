@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+// 팔로우 Entity
 @Entity(name = "follow")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -24,7 +25,7 @@ public class Follow {
     @JoinColumn(name = "follower_id")
     private Member follower; // 팔로워
 
-    /** 연관관계 메서드 */
+    // 연관관계 메서드
     public void setFollowing(Member following) {
         this.following = following;
         following.getFollowingList().add(this);

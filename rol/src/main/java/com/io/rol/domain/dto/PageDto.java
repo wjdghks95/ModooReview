@@ -5,16 +5,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Pageable;
 
+// 페이징 처리를 위한 PageDto
 @Getter @Setter
 @NoArgsConstructor
 public class PageDto {
     private final int PAGENUM = 5; // 페이지 몇개로 구성할건지
     private int pageSize; // 페이지당 몇개 표시할건지
-    private int startPage;
-    private int endPage;
+    private int startPage; // 시작 페이지
+    private int endPage; // 마지막 페이지
     private int curPage; // 현재 페이지
-    private boolean prev, next;
-    private long total;
+    private boolean prev, next; // 이전 버튼, 다음 버튼
+    private long total; // 총 갯수
 
     public PageDto(long total, Pageable pageable) {
         this.total = total;

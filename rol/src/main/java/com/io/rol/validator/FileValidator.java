@@ -22,6 +22,7 @@ public class FileValidator implements Validator {
         List<MultipartFile> file = boardDto.getFile();
 
         for (MultipartFile f : file) {
+            // 파일이 존재하지 않는 경우
             if (f.isEmpty()) {
                 errors.rejectValue("file", "validate.invalid.file", new Object[]{boardDto.getFile()}, "사진을 한 개 이상 등록해주세요.");
             }

@@ -5,7 +5,6 @@ import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Member;
 import com.io.rol.respository.MemberRepository;
 import com.io.rol.service.MemberService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +26,11 @@ class MemberServiceTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
-    /**
-     * 회원가입
-     *    회원가입 시 핸드폰 번호, 이메일, 비밀번호, 이름, 닉네임, 주소를 입력하지 않으면 오류
-     *    이미 존재하는 아이디, 닉네임이 있으면 오류
-     *    회원가입 후 회원의 ROLE 은 USER
+    /*
+       회원가입
+          회원가입 시 핸드폰 번호, 이메일, 비밀번호, 이름, 닉네임, 주소를 입력하지 않으면 오류
+          이미 존재하는 아이디, 닉네임이 있으면 오류
+          회원가입 후 회원의 ROLE 은 USER
      */
     @Test
     @DisplayName("회원가입_성공")

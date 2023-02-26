@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+// 댓글 서비스
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -21,9 +22,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final CommentQueryRepositoryImpl commentQueryRepository;
 
-    /**
-     * 댓글 저장
-     */
+    // 댓글 저장
     @Transactional
     @Override
     public Long insert(Board board, Member member, String content) {
@@ -33,14 +32,13 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.save(comment).getId();
     }
 
+    // 댓글 목록 조회(생성일 역순으로 조회)
     @Override
     public List<Comment> getList(Long id) {
         return commentQueryRepository.findAllByIdOrderByCreatedDate(id);
     }
 
-    /**
-     * 댓글 삭제
-     */
+    // 댓글 삭제
     @Transactional
     @Override
     public void remove(Long id) {

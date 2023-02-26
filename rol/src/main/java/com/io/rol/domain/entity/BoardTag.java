@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-/**
- * ManyToMany 양방향 연결 테이블
- */
+// ManyToMany 양방향 연결 Entity
 @Entity(name = "board_tag")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

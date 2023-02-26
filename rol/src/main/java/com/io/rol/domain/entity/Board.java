@@ -1,6 +1,5 @@
 package com.io.rol.domain.entity;
 
-import com.io.rol.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// 리뷰 게시글 Entity
 @Entity(name = "board")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,7 +21,7 @@ public class Board {
     @Column(name = "board_id")
     private Long id; // primary key
 
-    /* 게시글이 삭제되면 게시글에 사용된 이미지 모두 삭제 */
+    // 게시글이 삭제되면 게시글에 사용된 이미지 모두 삭제
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images = new ArrayList<>(); // 이미지 목록
 
@@ -54,15 +54,15 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member member; // 회원
 
-    /* 게시글이 삭제되면 게시글 태그 모두 삭제 */
+    // 게시글이 삭제되면 게시글 태그 모두 삭제
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BoardTag> boardTagList = new ArrayList<>(); // boardTag 목록
 
-    /* 게시글이 삭제되면 게시글에 작성된 댓글 모두 삭제 */
+    // 게시글이 삭제되면 게시글에 작성된 댓글 모두 삭제
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>(); // 댓글 목록
 
-    /* 게시글이 삭제되면 게시글 좋아요 모두 삭제 */
+    // 게시글이 삭제되면 게시글 좋아요 모두 삭제
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likeList = new ArrayList<>(); // 좋아요 목록
 
@@ -78,7 +78,7 @@ public class Board {
         this.lastModifiedDate = createdDate;
     }
 
-    /** 연관관계 편의 메서드 */
+    // 연관관계 편의 메서드
     public void setMember(Member member) {
         this.member = member;
         member.getBoardList().add(this);
@@ -89,37 +89,27 @@ public class Board {
         category.getBoardList().add(this);
     }
 
-    /**
-     * 썸네일 등록
-     */
+    // 썸네일 등록
     public void setThumbnail(List<Image> images, int thumbnailIdx) {
         this.thumbnail = images.get(thumbnailIdx);
     }
 
-    /**
-     * 조회수 증가
-     */
+    // 조회수 증가
     public void incrementViews() {
         ++this.views;
     }
 
-    /**
-     * 좋아요 수
-     */
+    // 좋아요 수
     public void updateLikeCount() {
         this.likeCount = this.likeList.size();
     }
 
-    /**
-     * 좋아요 제거
-     */
+    // 좋아요 제거
     public void removeLike(Like like) {
         this.likeList.remove(like);
     }
 
-    /**
-     * 수정
-     */
+    // 수정
     public void updateBoard(String title, int rating, String description) {
         this.title = title;
         this.rating = rating;

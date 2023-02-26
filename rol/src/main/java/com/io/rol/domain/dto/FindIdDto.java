@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
+// 아이디 찾기 DTO
 @Getter @Setter
 @NoArgsConstructor
 public class FindIdDto {

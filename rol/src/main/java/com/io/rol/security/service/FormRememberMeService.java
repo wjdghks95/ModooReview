@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 import java.util.Date;
 
-/**
+/*
  * PersistentTokenBasedRememberMeServices
  * DB에 저장된 토큰과 사용자가 request header 에 담아서 보낸 토큰을 비교하여 인증 수행 (영구적인 방법)
  */
@@ -38,7 +38,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
         this.tokenRepository = tokenRepository;
     }
 
-    /** 첫 로그인 시 쿠키 발행 및 토큰정보 DB 업데이트 */
+    // 첫 로그인 시 쿠키 발행 및 토큰정보 DB 업데이트
     @Override
     protected void onLoginSuccess(HttpServletRequest request, HttpServletResponse response, Authentication successfulAuthentication) {
 
@@ -61,7 +61,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
         }
     }
 
-    /** 자동 로그인 로직 - 쿠키 유효성 검증 및 사용자 정보 객체 리턴 */
+    // 자동 로그인 로직 - 쿠키 유효성 검증 및 사용자 정보 객체 리턴
     @Override
     protected UserDetails processAutoLoginCookie(String[] cookieTokens, HttpServletRequest request, HttpServletResponse response) throws RememberMeAuthenticationException, UsernameNotFoundException {
         // 쿠키 : series, token
@@ -112,7 +112,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
         return getUserDetailsService().loadUserByUsername(token.getUsername());
     }
 
-    /** 자동 로그인 성공시 RememberMeAuthenticationToken 을 생성하여 반환 */
+    // 자동 로그인 성공시 RememberMeAuthenticationToken 을 생성하여 반환
     @Override
     protected Authentication createSuccessfulAuthentication(HttpServletRequest request, UserDetails user) {
         MemberContext memberContext = (MemberContext) user;
@@ -121,7 +121,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
         return auth;
     }
 
-    /** 로그아웃 시 쿠키, DB 정보 삭제 */
+    // 로그아웃 시 쿠키, DB 정보 삭제
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         super.logout(request, response, authentication);
@@ -131,7 +131,7 @@ public class FormRememberMeService extends AbstractRememberMeServices {
         }
     }
 
-    /** Series, Token 랜덤값으로 생성후 인코딩 */
+    // Series, Token 랜덤값으로 생성후 인코딩
     private String generateTokenValue() {
         byte[] newToken = new byte[16];
         random.nextBytes(newToken);

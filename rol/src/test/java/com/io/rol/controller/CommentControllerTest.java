@@ -66,9 +66,7 @@ class CommentControllerTest {
         clear();
     }
 
-    /**
-     * 댓글 작성
-     */
+    // 댓글 작성
     @Test
     @DisplayName("댓글 작성_성공")
     void addComment_success() throws Exception {

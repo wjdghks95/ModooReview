@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// 카테고리 Entity
 @Entity(name = "category")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

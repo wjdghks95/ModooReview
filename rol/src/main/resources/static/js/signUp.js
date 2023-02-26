@@ -8,12 +8,12 @@ $('.sign-up-modal__sms-button').on('click', function() {
     if (phoneValidator(phoneNum)) {
         alert("인증번호가 발송되었습니다.");
         $.ajax({
-            /* 요청 시작 부분 */
+            // 요청 시작 부분
             type: "GET", // 전송 타입
             url: "/sendSMS?phone="+phoneNum, //주소
             async: true, // 비동기 여부
 
-            /* 응답 확인 부분 */
+            // 응답 확인 부분
             success: function(data) {
                 $('.sign-up-modal__sms-button').children().attr('disabled', true);
                 $('#user-phone').attr('readonly', true);
@@ -118,20 +118,24 @@ $('.sign-up-modal__search-addr-button').on('click', function() {
     execDaumPostcode();
 })
 
+// 테마 커스텀
 var themeObj = {
     searchBgColor: "#0C9EE8",
     queryTextColor: "#FFFFFF",
 };
 
+// 팝업 객체 생성
 function execDaumPostcode() {
     new daum.Postcode({
         theme: themeObj,
         oncomplete: function(data) {
             var addr = '';
 
+            // 사용자가 도로명 주소를 선택했을 경우
             if (data.userSelectedType === 'R') { 
                 addr = data.roadAddress;
             } else {
+                // 사용자가 지번 주소를 선택했을 경우(J)
                 addr = data.jibunAddress;
             }
 

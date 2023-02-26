@@ -22,7 +22,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +37,7 @@ public class InitDB {
 
     @PostConstruct
     public void init() throws IOException {
-        /**
-         * 관리자 저장
-         */
+        // 관리자 저장
         Member member = Member.builder()
                 .phone("01027999308")
                 .email("admin@admin.com")
@@ -55,9 +52,7 @@ public class InitDB {
 
         memberRepository.save(member);
 
-        /**
-         * 카테고리 저장
-         */
+        // 카테고리 저장
         categoryRepository.save(createCategory(CategoryName.FOOD));
         categoryRepository.save(createCategory(CategoryName.BEAUTY));
         categoryRepository.save(createCategory(CategoryName.COSMETIC));
@@ -118,9 +113,7 @@ public class InitDB {
 
     }
 
-    /**
-     * MultipartFiles 생성
-     */
+    // MultipartFiles 생성
     private List<MultipartFile> createFiles(List<String> fileNameList) throws IOException {
         List<MultipartFile> multipartFiles = new ArrayList<>();
         for (String fileName : fileNameList) {
@@ -137,9 +130,7 @@ public class InitDB {
         return multipartFiles;
     }
 
-    /**
-     * 카테고리 생성
-     */
+    // 카테고리 생성
     private Category createCategory(CategoryName categoryName) {
         return Category.builder().name(categoryName.getCategory()).build();
     }

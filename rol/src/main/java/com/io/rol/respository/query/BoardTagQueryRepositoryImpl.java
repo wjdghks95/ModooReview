@@ -21,6 +21,8 @@ import static com.io.rol.domain.entity.QBoardTag.*;
 public class BoardTagQueryRepositoryImpl implements BoardTagQueryRepository{
 
     private final JPAQueryFactory queryFactory;
+
+    // 태그 이름으로 페이징 처리 후 조회
     @Override
     public Page<BoardTag> findBoardTagByTagName(Pageable pageable, String tagName) {
         List<BoardTag> boardTagList = queryFactory

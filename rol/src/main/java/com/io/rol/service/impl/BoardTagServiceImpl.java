@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+// ManyToMany 양방향 매핑을 위한 BoardTag 서비스
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -23,9 +24,7 @@ public class BoardTagServiceImpl implements BoardTagService {
     private final BoardTagRepository boardTagRepository;
     private final BoardTagQueryRepository boardTagQueryRepository;
 
-    /**
-     *  ManyToMany 양방향 매핑을 위한 BoardTag 엔티티 저장
-     */
+    // ManyToMany 양방향 매핑을 위한 BoardTag 엔티티 저장
     @Transactional
     @Override
     public List<BoardTag> saveBoardTags(List<Tag> tags, Board board) {
@@ -41,9 +40,7 @@ public class BoardTagServiceImpl implements BoardTagService {
         return boardTagList;
     }
 
-    /**
-     * tagName 에 해당하는 BoardTag 페이징 목록 조회
-     */
+    // tagName 에 해당하는 BoardTag 페이징 목록 조회
     @Override
     public Page<BoardTag> getListByTagName(Pageable pageable, String tagName) {
         return boardTagQueryRepository.findBoardTagByTagName(pageable, tagName);

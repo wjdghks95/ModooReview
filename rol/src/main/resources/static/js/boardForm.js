@@ -18,16 +18,17 @@ function getImageFile(e) {
     const files = e.currentTarget.files;
     const count = [...files].length;
 
+    // 이미지 파일의 갯수를 체크
     if (count === 0) {
         return;
     }
-
     if (count > 5) {
         alert('이미지는 최대 5개까지 업로드가 가능합니다.');
         $("input[type='file']").val("");
         return;
     }
 
+    // 이미지 파일인지 체크
     [...files].forEach(file => {
         if (!file.type.match("image/.*")) {
             alert('이미지 파일만 업로드가 가능합니다.');
@@ -38,14 +39,14 @@ function getImageFile(e) {
     [...files].forEach(file => {
         uploadFiles.push(file);
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = (e) => { // 읽기 동작이 성공적으로 완료되었을 경우
             $('.write__photo-button').hide();
             $('.write__photo-container').show();
-            const photo = createPhoto(e, file);
+            const photo = createPhoto(e, file); // 이미지 생성
             $('.write__photo-list').append(photo);
             $('.slides').css('width', $('.slide').length * 460 + 'px');
         }
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file);  // 바이너리 파일을 Base64 Encode 문자열로 반환 Ex) data:image/jpeg; base64, GDYG….
     });
 
     $('.write__photo-container').after(createMsg());
@@ -97,20 +98,20 @@ $('.arrow-btn--prev').on('click', function() {
 })
 
 // Rating
-let totalStar = 0;
+let totalStar = 0; // 서버에 넘겨줄 최종 별점
 $('.rating__star').each(function(index) {
-    $(this).data('rating', index + 1);
+    $(this).data('rating', index + 1); // 각각의 별 요소에 rating data로 index 를 설정
 })
 
 $('.rating__star').on({
     mouseover: function(e) {
-        onMouseOver(e);
+        onMouseOver(e); // 마우스가 영역에 들어올 경우 별점 채우기
     },
     mouseleave: function() {
-        onMouseLeave();
+        onMouseLeave(); // 마우스가 영역을 벗어날 경우 별점 빼기
     },
     click: function(e) {
-        onClick(e);
+        onClick(e); // 마우스를 클릭한 경우 별점 채우기
     }
 })
 
@@ -135,7 +136,7 @@ function onClick(e) {
 
 function fill(ratingVal) {
     $('.rating__star').each(function(index) {
-        if(index < ratingVal) {
+        if(index < ratingVal) { // 전달받은 rating data 에서 -1 에 해당하는 index 만큼 색상 변경
             $('.rating__star > img').eq(index).css('filter', 'invert(82%) sepia(68%) saturate(5238%) hue-rotate(358deg) brightness(104%) contrast(102%)');
         } else {
             $('.rating__star > img').eq(index).css('filter', 'invert(100%) sepia(0%) saturate(4078%) hue-rotate(293deg) brightness(81%) contrast(117%)');
@@ -144,8 +145,8 @@ function fill(ratingVal) {
 }
 
 // 태그
-let tag = {};
-let counter = 0;
+let tag = {}; // 서버로 전송한 태그를 배열로 생성
+let counter = 0; // 각 태그에 대한 id
 
 $('.write__tag-add-button').on('click', function() {
     createTag();
@@ -159,13 +160,15 @@ $('#board-tag').on('keypress', function(e) {
 })
 
 function createTag() {
+    // 태그 갯수 확인
     if ($('.write__tags').children().length >= 5) {
         alert('태그는 5개까지만 추가할 수 있습니다.');
     } else {
         let tagVal = $('#board-tag').val();
 
+        // 값이 비어있는지 확인
         if (tagVal !== "") {
-            let result = Object.values(tag).filter(word => {
+            let result = Object.values(tag).filter(word => { // 중복 검사
                 return word === tagVal;
             });
 
@@ -186,29 +189,33 @@ function createTag() {
     }
 }
 
+// 배열에 태그값 추가
 function addTag(value) {
     tag[counter] = value;
     counter++;
 }
 
-$(document).on('click', '.remove-btn', function() {
+// 태그 삭제
+$(document).on('click', '.remove-btn', function() { // document 에 이벤트를 적용하고 선택자 지정
     const index = $(this).data('index');
     tag[index] = "";
     $(this).parent().remove();
 })
 
-
+// 배열에 있는 공백 제거
 function marginTag () {
     return Object.values(tag).filter(word => {
         return word !== "";
     });
 }
 
+// 태그 값 전송
 function sendTagVal() {
     let tagArr = marginTag();
     $('#board-tags').val(tagArr);
 }
 
+// 기존에 태그가 존재하는 경우
 $('.write__tag').each(function(index, obj) {
     const text = $(obj).children('.write__tag-text').text();
     const tagVal = text.substring(text.indexOf('#')+1);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+// 댓글 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class CommentController {
@@ -25,9 +26,7 @@ public class CommentController {
     private final MemberService memberService;
     private final BoardService boardService;
 
-    /**
-     * 댓글 작성
-     */
+    // 댓글 작성
     @PostMapping("/comment.do")
     public String addComment(@AuthenticationPrincipal MemberContext memberContext, @RequestParam String content, @RequestParam Long id,
                           Model model) {
@@ -42,9 +41,7 @@ public class CommentController {
         return "/contents/board :: #commentList";
     }
 
-    /**
-     * 댓글 삭제
-     */
+    // 댓글 삭제
     @GetMapping("/comment.de")
     public String delComment(@AuthenticationPrincipal MemberContext memberContext, @RequestParam Long index, @RequestParam Long id,
                              Model model) {

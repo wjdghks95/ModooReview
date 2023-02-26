@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * Rmemeber Me 관련 엔티티
- */
+// PersistentTokenBasedRememberMe Entity
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PersistentLogins {

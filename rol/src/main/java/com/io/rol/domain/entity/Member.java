@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// 회원 Entity
 @Entity(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -50,18 +51,18 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role; // 역할
 
-    /* 회원 탈퇴시 회원이 작성한 게시글 모두 삭제 */
+    // 회원 탈퇴시 회원이 작성한 게시글 모두 삭제
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boardList = new ArrayList<>(); // 게시글 목록
 
-    /* 회원 탈퇴시 팔로우, 팔로잉 목록 모두 삭제 */
+    // 회원 탈퇴시 팔로우, 팔로잉 목록 모두 삭제
     @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Follow> followingList = new ArrayList<>(); // 팔로잉 목록
 
     @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Follow> followerList = new ArrayList<>(); // 팔로워 목록
 
-    /* 회원 탈퇴시 회원의 좋아요 모두 삭제 */
+    // 회원 탈퇴시 회원의 좋아요 모두 삭제
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likeList = new ArrayList<>(); // 좋아요 목록
 
@@ -79,17 +80,17 @@ public class Member extends BaseTimeEntity {
         this.role = role;
     }
 
-    /** 닉네임 변경 */
+    // 닉네임 변경
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    /** 프로필 사진 변경 */
+    // 프로필 사진 변경
     public void setProfileImg(String storeFileName) {
         this.profileImage = "/image/" + storeFileName;
     }
 
-    /** 비밀번호 변경 */
+    // 비밀번호 변경
     public void setPassword(String tempPwd) {
         this.password = tempPwd;
     }

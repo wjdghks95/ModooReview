@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+// 닉네임 변경 DTO
 @Getter @Setter
 @NoArgsConstructor
 public class NicknameDto {

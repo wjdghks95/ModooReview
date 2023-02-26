@@ -36,12 +36,11 @@ class MemberControllerTest {
 
     @Autowired MockMvc mockMvc;
     @Autowired EntityManager em;
-    @Autowired MemberRepository memberRepository;
     @Autowired MemberService memberService;
     ObjectMapper objectMapper = new ObjectMapper();
 
     private String phone = "01012345678";
-    private String email = "test@test.com";
+    private String email = "admin@admin.com";
     private String password = "asdf1234!";
     private String name = "이름";
     private String nickname = "테스트";
@@ -57,11 +56,11 @@ class MemberControllerTest {
         em.clear();
     }
 
-    /**
-     * 회원가입
-     *    회원가입 시 핸드폰 번호, 이메일, 비밀번호, 이름, 닉네임, 주소를 입력하지 않으면 오류
-     *    이미 존재하는 아이디, 닉네임이 있으면 오류
-     *    잘못된 비밀번호나 닉네임을 입력한 경우 오류
+    /*
+       회원가입
+          회원가입 시 핸드폰 번호, 이메일, 비밀번호, 이름, 닉네임, 주소를 입력하지 않으면 오류
+          이미 존재하는 아이디, 닉네임이 있으면 오류
+          잘못된 비밀번호나 닉네임을 입력한 경우 오류
      */
     @Test
     @DisplayName("회원가입_성공")
@@ -120,10 +119,10 @@ class MemberControllerTest {
                 .andDo(print());
     }
 
-    /**
-     * 로그인
-     *    로그인시 아이디가 존재하지 않을 경우 로그인 실패
-     *    로그인시 비밀번호가 틀리면 로그인 실패
+    /*
+       로그인
+          로그인시 아이디가 존재하지 않을 경우 로그인 실패
+          로그인시 비밀번호가 틀리면 로그인 실패
      */
     @Test
     @DisplayName("로그인_성공")

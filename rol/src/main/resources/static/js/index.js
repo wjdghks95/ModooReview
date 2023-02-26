@@ -16,20 +16,20 @@ $('.switch-input').on('click', function() {
 
 // 베스트 리뷰 슬라이드
 const swiper = new Swiper('.swiper', {
-    effect: "fade",
-    speed: 1000,
+    effect: "fade", // fade 효과 적용
+    speed: 1000, // 슬라이드 속도
 	fadeEffect: {
-		crossFade: true,
+		crossFade: true, // crossFade 활성화
 	},
-    loop: true,
+    loop: true, // 반복
 
     autoplay: {
-        delay: 3000,
+        delay: 3000, // 자동 재생
         disableOnInteraction: false,
     },
 
     pagination: {
         el: '.swiper-pagination',
-        clickable: true,
+        clickable: true, // 클릭 가능여부
     }
 });

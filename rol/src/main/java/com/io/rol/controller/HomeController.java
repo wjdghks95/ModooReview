@@ -16,6 +16,7 @@ import java.util.List;
 
 import static com.io.rol.domain.entity.QBoard.*;
 
+// 홈 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class HomeController {

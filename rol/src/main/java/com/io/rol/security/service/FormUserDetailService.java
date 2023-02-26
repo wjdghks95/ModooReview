@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+// Form 로그인 사용자 정보 조회 서비스
 @Service
 @RequiredArgsConstructor
 public class FormUserDetailService implements UserDetailsService {

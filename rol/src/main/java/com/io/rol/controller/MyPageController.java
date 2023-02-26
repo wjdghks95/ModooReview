@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// 마이페이지 컨틀롤러
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/myPage")
@@ -29,9 +30,7 @@ public class MyPageController {
     private final ImageService imageService;
     private final PasswordEncoder passwordEncoder;
 
-    /**
-     * 마이페이지 - 프로필
-     */
+    // 마이페이지 - 프로필
     @GetMapping("/{id}/profile")
     public String profile(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberService.findMember(id);
@@ -44,9 +43,7 @@ public class MyPageController {
         return "myPage/myPage_profile";
     }
 
-    /**
-     * 마이페이지 - 프로필 이미지 수정
-     */
+    // 마이페이지 - 프로필 이미지 수정
     @PostMapping("/{id}/profile/profileImg")
     public String updateProfileImg(@PathVariable Long id, MultipartFile multipartFile) throws IOException {
         Member member = memberService.findMember(id);
@@ -56,9 +53,7 @@ public class MyPageController {
         return "redirect:/myPage/profile/" + id;
     }
 
-    /**
-     * 마이페이지 - 프로필 닉네임 수정
-     */
+    // 마이페이지 - 프로필 닉네임 수정
     @PostMapping("/{id}/profile/nickname")
     public String updateNickname(@PathVariable Long id, @ModelAttribute @Validated NicknameDto nicknameDto,
                                  BindingResult bindingResult, Model model) {
@@ -76,9 +71,7 @@ public class MyPageController {
         return "redirect:/myPage/profile/" + id;
     }
 
-    /**
-     * 마이페이지 - 나의 리뷰
-     */
+    // 마이페이지 - 나의 리뷰
     @GetMapping("/{id}/myReview")
     public String myReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberService.findMember(id);
@@ -94,9 +87,7 @@ public class MyPageController {
         return "myPage/myPage_myReview";
     }
 
-    /**
-     * 마이페이지 - 좋아요
-     */
+    // 마이페이지 - 좋아요
     @GetMapping("/{id}/like")
     public String myLike(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberService.findMember(id);
@@ -116,9 +107,7 @@ public class MyPageController {
         return "myPage/myPage_like";
     }
 
-    /**
-     * 마이페이지 - 팔로잉
-     */
+    // 마이페이지 - 팔로잉
     @GetMapping("/{id}/following")
     public String following(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberService.findMember(id);
@@ -139,9 +128,7 @@ public class MyPageController {
         return "myPage/myPage_following";
     }
 
-    /**
-     * 마이페이지 - 회원탈퇴
-     */
+    // 마이페이지 - 회원탈퇴
     @GetMapping("/{id}/withdrawal")
     public String withdrawalForm(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
         Member member = memberService.findMember(id);
@@ -155,9 +142,7 @@ public class MyPageController {
         return "myPage/myPage_withdrawal";
     }
 
-    /**
-     * 회원탈퇴
-     */
+    // 회원탈퇴
     @PostMapping("/{id}/withdrawal")
     @ResponseBody
     public boolean withdrawal(@PathVariable Long id, @RequestParam String pwd) {

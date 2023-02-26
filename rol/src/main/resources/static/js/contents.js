@@ -9,16 +9,16 @@ $('.content__view').on('click', function() {
 })
 
 // 카테고리 슬라이드
-let currentIdx = 0;
-let slideCount = $('.slide').length;
+let currentIdx = 0; // 현재 index
+let slideCount = $('.slide').length; // 슬라이드 총 갯수
 
 function moveSlide(num) {
-    $('.slides').css('left', -num * 120 + 'px');
+    $('.slides').css('left', -num * 120 + 'px'); // 인덱스에 slide 넓이 값을 곱하여 left 값 적용
     currentIdx = num;
 }
 
 $('.arrow-btn--next').on('click', function() {
-    if(currentIdx < slideCount - 11) {
+    if(currentIdx < slideCount - 11) { // slideCount 에서 보여줄 slide 만큼의 갯수를 뺌
         moveSlide(currentIdx + 1);
     } else {
         return;

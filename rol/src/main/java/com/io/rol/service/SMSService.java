@@ -8,26 +8,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
+// 문자 인증 서비스
 @Service
 public class SMSService {
 
     @Value("${coolsms.api.key}")
-    private String apiKey;
+    private String apiKey; // 발급받은 apiKey 번호
 
     @Value("${coolsms.api.secret}")
-    private String apiSecret;
+    private String apiSecret; // 발급받은 apiSecret 번호
 
     @Value("${coolsms.api.fromnumber}")
-    private String fromNumber;
+    private String fromNumber; // 발신 번호
 
     public void certifiedPhoneNumber(String toNumber, int randomNumber) {
-        String api_key = apiKey;
-        String api_secret = apiSecret;
+        String api_key = apiKey; // API KEY 값
+        String api_secret = apiSecret; // API Secret 값
         Message coolsms = new Message(api_key, api_secret);
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("to",toNumber );
-        params.put("from", fromNumber);
+        params.put("to",toNumber ); // 수신 전화번호
+        params.put("from", fromNumber); // 발신 전화번호
         params.put("type", "SMS");
         params.put("text", "[리뷰오브레전드] 인증번호 "+randomNumber+" 를 입력하세요.");
         params.put("app_version", "test app 1.2"); // application name and version

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+// 회원 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -34,18 +35,17 @@ public class MemberController {
         dataBinder.addValidators(memberDuplicateValidator); // 회원 중복 검사
     }
 
-    /**
-     * 회원가입
-     */
+    // 회원가입 화면
     @GetMapping("/signUp")
     public String signUpForm(Model model) {
         model.addAttribute("memberDto", new MemberDto());
         return "signUp";
     }
 
+    // 회원가입
     @PostMapping("/signUp")
     public String signUp(@Validated @ModelAttribute MemberDto memberDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) { // memberDto biding 과정에 오류가 존재하는 경우
             return "signUp";
         }
 
@@ -53,9 +53,7 @@ public class MemberController {
         return "redirect:/login";
     }
 
-    /**
-     * 로그인
-     */
+    // 로그인
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String exception, Model model) {
 
@@ -66,15 +64,14 @@ public class MemberController {
         return "login";
     }
 
-    /**
-     * 아이디 찾기
-     */
+    // 아이디 찾기 화면
     @GetMapping("/find/id")
     public String findIdForm(Model model) {
         model.addAttribute("findIdDto", new FindIdDto());
         return "find-id";
     }
 
+    // 아이디 찾기
     @PostMapping("/find/id")
     public String findId(@Validated @ModelAttribute FindIdDto findIdDto, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
@@ -93,6 +90,7 @@ public class MemberController {
         return "redirect:/find/id/result";
     }
 
+    // 아이디 찾기 결과 화면
     @GetMapping("/find/id/result")
     public String findIdResult(HttpServletRequest request, Model model) {
         String email = null;
@@ -104,15 +102,14 @@ public class MemberController {
         return "find-id-result";
     }
 
-    /**
-     * 비밀번호 찾기
-     */
+    // 비밀번호 찾기 화면
     @GetMapping("/find/password")
     public String findPasswordForm(Model model) {
         model.addAttribute("findPwdDto", new FindPwdDto());
         return "find-password";
     }
 
+    // 비밀번호 찾기
     @PostMapping("/find/password")
     public String findPassword(@Validated @ModelAttribute FindPwdDto findPwdDto, BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
@@ -132,6 +129,7 @@ public class MemberController {
         return "redirect:/find/password/result";
     }
 
+    // 비밀번호 찾기 결과 화면
     @GetMapping("/find/password/result")
     public String findPasswordResult(HttpServletRequest request, Model model) {
         String message = null;

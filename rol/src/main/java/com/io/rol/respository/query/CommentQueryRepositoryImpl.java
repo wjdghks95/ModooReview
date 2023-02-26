@@ -14,6 +14,7 @@ import static com.io.rol.domain.entity.QComment.*;
 public class CommentQueryRepositoryImpl implements CommentQueryRepository {
     private final JPAQueryFactory queryFactory;
 
+    // id에 해당하는 게시글의 댓글 역순 정렬
     public List<Comment> findAllByIdOrderByCreatedDate(Long id) {
         return queryFactory.selectFrom(comment)
                 .where(comment.board.id.eq(id))

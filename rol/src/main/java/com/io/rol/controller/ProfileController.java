@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collections;
 import java.util.List;
 
+// 프로필 컨트롤러
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/profile")
@@ -23,9 +24,7 @@ public class ProfileController {
 
     private final MemberService memberService;
 
-    /**
-     * 프로필
-     */
+    // 프로필
     @GetMapping("/{id}")
     public String portfolio(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);
@@ -48,9 +47,7 @@ public class ProfileController {
         return "profile/profile";
     }
 
-    /**
-     * 프로필 작성 게시글 목록
-     */
+    // 프로필 작성 게시글 목록
     @GetMapping("/{id}/boardList")
     public String reviewList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);
@@ -69,9 +66,7 @@ public class ProfileController {
         return "profile/profile_review";
     }
 
-    /**
-     * 프로필 좋아요한 게시글 목록
-     */
+    // 프로필 좋아요한 게시글 목록
     @GetMapping("/{id}/likeList")
     public String likeList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.findMember(id);

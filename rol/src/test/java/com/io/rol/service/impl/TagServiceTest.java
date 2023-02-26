@@ -23,10 +23,10 @@ class TagServiceTest {
     private static String TAG3 = "태그3";
     private static String TAG4 = "태그4";
 
-    /**
-     * 태그 저장
-     *    중복되지 않은 태그인 경우 저장
-     *    중복된 태그인 경우 저장소에서 꺼냄
+    /*
+       태그 저장
+          중복되지 않은 태그인 경우 저장
+          중복된 태그인 경우 저장소에서 꺼냄
      */
     @Test
     @DisplayName("태그 저장_중복이 없는 태그 저장")

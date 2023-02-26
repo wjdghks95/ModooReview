@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+// 리뷰 게시글 서비스
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -35,14 +36,12 @@ public class BoardServiceImpl implements BoardService {
     private final CategoryRepository categoryRepository;
     private final LikeRepository likeRepository;
 
-    /**
-     * 게시글 등록
-     */
+    // 리뷰 게시글 작성
     @Transactional
     @Override
     public Long write(BoardDto boardDto, Member writer) throws IOException {
-        List<Image> images = imageService.saveImages(boardDto.getFile());
-        List<Tag> tags = tagService.saveTags(boardDto.getTagNames());
+        List<Image> images = imageService.saveImages(boardDto.getFile()); // 이미지 저장
+        List<Tag> tags = tagService.saveTags(boardDto.getTagNames()); // 태그 저장
 
         Board board = Board.builder()
                 .title(boardDto.getTitle())
@@ -61,24 +60,23 @@ public class BoardServiceImpl implements BoardService {
         return savedBoard.getId();
     }
 
+    // 게시글 단건 조회
     @Override
     public Board findBoard(Long id) {
         return boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException("NoSuchElementException"));
     }
 
 
-    /**
-     *  좋아요 여부
-     *  로그인한 member가 현재 게시글을 좋아요 하지 않은 경우 true
+    /*
+        좋아요 여부
+        로그인한 member가 현재 게시글을 좋아요 하지 않은 경우 true
      */
     @Override
     public boolean isLike(Long memberId, Long boardId) {
         return likeRepository.findByMemberIdAndBoardId(memberId, boardId).isEmpty();
     }
 
-    /**
-     * 좋아요
-     */
+    // 좋아요
     @Transactional
     @Override
     public void like(Member member, Board board) {
@@ -104,35 +102,29 @@ public class BoardServiceImpl implements BoardService {
         );
     }
 
-    /**
-     * 게시글 목록 페이징 조회
-     *   - 카테고리 또는 키워드가 있는 경우 해당 목록 페이징 조회
+    /*
+       게시글 목록 페이징 조회
+         - 카테고리 또는 키워드가 있는 경우 해당 목록 페이징 조회
      */
     @Override
     public Page<Board> getList(Pageable pageable, String category, String keyword) {
         return boardQueryRepository.findAllPagingByKeyword(pageable, category, keyword);
     }
 
-    /**
-     * 정렬된 게시글 목록 조회
-     */
+    // 정렬된 게시글 목록 조회
     @Override
     public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
         return boardQueryRepository.findAllByOrder(orderSpecifier);
     }
 
-    /**
-     * 조회수 증가
-     */
+    // 조회수 증가
     @Override
     @Transactional
     public void incrementViews(Board board) {
         board.incrementViews();
     }
 
-    /**
-     * 게시글 수정
-     */
+    // 게시글 수정
     @Override
     @Transactional
     public void edit(Board board, BoardDto boardDto) throws IOException {
@@ -157,9 +149,7 @@ public class BoardServiceImpl implements BoardService {
         boardTagService.saveBoardTags(tagList, board);
     }
 
-    /**
-     * 게시글 삭제
-     */
+    // 게시글 삭제
     @Override
     @Transactional
     public void remove(Board board) {

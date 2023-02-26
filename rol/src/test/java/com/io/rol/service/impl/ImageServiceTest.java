@@ -26,12 +26,10 @@ class ImageServiceTest {
     @Value("${resource.path.fileStore}/")
     private String fileDirPath;
 
-    private static String IMAGE1 = "sample1.jpg";
-    private static String IMAGE2= "sample2.jpg";
+    private static String IMAGE1 = "sample1.png";
+    private static String IMAGE2= "sample2.png";
 
-    /**
-     * 이미지 저장
-     */
+    // 이미지 저장
     @Test
     @DisplayName("이미지 저장_성공")
     void save_Image_success() throws IOException {

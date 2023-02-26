@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+// 댓글 Entity
 @Entity(name = "comment")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -34,7 +35,7 @@ public class Comment extends BaseTimeEntity {
         this.content = content;
     }
 
-    /** 연관관계 메서드 */
+    // 연관관계 메서드
     public void setMember(Member member) {
         this.member = member;
     }
