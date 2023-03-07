@@ -1,15 +1,13 @@
-package com.io.rol.service;
+package com.io.rol.member.service;
 
 import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.FindPwdDto;
-import com.io.rol.domain.dto.MemberDto;
+import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Image;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 
-// 회원 서비스
 public interface MemberService {
-    // 회원가입
-    Long join(MemberDto memberDto);
+    Long join(MemberDto memberDto); // 회원가입
 
     // 단일 회원 조회
     Member findMember(Long id);

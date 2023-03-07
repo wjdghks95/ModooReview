@@ -2,7 +2,7 @@ package com.io.rol.service;
 
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Board;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.querydsl.core.types.OrderSpecifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

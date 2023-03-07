@@ -4,9 +4,9 @@ import com.io.rol.domain.Role;
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.Category;
 import com.io.rol.domain.entity.CategoryName;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.CategoryRepository;
-import com.io.rol.respository.MemberRepository;
+import com.io.rol.member.repository.MemberRepository;
 import com.io.rol.service.BoardService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
@@ -35,7 +35,7 @@ public class InitDB {
     @Value("classpath:/static/img/")
     Resource resource;
 
-    @PostConstruct
+//    @PostConstruct
     public void init() throws IOException {
         // 관리자 저장
         Member member = Member.builder()

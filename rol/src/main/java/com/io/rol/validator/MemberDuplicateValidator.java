@@ -1,7 +1,7 @@
 package com.io.rol.validator;
 
-import com.io.rol.domain.dto.MemberDto;
-import com.io.rol.respository.MemberRepository;
+import com.io.rol.member.domain.dto.MemberDto;
+import com.io.rol.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

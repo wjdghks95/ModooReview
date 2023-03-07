@@ -10,8 +10,8 @@ $('.sign-up-modal__sms-button').on('click', function() {
         $.ajax({
             // 요청 시작 부분
             type: "GET", // 전송 타입
-            url: "/sendSMS?phone="+phoneNum, //주소
-            async: true, // 비동기 여부
+            url: "/api/SMS", //주소
+            data: {"phoneNum": phoneNum}, // 파라미터
 
             // 응답 확인 부분
             success: function(data) {
@@ -19,6 +19,11 @@ $('.sign-up-modal__sms-button').on('click', function() {
                 $('#user-phone').attr('readonly', true);
                 $('.sign-up-modal__phoneChk').show();
                 code = data;
+            },
+
+            // 응답 실패
+            error: function() {
+                console.log("ajax 통신 실패");
             }
         });
     } else {

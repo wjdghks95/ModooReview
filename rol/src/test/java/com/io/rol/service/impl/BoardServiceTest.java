@@ -1,14 +1,13 @@
 package com.io.rol.service.impl;
 
 import com.io.rol.domain.dto.BoardDto;
-import com.io.rol.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Board;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.BoardRepository;
-import com.io.rol.respository.MemberRepository;
+import com.io.rol.member.repository.MemberRepository;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
-import com.io.rol.service.MemberService;
+import com.io.rol.member.service.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

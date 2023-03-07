@@ -1,11 +1,9 @@
-package com.io.rol.service.impl;
+package com.io.rol.member.service;
 
 import com.io.rol.domain.Role;
 import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.member.repository.MemberRepository;
-import com.io.rol.member.service.MemberService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +15,22 @@ import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
 @Transactional
-class MemberServiceTest {
+public class MemberServiceTest {
 
-    @Autowired EntityManager em;
-    @Autowired PasswordEncoder passwordEncoder;
+    @Autowired
+    EntityManager em;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
+
+    private void clear(){
+        em.flush();
+        em.clear();
+    }
 
     /*
        회원가입
@@ -94,11 +99,6 @@ class MemberServiceTest {
         assertThrows(Exception.class, () -> memberService.join(memberDto4));
         assertThrows(Exception.class, () -> memberService.join(memberDto5));
         assertThrows(Exception.class, () -> memberService.join(memberDto6));
-    }
-
-    private void clear(){
-        em.flush();
-        em.clear();
     }
 
     private MemberDto createMemberDto() {

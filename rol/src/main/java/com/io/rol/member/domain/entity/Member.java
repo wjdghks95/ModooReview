@@ -1,7 +1,10 @@
-package com.io.rol.domain.entity;
+package com.io.rol.member.domain.entity;
 
-import com.io.rol.domain.BaseTimeEntity;
+import com.io.rol.common.auditing.BaseTimeEntity;
 import com.io.rol.domain.Role;
+import com.io.rol.domain.entity.Board;
+import com.io.rol.domain.entity.Follow;
+import com.io.rol.domain.entity.Like;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // 회원 Entity
-@Entity(name = "member")
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseTimeEntity {

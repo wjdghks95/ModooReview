@@ -1,10 +1,10 @@
 package com.io.rol.controller;
 
 import com.io.rol.domain.entity.Board;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
-import com.io.rol.service.MemberService;
+import com.io.rol.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,14 +1,13 @@
-package com.io.rol.service.impl;
+package com.io.rol.member.service;
 
 import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.FindPwdDto;
-import com.io.rol.domain.dto.MemberDto;
+import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.domain.entity.Follow;
 import com.io.rol.domain.entity.Image;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.FollowRepository;
-import com.io.rol.respository.MemberRepository;
-import com.io.rol.service.MemberService;
+import com.io.rol.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,6 @@ import java.util.Optional;
 
 import static com.io.rol.domain.Role.USER;
 
-// 회원 서비스
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

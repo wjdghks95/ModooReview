@@ -2,13 +2,12 @@ package com.io.rol.service.impl;
 
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.CommentRepository;
-import com.io.rol.respository.MemberRepository;
+import com.io.rol.member.repository.MemberRepository;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.service.BoardService;
 import com.io.rol.service.CommentService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,6 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;

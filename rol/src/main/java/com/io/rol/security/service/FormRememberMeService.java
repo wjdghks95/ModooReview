@@ -1,6 +1,6 @@
 package com.io.rol.security.service;
 
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.springframework.security.authentication.AuthenticationDetailsSource;

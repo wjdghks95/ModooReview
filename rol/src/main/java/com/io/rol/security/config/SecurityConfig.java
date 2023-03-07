@@ -50,7 +50,7 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signUp/**", "/logout", "/find/**", "/sendSMS").permitAll()
+                .antMatchers("/", "/login", "/signUp/**", "/logout", "/find/**", "/api/**").permitAll()
                 .antMatchers("/contents/board/new").hasAnyAuthority(USER.value(), ADMIN.value())
                 .antMatchers("/contents/**").permitAll()
                 .antMatchers("/profile/**").permitAll()

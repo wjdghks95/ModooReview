@@ -1,7 +1,6 @@
-package com.io.rol.respository;
+package com.io.rol.member.repository;
 
-import com.io.rol.domain.dto.FindIdDto;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

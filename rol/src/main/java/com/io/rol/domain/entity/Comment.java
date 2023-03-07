@@ -1,6 +1,7 @@
 package com.io.rol.domain.entity;
 
-import com.io.rol.domain.BaseTimeEntity;
+import com.io.rol.common.auditing.BaseTimeEntity;
+import com.io.rol.member.domain.entity.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

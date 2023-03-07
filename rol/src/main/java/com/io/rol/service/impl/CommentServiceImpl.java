@@ -2,7 +2,7 @@ package com.io.rol.service.impl;
 
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.query.CommentQueryRepositoryImpl;
 import com.io.rol.respository.CommentRepository;
 import com.io.rol.service.CommentService;

@@ -1,11 +1,9 @@
-package com.io.rol.controller;
+package com.io.rol.member.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.io.rol.domain.dto.MemberDto;
-import com.io.rol.respository.MemberRepository;
-import com.io.rol.service.MemberService;
-import org.junit.jupiter.api.BeforeEach;
+import com.io.rol.member.domain.dto.MemberDto;
+import com.io.rol.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,7 @@ import org.springframework.util.MultiValueMap;
 import javax.persistence.EntityManager;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
@@ -34,22 +33,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 class MemberControllerTest {
 
-    @Autowired MockMvc mockMvc;
-    @Autowired EntityManager em;
-    @Autowired MemberService memberService;
+    @Autowired
+    MockMvc mockMvc;
+    @Autowired
+    EntityManager em;
+    @Autowired
+    MemberService memberService;
     ObjectMapper objectMapper = new ObjectMapper();
 
-    private String phone = "01012345678";
-    private String email = "admin@admin.com";
-    private String password = "asdf1234!";
-    private String name = "이름";
-    private String nickname = "테스트";
-    private String zipcode = "12345";
-    private String address = "경기도 고양시 일산서구 현중로 10";
-    private String detailAddress = "101동 101호";
+    private static final String PHONE = "01012345678";
+    private static final String EMAIL = "admin@admin.com";
+    private static final String PASSWORD = "asdf1234!";
+    private static final String NAME = "이름";
+    private static final String NICKNAME = "테스트";
+    private static final String ZIPCODE = "12345";
+    private static final String ADDRESS = "주소";
+    private static final String DETAIL_ADDRESS = "상세주소";
 
-    private static String SIGN_UP_URL = "/signUp";
-    private static String LOGIN_URL = "/login";
+    private static final String SIGNUP_URL = "/signUp";
+    private static final String LOGIN_URL = "/login";
 
     private void clear(){
         em.flush();
@@ -66,7 +68,7 @@ class MemberControllerTest {
     @DisplayName("회원가입_성공")
     void signUp_success() throws Exception {
         //given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
 
         //when, then
         signUpPerform(memberDto)
@@ -94,10 +96,23 @@ class MemberControllerTest {
     }
 
     @Test
+    @DisplayName("회원가입_실패_잘못된 이메일 입력")
+    void signUp_failure_badEmail() throws Exception {
+        //given
+        MemberDto memberDto = createMemberDto(PHONE, "asdf", PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
+
+        //when, then
+        signUpPerform(memberDto)
+                .andExpect(model().attributeHasFieldErrors("memberDto", "email"))
+                .andExpect(status().isOk()) // 필드에 오류가 있어도 상태는 200
+                .andDo(print());
+    }
+
+    @Test
     @DisplayName("회원가입_실패_잘못된 비밀번호 입력")
     void signUp_failure_badPassword() throws Exception {
         //given
-        MemberDto memberDto = createMemberDto(phone, email, "1234", name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, "1234", NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
 
         //when, then
         signUpPerform(memberDto)
@@ -107,16 +122,58 @@ class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("회원가입_실패_잘못된 닉네임 입력")
-    void signUp_failure_badNickname() throws Exception {
+    @DisplayName("회원가입_실패_잘못된 이름 입력")
+    void signUp_failure_badName() throws Exception {
         //given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname+"ㄱ", zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, "ㄱㄴ", NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
+
+        //when, then
+        signUpPerform(memberDto)
+                .andExpect(model().attributeHasFieldErrors("memberDto", "name"))
+                .andExpect(status().isOk()) // 필드에 오류가 있어도 상태는 200
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("회원가입_실패_잘못된 닉네임 입력")
+    void signUp_failure_badNICKNAME() throws Exception {
+        //given
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME+"ㄱ", ZIPCODE, ADDRESS, DETAIL_ADDRESS);
 
         //when, then
         signUpPerform(memberDto)
                 .andExpect(model().attributeHasFieldErrors("memberDto", "nickname"))
                 .andExpect(status().isOk()) // 필드에 오류가 있어도 상태는 200
                 .andDo(print());
+    }
+
+    private static MemberDto createMemberDto(String PHONE, String EMAIL, String PASSWORD, String NAME, String NICKNAME, String ZIPCODE, String ADDRESS, String DETAIL_ADDRESS) {
+        return MemberDto.builder()
+                .phone(PHONE)
+                .email(EMAIL)
+                .password(PASSWORD)
+                .name(NAME)
+                .nickname(NICKNAME)
+                .zipcode(ZIPCODE)
+                .address(ADDRESS)
+                .detailAddress(DETAIL_ADDRESS)
+                .build();
+    }
+
+    private ResultActions signUpPerform(MemberDto memberDto) throws Exception {
+        MultiValueMap<String, String> params = setParams(memberDto);
+
+        return mockMvc.perform(post(SIGNUP_URL)
+                .accept(MediaType.APPLICATION_FORM_URLENCODED)
+                .with(csrf())
+                .params(params));
+    }
+
+    private MultiValueMap<String, String> setParams(MemberDto memberDto) {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        Map<String, String> maps = objectMapper.convertValue(memberDto, new TypeReference<>() {});
+        params.setAll(maps);
+        return params;
     }
 
     /*
@@ -128,11 +185,11 @@ class MemberControllerTest {
     @DisplayName("로그인_성공")
     void login_success() throws Exception {
         // given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
         memberService.join(memberDto);
 
         // when, then
-        loginPerform(email, password)
+        loginPerform(EMAIL, PASSWORD)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(authenticated())
                 .andDo(print());
@@ -140,13 +197,13 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("로그인_실패_아이디를 찾을수 없음")
-    void login_failure_notFoundUsername() throws Exception {
+    void login_failure_notFoundUserNAME() throws Exception {
         // given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
         memberService.join(memberDto);
 
         // when, then
-        loginPerform(email+"123", password)
+        loginPerform(EMAIL+"123", PASSWORD)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(unauthenticated())
                 .andDo(print());
@@ -156,50 +213,21 @@ class MemberControllerTest {
     @DisplayName("로그인_실패_패스워드가 틀림")
     void login_failure_badCredentials() throws Exception {
         // given
-        MemberDto memberDto = createMemberDto(phone, email, password, name, nickname, zipcode, address, detailAddress);
+        MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
         memberService.join(memberDto);
 
         // when, then
-        loginPerform(email, password+"123")
+        loginPerform(EMAIL, PASSWORD+"123")
                 .andExpect(status().is3xxRedirection())
                 .andExpect(unauthenticated())
                 .andDo(print());
     }
 
-    private static MemberDto createMemberDto(String phone, String email, String password, String name, String nickname, String zipcode, String address, String detailAddress) {
-        return MemberDto.builder()
-                .phone(phone)
-                .email(email)
-                .password(password)
-                .name(name)
-                .nickname(nickname)
-                .zipcode(zipcode)
-                .address(address)
-                .detailAddress(detailAddress)
-                .build();
-    }
-
-    private MultiValueMap<String, String> setParams(MemberDto memberDto) {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        Map<String, String> maps = objectMapper.convertValue(memberDto, new TypeReference<>() {});
-        params.setAll(maps);
-        return params;
-    }
-
-    private ResultActions signUpPerform(MemberDto memberDto) throws Exception {
-        MultiValueMap<String, String> params = setParams(memberDto);
-
-        return mockMvc.perform(post(SIGN_UP_URL)
-                .accept(MediaType.APPLICATION_FORM_URLENCODED)
-                .with(csrf())
-                .params(params));
-    }
-
-    private ResultActions loginPerform(String email, String password) throws Exception {
+    private ResultActions loginPerform(String EMAIL, String PASSWORD) throws Exception {
         return mockMvc.perform(post(LOGIN_URL)
                 .accept(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("username", email)
-                .param("password", password)
+                .param("userNAME", EMAIL)
+                .param("PASSWORD", PASSWORD)
                 .with(csrf()));
     }
 }

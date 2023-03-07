@@ -1,4 +1,4 @@
-package com.io.rol.config;
+package com.io.rol.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;
@@ -10,9 +10,10 @@ import javax.persistence.EntityManager;
 @Configuration
 public class AppConfig {
 
+    // PasswordEncoder 구현체 Bean 등록
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // 패스워드를 암호화하는 구현체
     }
 
     @Bean

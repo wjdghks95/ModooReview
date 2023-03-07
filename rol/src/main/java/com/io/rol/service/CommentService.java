@@ -2,7 +2,7 @@ package com.io.rol.service;
 
 import com.io.rol.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 
 import java.util.List;
 

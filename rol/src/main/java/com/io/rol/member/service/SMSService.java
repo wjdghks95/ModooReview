@@ -1,4 +1,4 @@
-package com.io.rol.service;
+package com.io.rol.member.service;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
-// 문자 인증 서비스
 @Service
 public class SMSService {
 
@@ -21,10 +20,12 @@ public class SMSService {
     @Value("${coolsms.api.fromnumber}")
     private String fromNumber; // 발신 번호
 
-    public void certifiedPhoneNumber(String toNumber, int randomNumber) {
+    public int certifiedPhoneNumber(String toNumber) {
         String api_key = apiKey; // API KEY 값
         String api_secret = apiSecret; // API Secret 값
         Message coolsms = new Message(api_key, api_secret);
+
+        int randomNumber = (int) ((Math.random() * (9999 - 1000 + 1)) + 1000);// 난수 생성
 
         HashMap<String, String> params = new HashMap<>();
         params.put("to",toNumber ); // 수신 전화번호
@@ -40,5 +41,7 @@ public class SMSService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
+
+        return randomNumber;
     }
 }

@@ -1,7 +1,7 @@
 package com.io.rol.controller;
 
-import com.io.rol.domain.entity.Member;
-import com.io.rol.respository.MemberRepository;
+import com.io.rol.member.domain.entity.Member;
+import com.io.rol.member.repository.MemberRepository;
 import com.io.rol.security.context.MemberContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

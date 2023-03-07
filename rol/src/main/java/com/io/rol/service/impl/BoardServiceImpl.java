@@ -2,6 +2,7 @@ package com.io.rol.service.impl;
 
 import com.io.rol.domain.dto.BoardDto;
 import com.io.rol.domain.entity.*;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.BoardRepository;
 import com.io.rol.respository.CategoryRepository;
 import com.io.rol.respository.LikeRepository;

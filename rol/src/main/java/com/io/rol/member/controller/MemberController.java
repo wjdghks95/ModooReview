@@ -1,11 +1,11 @@
-package com.io.rol.controller;
+package com.io.rol.member.controller;
 
 import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.FindPwdDto;
-import com.io.rol.domain.dto.MemberDto;
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.dto.MemberDto;
+import com.io.rol.member.domain.entity.Member;
+import com.io.rol.member.service.MemberService;
 import com.io.rol.service.MailService;
-import com.io.rol.service.MemberService;
 import com.io.rol.validator.MemberDuplicateValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,33 +20,32 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-// 회원 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemberDuplicateValidator memberDuplicateValidator;
+    private final MemberDuplicateValidator memberDuplicateValidator; // 회원 중복 검사기
     private final MailService mailService;
 
     @InitBinder("memberDto")
     public void memberValidation(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
-        dataBinder.addValidators(memberDuplicateValidator); // 회원 중복 검사
+        dataBinder.addValidators(memberDuplicateValidator);
     }
 
     // 회원가입 화면
     @GetMapping("/signUp")
     public String signUpForm(Model model) {
         model.addAttribute("memberDto", new MemberDto());
-        return "signUp";
+        return "account/signUp";
     }
 
     // 회원가입
     @PostMapping("/signUp")
     public String signUp(@Validated @ModelAttribute MemberDto memberDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) { // memberDto biding 과정에 오류가 존재하는 경우
-            return "signUp";
+        if (bindingResult.hasErrors()) { // memberDto biding 과정에 오류가 존재하는 경우 오류 메시지와 함께 다시 화면을 띄움
+            return "account/signUp";
         }
 
         memberService.join(memberDto);

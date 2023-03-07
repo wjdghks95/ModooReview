@@ -1,6 +1,6 @@
 package com.io.rol.security.context;
 
-import com.io.rol.domain.entity.Member;
+import com.io.rol.member.domain.entity.Member;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

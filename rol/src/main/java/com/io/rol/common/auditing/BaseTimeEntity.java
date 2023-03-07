@@ -1,4 +1,4 @@
-package com.io.rol.domain;
+package com.io.rol.common.auditing;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
