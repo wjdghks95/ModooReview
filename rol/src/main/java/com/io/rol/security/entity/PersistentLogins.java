@@ -1,4 +1,4 @@
-package com.io.rol.security.token;
+package com.io.rol.security.entity;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
