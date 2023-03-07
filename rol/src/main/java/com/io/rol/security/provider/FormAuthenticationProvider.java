@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-// Form 로그인 인증 처리자
 @Component
 @RequiredArgsConstructor
 public class FormAuthenticationProvider implements AuthenticationProvider {
@@ -26,8 +25,12 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
 
         MemberContext memberContext = (MemberContext) userDetailsService.loadUserByUsername(username); // UserDetails 반환
 
+        if (memberContext == null) { // 회원 존재 유무 검증
+            throw new BadCredentialsException("username is not found. username=" + username);
+        }
+
         if (!passwordEncoder.matches(password, memberContext.getPassword())) { // 패스워드 검증
-            throw new BadCredentialsException("BadCredentialsException");
+            throw new BadCredentialsException("password is not matched");
         }
 
         // AuthenticationManager 에 UsernamePasswordAuthenticationToken 전달

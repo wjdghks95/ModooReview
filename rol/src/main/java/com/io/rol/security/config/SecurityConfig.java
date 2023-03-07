@@ -23,7 +23,6 @@ import javax.sql.DataSource;
 
 import static com.io.rol.domain.Role.*;
 
-// 시큐리티 설정
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -50,7 +49,7 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signUp/**", "/logout", "/find/**", "/api/**").permitAll()
+                .antMatchers("/", "/login", "/signUp", "/logout", "/api/**", "/find/**").permitAll()
                 .antMatchers("/contents/board/new").hasAnyAuthority(USER.value(), ADMIN.value())
                 .antMatchers("/contents/**").permitAll()
                 .antMatchers("/profile/**").permitAll()

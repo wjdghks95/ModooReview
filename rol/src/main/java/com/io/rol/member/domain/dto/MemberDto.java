@@ -24,7 +24,7 @@ public class MemberDto {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", message = "비밀번호는 8자 이상이어야 합니다. 숫자, 특수문자를 1개 이상 포함해야 합니다.")
     private String password; // 비밀번호
 
-    @Pattern(regexp = "^[가-힣]{2,6}$]", message = "올바른 이름을 입력해주세요.")
+    @Pattern(regexp = "^[가-힣]{2,6}$", message = "올바른 이름을 입력해주세요.")
     private String name; // 이름
 
     @Pattern(regexp = "^(?=.*[A-Za-z0-9가-힣])[A-Za-z0-9가-힣]{2,16}$", message = "닉네임은 특수문자를 포함하지 않은 2~16자 이어야 합니다.")

@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-// 회원의 권한과 정보를 담는 인증 객체
 @Getter
 public class MemberContext implements UserDetails, OAuth2User {
 

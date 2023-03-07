@@ -14,17 +14,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-// Form 로그인 사용자 정보 조회 서비스
 @Service
 @RequiredArgsConstructor
-public class FormUserDetailService implements UserDetailsService {
+public class FormUserDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 사용자가 입력한 아이디(이메일)로 해당 Member를 저장소에서 찾음
-        Member member = memberRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
+        Member member = memberRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("username is not found. username=" + username));
 
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(member.getRole().value()));

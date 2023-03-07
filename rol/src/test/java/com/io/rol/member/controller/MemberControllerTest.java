@@ -42,7 +42,7 @@ class MemberControllerTest {
     ObjectMapper objectMapper = new ObjectMapper();
 
     private static final String PHONE = "01012345678";
-    private static final String EMAIL = "admin@admin.com";
+    private static final String EMAIL = "test@test.com";
     private static final String PASSWORD = "asdf1234!";
     private static final String NAME = "이름";
     private static final String NICKNAME = "테스트";
@@ -136,7 +136,7 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("회원가입_실패_잘못된 닉네임 입력")
-    void signUp_failure_badNICKNAME() throws Exception {
+    void signUp_failure_badNickname() throws Exception {
         //given
         MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME+"ㄱ", ZIPCODE, ADDRESS, DETAIL_ADDRESS);
 
@@ -197,13 +197,13 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("로그인_실패_아이디를 찾을수 없음")
-    void login_failure_notFoundUserNAME() throws Exception {
+    void login_failure_notFoundUsername() throws Exception {
         // given
         MemberDto memberDto = createMemberDto(PHONE, EMAIL, PASSWORD, NAME, NICKNAME, ZIPCODE, ADDRESS, DETAIL_ADDRESS);
         memberService.join(memberDto);
 
         // when, then
-        loginPerform(EMAIL+"123", PASSWORD)
+        loginPerform("hello@test.com", PASSWORD)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(unauthenticated())
                 .andDo(print());
@@ -226,8 +226,8 @@ class MemberControllerTest {
     private ResultActions loginPerform(String EMAIL, String PASSWORD) throws Exception {
         return mockMvc.perform(post(LOGIN_URL)
                 .accept(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("userNAME", EMAIL)
-                .param("PASSWORD", PASSWORD)
+                .param("username", EMAIL)
+                .param("password", PASSWORD)
                 .with(csrf()));
     }
 }

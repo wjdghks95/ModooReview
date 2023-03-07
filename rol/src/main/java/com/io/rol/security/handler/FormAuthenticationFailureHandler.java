@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-// Form 로그인 실패 처리 핸들러
 @Component
 public class FormAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
