@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.io.rol.domain.Role.USER;
+import static com.io.rol.member.domain.entity.Role.USER;
 
 // OAuth2 로그인 유저 서비스
 @Service

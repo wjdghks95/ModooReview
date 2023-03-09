@@ -1,10 +1,12 @@
 package com.io.rol.controller;
 
+import com.io.rol.board.domain.entity.Board;
+import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.domain.dto.NicknameDto;
 import com.io.rol.domain.entity.*;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
-import com.io.rol.service.ImageService;
+import com.io.rol.Image.service.ImageService;
 import com.io.rol.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

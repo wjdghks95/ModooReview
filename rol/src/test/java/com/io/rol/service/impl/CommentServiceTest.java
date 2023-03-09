@@ -1,12 +1,12 @@
 package com.io.rol.service.impl;
 
-import com.io.rol.domain.entity.Board;
+import com.io.rol.board.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.respository.CommentRepository;
 import com.io.rol.member.repository.MemberRepository;
 import com.io.rol.security.context.MemberContext;
-import com.io.rol.service.BoardService;
+import com.io.rol.board.service.BoardService;
 import com.io.rol.service.CommentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

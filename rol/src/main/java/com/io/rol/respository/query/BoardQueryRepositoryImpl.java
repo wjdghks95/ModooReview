@@ -1,6 +1,6 @@
 package com.io.rol.respository.query;
 
-import com.io.rol.domain.entity.Board;
+import com.io.rol.board.domain.entity.Board;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;

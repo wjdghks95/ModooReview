@@ -1,6 +1,6 @@
 package com.io.rol.member.service;
 
-import com.io.rol.domain.Role;
+import com.io.rol.member.domain.entity.Role;
 import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.member.exception.MemberException;

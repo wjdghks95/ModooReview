@@ -3,7 +3,7 @@ package com.io.rol.member.service;
 import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.FindPwdDto;
 import com.io.rol.member.domain.dto.MemberDto;
-import com.io.rol.domain.entity.Image;
+import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.member.domain.entity.Member;
 
 public interface MemberService {

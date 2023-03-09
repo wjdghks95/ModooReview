@@ -1,8 +1,8 @@
 package com.io.rol.controller;
 
-import com.io.rol.domain.entity.Board;
+import com.io.rol.board.domain.entity.Board;
 import com.io.rol.member.domain.entity.Member;
-import com.io.rol.service.BoardService;
+import com.io.rol.board.service.BoardService;
 import com.io.rol.member.service.MemberService;
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.RequiredArgsConstructor;

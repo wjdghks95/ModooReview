@@ -1,6 +1,6 @@
 package com.io.rol.validator;
 
-import com.io.rol.domain.dto.BoardDto;
+import com.io.rol.board.domain.dto.BoardDto;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -21,9 +21,9 @@ public class FileValidator implements Validator {
         BoardDto boardDto = (BoardDto) target;
         List<MultipartFile> file = boardDto.getFile();
 
-        for (MultipartFile f : file) {
+        for (MultipartFile MultipartFile : file) {
             // 파일이 존재하지 않는 경우
-            if (f.isEmpty()) {
+            if (MultipartFile.isEmpty()) {
                 errors.rejectValue("file", "validate.invalid.file", new Object[]{boardDto.getFile()}, "사진을 한 개 이상 등록해주세요.");
             }
         }

@@ -1,8 +1,6 @@
 package com.io.rol.respository.query;
 
-import com.io.rol.domain.entity.BoardTag;
-import com.io.rol.domain.entity.QBoardTag;
-import com.querydsl.core.types.Predicate;
+import com.io.rol.tag.domain.entity.BoardTag;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

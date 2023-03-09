@@ -1,6 +1,6 @@
 package com.io.rol.service;
 
-import com.io.rol.domain.entity.Board;
+import com.io.rol.board.domain.entity.Board;
 import com.io.rol.domain.entity.Comment;
 import com.io.rol.member.domain.entity.Member;
 

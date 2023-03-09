@@ -1,6 +1,6 @@
 package com.io.rol.respository.query;
 
-import com.io.rol.domain.entity.BoardTag;
+import com.io.rol.tag.domain.entity.BoardTag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

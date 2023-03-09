@@ -21,7 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-import static com.io.rol.domain.Role.*;
+import static com.io.rol.member.domain.entity.Role.*;
 
 @Configuration
 @RequiredArgsConstructor
