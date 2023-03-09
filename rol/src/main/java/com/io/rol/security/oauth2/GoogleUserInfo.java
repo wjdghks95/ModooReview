@@ -2,7 +2,6 @@ package com.io.rol.security.oauth2;
 
 import java.util.Map;
 
-// 구글
 public class GoogleUserInfo implements OAuth2UserInfo{
 
     private Map<String, Object> attributes;
