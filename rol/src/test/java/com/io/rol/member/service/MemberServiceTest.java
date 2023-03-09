@@ -3,6 +3,8 @@ package com.io.rol.member.service;
 import com.io.rol.domain.Role;
 import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
+import com.io.rol.member.exception.MemberException;
+import com.io.rol.member.exception.MemberExceptionType;
 import com.io.rol.member.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,7 +51,7 @@ public class MemberServiceTest {
         clear();
 
         // then
-        Member member = memberRepository.findById(joinMemberId).orElseThrow(() -> new IllegalArgumentException("IllegalArgumentException"));
+        Member member = memberRepository.findById(joinMemberId).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
         assertNotNull(member);
         assertEquals(joinMemberId, member.getId());
         assertEquals(memberDto.getPhone(), member.getPhone());
