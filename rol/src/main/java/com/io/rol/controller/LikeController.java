@@ -22,7 +22,7 @@ public class LikeController {
     // 좋아요
     @GetMapping("/like.do")
     public int like(@AuthenticationPrincipal MemberContext memberContext, @RequestParam Long id) {
-        Member loginMember = memberService.findMember(memberContext.getMember().getId());
+        Member loginMember = memberService.getMember(memberContext.getMember().getId());
         Board board = boardService.findBoard(id);
         boardService.like(loginMember, board);
 

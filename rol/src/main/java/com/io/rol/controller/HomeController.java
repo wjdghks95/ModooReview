@@ -39,7 +39,7 @@ public class HomeController {
         model.addAttribute("viewsSortedBoardList", viewsSortedBoardList);
 
         // 관리자 등록
-        Member admin = memberService.findMember(1L);
+        Member admin = memberService.getMember(1L);
         List<Board> adminBoardList = admin.getBoardList();
         model.addAttribute("adminBoardList", adminBoardList);
 

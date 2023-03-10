@@ -4,6 +4,7 @@ import com.io.rol.board.domain.entity.Board;
 import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.domain.dto.NicknameDto;
 import com.io.rol.domain.entity.*;
+import com.io.rol.follow.domain.entity.Follow;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.Image.service.ImageService;
@@ -36,7 +37,7 @@ public class MyPageController {
     // 마이페이지 - 프로필
     @GetMapping("/{id}/profile")
     public String profile(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (member.getId() != memberContext.getMember().getId()) {
             return "redirect:/";
@@ -49,7 +50,7 @@ public class MyPageController {
     // 마이페이지 - 프로필 이미지 수정
     @PostMapping("/{id}/profile/profileImg")
     public String updateProfileImg(@PathVariable Long id, MultipartFile multipartFile) throws IOException {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
         Image image = imageService.saveImage(multipartFile);
         memberService.profileImgModify(member, image);
 
@@ -60,7 +61,7 @@ public class MyPageController {
     @PostMapping("/{id}/profile/nickname")
     public String updateNickname(@PathVariable Long id, @ModelAttribute @Validated NicknameDto nicknameDto,
                                  BindingResult bindingResult, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("member", member);
@@ -77,7 +78,7 @@ public class MyPageController {
     // 마이페이지 - 나의 리뷰
     @GetMapping("/{id}/myReview")
     public String myReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (member.getId() != memberContext.getMember().getId()) {
             return "redirect:/";
@@ -93,7 +94,7 @@ public class MyPageController {
     // 마이페이지 - 좋아요
     @GetMapping("/{id}/like")
     public String myLike(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (member.getId() != memberContext.getMember().getId()) {
             return "redirect:/";
@@ -113,7 +114,7 @@ public class MyPageController {
     // 마이페이지 - 팔로잉
     @GetMapping("/{id}/following")
     public String following(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (member.getId() != memberContext.getMember().getId()) {
             return "redirect:/";
@@ -134,7 +135,7 @@ public class MyPageController {
     // 마이페이지 - 회원탈퇴
     @GetMapping("/{id}/withdrawal")
     public String withdrawalForm(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext, Model model) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
 
         if (member.getId() != memberContext.getMember().getId()) {
             return "redirect:/";
@@ -149,7 +150,7 @@ public class MyPageController {
     @PostMapping("/{id}/withdrawal")
     @ResponseBody
     public boolean withdrawal(@PathVariable Long id, @RequestParam String pwd) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
         if (passwordEncoder.matches(pwd, member.getPassword())) {
             memberService.withdrawal(member);
             SecurityContextHolder.clearContext();

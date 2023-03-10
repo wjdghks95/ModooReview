@@ -1,6 +1,6 @@
-package com.io.rol.respository;
+package com.io.rol.follow.repository;
 
-import com.io.rol.domain.entity.Follow;
+import com.io.rol.follow.domain.entity.Follow;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

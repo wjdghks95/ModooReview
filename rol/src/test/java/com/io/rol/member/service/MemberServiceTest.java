@@ -1,8 +1,10 @@
 package com.io.rol.member.service;
 
-import com.io.rol.member.domain.entity.Role;
+import com.io.rol.follow.domain.entity.Follow;
+import com.io.rol.follow.repository.FollowRepository;
 import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
+import com.io.rol.member.domain.entity.Role;
 import com.io.rol.member.exception.MemberException;
 import com.io.rol.member.exception.MemberExceptionType;
 import com.io.rol.member.repository.MemberRepository;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,11 +26,10 @@ public class MemberServiceTest {
 
     @Autowired
     EntityManager em;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    @Autowired PasswordEncoder passwordEncoder;
     @Autowired MemberService memberService;
-    @Autowired
-    MemberRepository memberRepository;
+    @Autowired MemberRepository memberRepository;
+    @Autowired FollowRepository followRepository;
 
     private void clear(){
         em.flush();
@@ -114,5 +116,62 @@ public class MemberServiceTest {
                 .address("주소")
                 .detailAddress("상세주소")
                 .build();
+    }
+
+    /*
+        팔로우
+            이미 팔로우 중이라면 팔로우를 삭제하고 아니라면 팔로우를 저장한다.
+     */
+    @Test
+    @DisplayName("팔로우_저장")
+    void follow_save() {
+        // given
+        MemberDto memberDto = createMemberDto();
+        Long id1 = memberService.join(memberDto);
+
+        memberDto.setEmail("test2@test.com");
+        memberDto.setNickname("테스트2");
+        Long id2 = memberService.join(memberDto);
+
+        Member follower = memberRepository.findById(id1).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
+        Member following = memberRepository.findById(id2).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
+
+        // when
+        memberService.follow(follower, following);
+        boolean empty = memberService.isFollow(follower.getId(), following.getId());
+
+        // then
+        List<Follow> followingList = follower.getFollowingList();
+        List<Follow> followerList = following.getFollowerList();
+
+        assertFalse(empty);
+        assertEquals(followingList.size(), 1);
+        assertEquals(followingList.get(0).getFollowing().getId(), following.getId());
+        assertEquals(followerList.size(), 1);
+        assertEquals(followerList.get(0).getFollower().getId(), follower.getId());
+    }
+
+    @Test
+    @DisplayName("팔로우_삭제")
+    void follow_delete() {
+        // given
+        MemberDto memberDto = createMemberDto();
+        Long id1 = memberService.join(memberDto);
+
+        memberDto.setEmail("test2@test.com");
+        memberDto.setNickname("테스트2");
+        Long id2 = memberService.join(memberDto);
+
+        Member loginMember = memberRepository.findById(id1).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
+        Member followingMember = memberRepository.findById(id2).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
+
+        // when
+        memberService.follow(loginMember, followingMember);
+        clear();
+        memberService.follow(loginMember, followingMember);
+
+        // then
+        boolean empty = memberService.isFollow(loginMember.getId(), followingMember.getId());
+        assertTrue(empty);
     }
 }

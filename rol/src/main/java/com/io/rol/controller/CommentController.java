@@ -31,7 +31,7 @@ public class CommentController {
     public String addComment(@AuthenticationPrincipal MemberContext memberContext, @RequestParam String content, @RequestParam Long id,
                           Model model) {
         Board board = boardService.findBoard(id);
-        Member loginMember = memberService.findMember(memberContext.getMember().getId());
+        Member loginMember = memberService.getMember(memberContext.getMember().getId());
         commentService.insert(board, loginMember, content);
         List<Comment> comments = commentService.getList(id);
 
@@ -47,7 +47,7 @@ public class CommentController {
                              Model model) {
         commentService.remove(index);
 
-        Member loginMember = memberService.findMember(memberContext.getMember().getId());
+        Member loginMember = memberService.getMember(memberContext.getMember().getId());
         List<Comment> comments = commentService.getList(id);
 
         model.addAttribute("comments", comments);

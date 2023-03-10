@@ -27,7 +27,7 @@ public class ProfileController {
     // 프로필
     @GetMapping("/{id}")
     public String portfolio(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
         Member loginMember = memberContext != null ? memberContext.getMember() : null;
 
         List<Board> boardList = member.getBoardList();
@@ -50,7 +50,7 @@ public class ProfileController {
     // 프로필 작성 게시글 목록
     @GetMapping("/{id}/boardList")
     public String reviewList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
         Member loginMember = memberContext != null ? memberContext.getMember() : null;
 
         List<Board> boardList = member.getBoardList();
@@ -69,7 +69,7 @@ public class ProfileController {
     // 프로필 좋아요한 게시글 목록
     @GetMapping("/{id}/likeList")
     public String likeList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        Member member = memberService.findMember(id);
+        Member member = memberService.getMember(id);
         Member loginMember = memberContext != null ? memberContext.getMember() : null;
 
         List<Like> likeList = member.getLikeList();

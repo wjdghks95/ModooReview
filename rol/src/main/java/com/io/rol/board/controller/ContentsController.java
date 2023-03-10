@@ -61,7 +61,7 @@ public class ContentsController {
             return "contents/boardForm";
         }
 
-        Member writer = memberService.findMember(memberContext.getMember().getId());
+        Member writer = memberService.getMember(memberContext.getMember().getId());
         Long id = boardService.write(boardDto, writer);
         return "redirect:/contents/board/" + id;
     }
@@ -80,7 +80,7 @@ public class ContentsController {
 
         if (memberContext != null) {
             Long memberContextId = memberContext.getMember().getId();
-            Member loginMember = memberService.findMember(memberContextId);
+            Member loginMember = memberService.getMember(memberContextId);
             boolean isFollow = memberService.isFollow(loginMember.getId(), board.getMember().getId());
             boolean isLike = boardService.isLike(loginMember.getId(), board.getId());
 

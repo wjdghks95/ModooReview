@@ -1,22 +1,19 @@
 package com.io.rol.member.service;
 
+import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.domain.dto.FindIdDto;
 import com.io.rol.domain.dto.FindPwdDto;
 import com.io.rol.member.domain.dto.MemberDto;
-import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.member.domain.entity.Member;
 
 public interface MemberService {
     Long join(MemberDto memberDto); // 회원가입
 
-    // 단일 회원 조회
-    Member findMember(Long id);
+    Member getMember(Long id); // 단일 회원 조회
 
-    // 로그인한 member가 현재 page member를 팔로우하지 않은 경우 false
-    boolean isFollow(Long followerId, Long followingId);
+    boolean isFollow(Long followerId, Long followingId); // 팔로우 여부
 
-    // 팔로우
-    void follow(Member follower, Member following);
+    void follow(Member follower, Member following); // 팔로우
 
     // 닉네임 변경
     void nicknameModify(Member member, String nickname);
