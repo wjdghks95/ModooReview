@@ -38,11 +38,6 @@ public class HomeController {
         model.addAttribute("createdDateSortedBoardList", createdDateSortedBoardList);
         model.addAttribute("viewsSortedBoardList", viewsSortedBoardList);
 
-        // 관리자 등록
-        Member admin = memberService.getMember(1L);
-        List<Board> adminBoardList = admin.getBoardList();
-        model.addAttribute("adminBoardList", adminBoardList);
-
         return "index";
     }
 }

@@ -1,9 +1,15 @@
-package com.io.rol.controller;
+package com.io.rol.comment.controller;
 
-import com.io.rol.domain.entity.Comment;
+import com.io.rol.board.domain.entity.Board;
+import com.io.rol.board.repository.BoardRepository;
+import com.io.rol.comment.domain.entity.Comment;
+import com.io.rol.comment.repository.CommentRepository;
+import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
-import com.io.rol.respository.CommentRepository;
+import com.io.rol.member.exception.MemberException;
+import com.io.rol.member.exception.MemberExceptionType;
 import com.io.rol.member.repository.MemberRepository;
+import com.io.rol.member.service.MemberService;
 import com.io.rol.security.context.MemberContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,24 +33,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-class CommentControllerTest {
+class CommentApiControllerTest {
 
     @Autowired MockMvc mockMvc;
     @Autowired EntityManager em;
+    @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
+    @Autowired BoardRepository boardRepository;
     @Autowired CommentRepository commentRepository;
-    private static String USERNAME = "user@test.com";
-    private static String ADD_Comment_URL = "/comment.do";
-    private static String DEL_Comment_URL = "/comment.de";
-    private static String CONTENT = "댓글";
+    private static final String USERNAME = "test@test.com";
+    private static final String ADD_COMMENT_URL = "/api/comment";
+    private static final String DEL_COMMENT_URL = "/api/comment";
+    private static final String CONTENT = "댓글";
 
     private void clear(){
         em.flush();
@@ -53,7 +60,10 @@ class CommentControllerTest {
 
     @BeforeEach
     private void setAuthentication() throws Exception {
-        Member member = memberRepository.findByEmail(USERNAME).orElseThrow(() -> new UsernameNotFoundException("UsernameNotFoundException"));
+        Board board = Board.builder().title("테스트").description("테스트").build();
+        boardRepository.save(board);
+        memberService.join(createMemberDto());
+        Member member = memberRepository.findByEmail(USERNAME).orElseThrow(() -> new MemberException(MemberExceptionType.NOT_FOUND_MEMBER));
 
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(member.getRole().value()));
@@ -64,6 +74,19 @@ class CommentControllerTest {
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(memberContext, null, roles));
         SecurityContextHolder.setContext(securityContext);
         clear();
+    }
+
+    private MemberDto createMemberDto() {
+        return MemberDto.builder()
+                .phone("01012345678")
+                .email(USERNAME)
+                .password("asdf1234!")
+                .name("이름")
+                .nickname("테스트")
+                .zipcode("12345")
+                .address("주소")
+                .detailAddress("상세주소")
+                .build();
     }
 
     // 댓글 작성
@@ -93,7 +116,7 @@ class CommentControllerTest {
     }
 
     private ResultActions newComment(String content) throws Exception {
-        return mockMvc.perform(post(ADD_Comment_URL)
+        return mockMvc.perform(post(ADD_COMMENT_URL)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("content", content)
                 .param("id", "1")
@@ -101,7 +124,7 @@ class CommentControllerTest {
     }
 
     private ResultActions delComment(Comment comment) throws Exception {
-        return mockMvc.perform(get(DEL_Comment_URL)
+        return mockMvc.perform(delete(DEL_COMMENT_URL)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("index", String.valueOf(comment.getId()))
                 .param("id", "1")

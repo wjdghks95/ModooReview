@@ -60,7 +60,7 @@ public class MemberController {
         if (isError) {
             model.addAttribute("errorMsg", exception);
         }
-        return "login";
+        return "account/login";
     }
 
     // 아이디 찾기 화면

@@ -1,4 +1,4 @@
-package com.io.rol.domain.entity;
+package com.io.rol.comment.domain.entity;
 
 import com.io.rol.board.domain.entity.Board;
 import com.io.rol.common.auditing.BaseTimeEntity;
@@ -37,7 +37,7 @@ public class Comment extends BaseTimeEntity {
         this.content = content;
     }
 
-    // 연관관계 메서드
+    //== 연관관계 메서드 ==//
     public void setMember(Member member) {
         this.member = member;
     }

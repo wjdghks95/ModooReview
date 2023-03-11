@@ -9,7 +9,7 @@ import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.board.service.BoardService;
 import com.io.rol.tag.service.BoardTagService;
-import com.io.rol.service.CommentService;
+import com.io.rol.comment.service.CommentService;
 import com.io.rol.member.service.MemberService;
 import com.io.rol.validator.FileValidator;
 import lombok.RequiredArgsConstructor;
@@ -73,7 +73,7 @@ public class ContentsController {
         boardService.incrementViews(board); // 조회수 증가
         model.addAttribute("board", board);
 
-        List<Comment> comments = commentService.getList(id);
+        List<Comment> comments = commentService.getCommentList(id);
         if (comments != null && !comments.isEmpty()) {
             model.addAttribute("comments", comments);
         }

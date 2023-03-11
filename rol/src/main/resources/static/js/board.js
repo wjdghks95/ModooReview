@@ -35,7 +35,7 @@ $('.board__follow-button').on('click', function() {
         const id = $(".board__author").attr("data-index");
 
         $.ajax({
-            url: "/follow.do",
+            url: "/api/follow",
             method: "GET",
             data: {"id" : id},
             success: function() {
@@ -82,7 +82,7 @@ function addComment() {
     } else {
         $(".error-msg").text('');
         $.ajax({
-            url: "/comment.do",
+            url: "/api/comment",
             method: "POST",
             data: {"id" : id,
                     "content" : content},
@@ -104,15 +104,21 @@ function addComment() {
 // 댓글 삭제
 $(document).on('click', '.comments__del-button', function() {
     if(confirm('댓글을 삭제하시겠습니까?')) {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
         const href = location.href;
         const id = href.substring(href.indexOf('board/')+6);
         const index = $(this).parents('.comments__item').attr('data-idx');
 
         $.ajax({
-            url: "/comment.de",
-            method: "GET",
+            url: "/api/comment",
+            method: "DELETE",
             data: {"id" : id,
                     "index" : index},
+            beforeSend : function(xhr){
+                    xhr.setRequestHeader(header, token);
+            },
             success: function(result) {
                 $('#commentList').replaceWith(result);
             },
