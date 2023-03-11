@@ -2,7 +2,8 @@ package com.io.rol.board.domain.entity;
 
 import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.category.domain.entity.Category;
-import com.io.rol.domain.entity.*;
+import com.io.rol.comment.domain.entity.Comment;
+import com.io.rol.like.domain.entity.Like;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.tag.domain.entity.BoardTag;
 import lombok.AccessLevel;

@@ -75,7 +75,7 @@ class CommentServiceTest {
     @DisplayName("댓글 작성")
     void addComment() {
         // given
-        Board board = boardService.findBoard(1L);
+        Board board = boardService.getBoard(1L);
         MemberContext memberContext = (MemberContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // when
@@ -93,7 +93,7 @@ class CommentServiceTest {
     @DisplayName("댓글 작성_실패_내용을 입력하지 않음")
     void addCommentFailure() {
         // given
-        Board board = boardService.findBoard(1L);
+        Board board = boardService.getBoard(1L);
         MemberContext memberContext = (MemberContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // when, then
@@ -105,7 +105,7 @@ class CommentServiceTest {
     @DisplayName("댓글 삭제")
     void removeComment() {
         // given
-        Board board = boardService.findBoard(1L);
+        Board board = boardService.getBoard(1L);
         MemberContext memberContext = (MemberContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long id = commentService.insert(board, memberContext.getMember(), CONTENT);
         clear();

@@ -4,7 +4,7 @@ import com.io.rol.board.domain.dto.BoardDto;
 import com.io.rol.domain.dto.PageDto;
 import com.io.rol.board.domain.entity.Board;
 import com.io.rol.tag.domain.entity.BoardTag;
-import com.io.rol.domain.entity.Comment;
+import com.io.rol.comment.domain.entity.Comment;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.board.service.BoardService;
@@ -68,8 +68,8 @@ public class ContentsController {
 
     // 게시글
     @GetMapping("/board/{id}")
-    public String getBoard(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        Board board = boardService.findBoard(id);
+    public String board(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
+        Board board = boardService.getBoard(id);
         boardService.incrementViews(board); // 조회수 증가
         model.addAttribute("board", board);
 
@@ -95,7 +95,7 @@ public class ContentsController {
     // 게시글 수정 화면
     @GetMapping("/board/{id}/edit")
     public String boardEditForm(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
-        Board board = boardService.findBoard(id);
+        Board board = boardService.getBoard(id);
         if (memberContext.getMember().getId() != board.getMember().getId() || memberContext.getMember() == null) {
             return "redirect:/";
         }
@@ -115,7 +115,7 @@ public class ContentsController {
     @PostMapping("/board/{id}/edit")
     public String edit(@PathVariable Long id, @Validated @ModelAttribute BoardDto boardDto,
                        BindingResult bindingResult, Model model) throws IOException {
-        Board board = boardService.findBoard(id);
+        Board board = boardService.getBoard(id);
         model.addAttribute("board", board);
 
         if (bindingResult.hasErrors()) {
@@ -131,7 +131,7 @@ public class ContentsController {
     @DeleteMapping("/board/{id}/edit")
     @ResponseBody
     public void deleteReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
-        Board board = boardService.findBoard(id);
+        Board board = boardService.getBoard(id);
         if (memberContext.getMember().getId() != board.getMember().getId() || memberContext.getMember() == null) {
             throw new IllegalStateException();
         }
@@ -143,7 +143,7 @@ public class ContentsController {
     public String contents(@PageableDefault(size = 12) Pageable pageable, Model model,
                            @RequestParam(required = false) String category,
                            @RequestParam(required = false) String keyword) {
-        Page<Board> boardList = boardService.getList(pageable, category, keyword);
+        Page<Board> boardList = boardService.getBoardList(pageable, category, keyword);
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("page", new PageDto(boardList.getTotalElements(), pageable));
@@ -156,7 +156,7 @@ public class ContentsController {
     public String loadContents(@PageableDefault(size = 12) Pageable pageable, Model model,
                                @RequestParam(required = false) String category,
                                @RequestParam(required = false) String keyword) {
-        Page<Board> boardList = boardService.getList(pageable, category, keyword);
+        Page<Board> boardList = boardService.getBoardList(pageable, category, keyword);
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("page", new PageDto(boardList.getTotalElements(), pageable));

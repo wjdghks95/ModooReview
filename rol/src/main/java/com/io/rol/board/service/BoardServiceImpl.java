@@ -4,13 +4,15 @@ import com.io.rol.Image.domain.entity.Image;
 import com.io.rol.Image.service.ImageService;
 import com.io.rol.board.domain.dto.BoardDto;
 import com.io.rol.board.domain.entity.Board;
+import com.io.rol.board.exception.BoardException;
+import com.io.rol.board.exception.BoardExceptionType;
+import com.io.rol.board.repository.BoardQueryRepository;
 import com.io.rol.board.repository.BoardRepository;
 import com.io.rol.category.domain.entity.Category;
 import com.io.rol.category.repository.CategoryRepository;
-import com.io.rol.domain.entity.Like;
+import com.io.rol.like.domain.entity.Like;
+import com.io.rol.like.repository.LikeRepository;
 import com.io.rol.member.domain.entity.Member;
-import com.io.rol.respository.LikeRepository;
-import com.io.rol.respository.query.BoardQueryRepository;
 import com.io.rol.tag.domain.entity.Tag;
 import com.io.rol.tag.service.BoardTagService;
 import com.io.rol.tag.service.TagService;
@@ -23,8 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -65,14 +65,23 @@ public class BoardServiceImpl implements BoardService {
 
     // 게시글 단건 조회
     @Override
-    public Board findBoard(Long id) {
-        return boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException("NoSuchElementException"));
+    public Board getBoard(Long id) {
+        return boardRepository.findById(id).orElseThrow(() -> new BoardException(BoardExceptionType.BOARD_NOT_FOUND));
+    }
+
+    /*
+       리뷰 목록 페이징 조회
+         - 카테고리 또는 키워드가 있는 경우 해당 목록 페이징 조회
+     */
+    @Override
+    public Page<Board> getBoardList(Pageable pageable, String category, String keyword) {
+        return boardQueryRepository.findPagingBoardList(pageable, category, keyword);
     }
 
 
     /*
         좋아요 여부
-        로그인한 member가 현재 게시글을 좋아요 하지 않은 경우 true
+            로그인한 member가 현재 게시글을 좋아요 하지 않은 경우 true
      */
     @Override
     public boolean isLike(Long memberId, Long boardId) {
@@ -83,8 +92,8 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public void like(Member member, Board board) {
-        Optional<Like> likeOptional = likeRepository.findByMemberIdAndBoardId(member.getId(), board.getId());
-        likeOptional.ifPresentOrElse(
+        likeRepository.findByMemberIdAndBoardId(member.getId(), board.getId())
+            .ifPresentOrElse(
                 // 좋아요가 있을 경우 삭제
                 like -> {
                     board.removeLike(like);
@@ -101,23 +110,7 @@ public class BoardServiceImpl implements BoardService {
                     board.updateLikeCount();
 
                     likeRepository.save(like);
-                }
-        );
-    }
-
-    /*
-       게시글 목록 페이징 조회
-         - 카테고리 또는 키워드가 있는 경우 해당 목록 페이징 조회
-     */
-    @Override
-    public Page<Board> getList(Pageable pageable, String category, String keyword) {
-        return boardQueryRepository.findAllPagingByKeyword(pageable, category, keyword);
-    }
-
-    // 정렬된 게시글 목록 조회
-    @Override
-    public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
-        return boardQueryRepository.findAllByOrder(orderSpecifier);
+                });
     }
 
     // 조회수 증가
@@ -125,6 +118,12 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public void incrementViews(Board board) {
         board.incrementViews();
+    }
+
+    // 정렬된 게시글 목록 조회
+    @Override
+    public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
+        return boardQueryRepository.findAllByOrder(orderSpecifier);
     }
 
     // 게시글 수정

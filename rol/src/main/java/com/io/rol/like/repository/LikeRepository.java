@@ -1,6 +1,6 @@
-package com.io.rol.respository;
+package com.io.rol.like.repository;
 
-import com.io.rol.domain.entity.Like;
+import com.io.rol.like.domain.entity.Like;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

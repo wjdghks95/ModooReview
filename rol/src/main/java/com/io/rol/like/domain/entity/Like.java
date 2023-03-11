@@ -1,4 +1,4 @@
-package com.io.rol.domain.entity;
+package com.io.rol.like.domain.entity;
 
 import com.io.rol.board.domain.entity.Board;
 import com.io.rol.member.domain.entity.Member;

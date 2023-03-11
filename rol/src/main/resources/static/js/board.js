@@ -9,7 +9,7 @@ $('.board__like-button').on('click', function() {
         const id = href.substring(href.indexOf('board/')+6);
 
         $.ajax({
-            url: "/like.do",
+            url: "/api/like",
             method: "GET",
             data: {"id" : id},
             success: function(result) {

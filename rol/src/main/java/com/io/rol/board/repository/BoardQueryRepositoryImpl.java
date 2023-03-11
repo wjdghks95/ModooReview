@@ -1,6 +1,9 @@
-package com.io.rol.respository.query;
+package com.io.rol.board.repository;
 
 import com.io.rol.board.domain.entity.Board;
+import com.io.rol.domain.entity.QCategory;
+import com.io.rol.domain.entity.QImage;
+import com.io.rol.member.domain.entity.QMember;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.io.rol.domain.entity.QBoard.board;
+import static com.io.rol.domain.entity.QCategory.*;
+import static com.io.rol.domain.entity.QImage.*;
+import static com.io.rol.member.domain.entity.QMember.*;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,14 +27,14 @@ public class BoardQueryRepositoryImpl implements BoardQueryRepository{
 
     private final JPAQueryFactory queryFactory;
 
-    // 키워드나 카테고리에 맞는 게시글 목록을 페이징 처리하여 조회
+    // 리뷰 목록을 페이징 처리하여 조회
     @Override
-    public Page<Board> findAllPagingByKeyword(Pageable pageable, String category, String keyword) {
+    public Page<Board> findPagingBoardList(Pageable pageable, String category, String keyword) {
         List<Board> boardList = queryFactory
                 .selectFrom(board)
-                .join(board.category).fetchJoin()
-                .join(board.member).fetchJoin()
-                .join(board.images).fetchJoin()
+                .join(board.category, QCategory.category).fetchJoin()
+                .join(board.member, member).fetchJoin()
+                .join(board.images, image).fetchJoin()
                 .where(categoryCon(category), titleCon(keyword))
                 .orderBy(board.lastModifiedDate.desc())
                 .offset(pageable.getOffset())

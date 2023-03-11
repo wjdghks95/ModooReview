@@ -30,7 +30,7 @@ public class CommentController {
     @PostMapping("/comment.do")
     public String addComment(@AuthenticationPrincipal MemberContext memberContext, @RequestParam String content, @RequestParam Long id,
                           Model model) {
-        Board board = boardService.findBoard(id);
+        Board board = boardService.getBoard(id);
         Member loginMember = memberService.getMember(memberContext.getMember().getId());
         commentService.insert(board, loginMember, content);
         List<Comment> comments = commentService.getList(id);

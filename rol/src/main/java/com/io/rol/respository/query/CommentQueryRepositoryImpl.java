@@ -1,6 +1,6 @@
 package com.io.rol.respository.query;
 
-import com.io.rol.domain.entity.Comment;
+import com.io.rol.comment.domain.entity.Comment;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

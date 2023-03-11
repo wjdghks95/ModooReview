@@ -1,7 +1,7 @@
 package com.io.rol.controller;
 
 import com.io.rol.board.domain.entity.Board;
-import com.io.rol.domain.entity.Like;
+import com.io.rol.like.domain.entity.Like;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.member.service.MemberService;
