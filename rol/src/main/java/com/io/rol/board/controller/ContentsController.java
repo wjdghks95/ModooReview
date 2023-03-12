@@ -168,7 +168,7 @@ public class ContentsController {
     @GetMapping("/hashTag")
     public String hashTag(@RequestParam String tagName, @PageableDefault(size = 12) Pageable pageable,
                           Model model) {
-        Page<BoardTag> boardTagList = boardTagService.getListByTagName(pageable, tagName);
+        Page<BoardTag> boardTagList = boardTagService.getBoardTagList(pageable, tagName);
         List<Board> boardList = boardTagList.stream().map(boardTag -> boardTag.getBoard()).collect(Collectors.toList());
 
         model.addAttribute("totalElement", boardTagList.getTotalElements());
@@ -182,7 +182,7 @@ public class ContentsController {
     @GetMapping("/hashTag/loadBoardList")
     public String loadHashTagBoardList(@PageableDefault(size = 12) Pageable pageable,
                                        @RequestParam String tagName, Model model) {
-        Page<BoardTag> boardTagList = boardTagService.getListByTagName(pageable, tagName);
+        Page<BoardTag> boardTagList = boardTagService.getBoardTagList(pageable, tagName);
         List<Board> boardList = boardTagList.stream().map(boardTag -> boardTag.getBoard()).collect(Collectors.toList());
 
         model.addAttribute("boardList", boardList);

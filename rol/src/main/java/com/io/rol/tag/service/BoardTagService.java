@@ -11,7 +11,5 @@ import java.util.List;
 public interface BoardTagService {
 
     List<BoardTag> saveBoardTags(List<Tag> tags, Board board); // BoardTag 저장
-
-    // tagName 에 해당하는 BoardTag 페이징 목록 조회
-    Page<BoardTag> getListByTagName(Pageable pageable, String tagName);
+    Page<BoardTag> getBoardTagList(Pageable pageable, String tagName); // tagName에 해당하는 BoardTag 페이징 목록 조회
 }

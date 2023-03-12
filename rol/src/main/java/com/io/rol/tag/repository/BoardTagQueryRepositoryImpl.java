@@ -1,4 +1,4 @@
-package com.io.rol.respository.query;
+package com.io.rol.tag.repository;
 
 import com.io.rol.tag.domain.entity.BoardTag;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -20,9 +20,9 @@ public class BoardTagQueryRepositoryImpl implements BoardTagQueryRepository{
 
     private final JPAQueryFactory queryFactory;
 
-    // 태그 이름으로 페이징 처리 후 조회
+    // 태그 이름으로 페이징하여 조회
     @Override
-    public Page<BoardTag> findBoardTagByTagName(Pageable pageable, String tagName) {
+    public Page<BoardTag> findBoardTagListByTagName(Pageable pageable, String tagName) {
         List<BoardTag> boardTagList = queryFactory
                 .selectFrom(boardTag)
                 .where(tagCon(tagName))
