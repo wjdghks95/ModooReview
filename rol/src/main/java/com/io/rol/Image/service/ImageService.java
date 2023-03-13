@@ -11,6 +11,5 @@ public interface ImageService {
     List<Image> saveImages(List<MultipartFile> multipartFileList); // 모든 이미지 저장
     Image saveImage(MultipartFile multipartFile) throws IOException; // 이미지 저장
 
-    // 이미지 전체 삭제
-    void deleteImages(List<Image> images);
+    void deleteImages(List<Image> images); // 이미지 전체 삭제
 }

@@ -27,9 +27,7 @@ public interface BoardService {
     // 정렬된 게시글 목록 조회
     List<Board> getListBySort(OrderSpecifier<?> orderSpecifier);
 
-    // 게시글 수정
-    void edit(Board board, BoardDto boardDto) throws IOException;
+    void edit(Board board, BoardDto boardDto) throws IOException; // 게시글 수정
 
-    // 게시글 삭제
-    void remove(Board board);
+    void remove(Board board); // 게시글 삭제
 }

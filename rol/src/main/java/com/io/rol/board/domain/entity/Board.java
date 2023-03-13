@@ -115,7 +115,7 @@ public class Board {
         this.likeList.remove(like);
     }
 
-    // 수정
+    // 리뷰 수정
     public void updateBoard(String title, int rating, String description) {
         this.title = title;
         this.rating = rating;

@@ -7,6 +7,8 @@ import com.io.rol.board.service.BoardService;
 import com.io.rol.comment.domain.entity.Comment;
 import com.io.rol.comment.service.CommentService;
 import com.io.rol.member.domain.entity.Member;
+import com.io.rol.member.exception.MemberException;
+import com.io.rol.member.exception.MemberExceptionType;
 import com.io.rol.member.service.MemberService;
 import com.io.rol.security.context.MemberContext;
 import com.io.rol.tag.domain.entity.BoardTag;
@@ -133,7 +135,7 @@ public class ContentsController {
     public void deleteReview(@PathVariable Long id, @AuthenticationPrincipal MemberContext memberContext) {
         Board board = boardService.getBoard(id);
         if (memberContext.getMember().getId() != board.getMember().getId() || memberContext.getMember() == null) {
-            throw new IllegalStateException();
+            throw new MemberException(MemberExceptionType.NOT_FOUND_MEMBER);
         }
         boardService.remove(board);
     }
