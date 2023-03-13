@@ -10,7 +10,7 @@ $('.profile__follow-button').on('click', function() {
         const id = $(".profile__follow-button").attr("data-index");
 
         $.ajax({
-            url: "/follow.do",
+            url: "/api/follow",
             method: "GET",
             data: {"id" : id},
             success: function(data) {

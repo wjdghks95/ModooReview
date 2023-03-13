@@ -1,11 +1,11 @@
 package com.io.rol.member.controller;
 
-import com.io.rol.domain.dto.FindIdDto;
-import com.io.rol.domain.dto.FindPwdDto;
+import com.io.rol.member.domain.dto.FindIdDto;
+import com.io.rol.member.domain.dto.FindPwdDto;
 import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.member.service.MemberService;
-import com.io.rol.service.MailService;
+import com.io.rol.member.service.MailService;
 import com.io.rol.validator.MemberDuplicateValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -67,7 +67,7 @@ public class MemberController {
     @GetMapping("/find/id")
     public String findIdForm(Model model) {
         model.addAttribute("findIdDto", new FindIdDto());
-        return "find-id";
+        return "account/find-id";
     }
 
     // 아이디 찾기
@@ -75,7 +75,7 @@ public class MemberController {
     public String findId(@Validated @ModelAttribute FindIdDto findIdDto, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "find-id";
+            return "account/find-id";
         }
 
         Member member = memberService.findId(findIdDto);
@@ -98,14 +98,14 @@ public class MemberController {
             email = (String) inputFlashMap.get("email");
         }
         model.addAttribute("email", email);
-        return "find-id-result";
+        return "account/find-id-result";
     }
 
     // 비밀번호 찾기 화면
     @GetMapping("/find/password")
     public String findPasswordForm(Model model) {
         model.addAttribute("findPwdDto", new FindPwdDto());
-        return "find-password";
+        return "account/find-password";
     }
 
     // 비밀번호 찾기
@@ -113,7 +113,7 @@ public class MemberController {
     public String findPassword(@Validated @ModelAttribute FindPwdDto findPwdDto, BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "find-password";
+            return "account/find-password";
         }
 
         Member member = memberService.findPassword(findPwdDto);
@@ -137,6 +137,6 @@ public class MemberController {
             message = (String) inputFlashMap.get("message");
         }
         model.addAttribute("message", message);
-        return "find-password-result";
+        return "account/find-password-result";
     }
 }

@@ -54,7 +54,7 @@ public class MyPageController {
         Image image = imageService.saveImage(multipartFile);
         memberService.profileImgModify(member, image);
 
-        return "redirect:/myPage/profile/" + id;
+        return "redirect:/myPage/" + id + "/profile/";
     }
 
     // 마이페이지 - 프로필 닉네임 수정
@@ -72,7 +72,7 @@ public class MyPageController {
 
         memberService.nicknameModify(member, nicknameDto.getNickname());
 
-        return "redirect:/myPage/profile/" + id;
+        return "redirect:/myPage/" + id + "/profile/";
     }
 
     // 마이페이지 - 나의 리뷰

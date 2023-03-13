@@ -120,12 +120,6 @@ public class BoardServiceImpl implements BoardService {
         board.incrementViews();
     }
 
-    // 정렬된 게시글 목록 조회
-    @Override
-    public List<Board> getListBySort(OrderSpecifier<?> orderSpecifier) {
-        return boardQueryRepository.findAllByOrder(orderSpecifier);
-    }
-
     // 게시글 수정
     @Override
     @Transactional
@@ -156,5 +150,11 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public void remove(Board board) {
         boardRepository.delete(board);
+    }
+
+    // 정렬된 게시글 목록 조회
+    @Override
+    public List<Board> getBoardList(OrderSpecifier<?> orderSpecifier) {
+        return boardQueryRepository.findAllByOrder(orderSpecifier);
     }
 }

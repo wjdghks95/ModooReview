@@ -37,7 +37,7 @@ public class MemberApiController {
         Member writer = memberService.getMember(id);
 
         memberService.follow(loginMember, writer);
-        int size = writer.getFollowerList().size();
+        int size = writer.getFollowingList().size();
         return Integer.toString(size);
     }
 }

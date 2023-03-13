@@ -9,7 +9,7 @@ $('.following__button').on('click', function() {
 function follow(followingItem, followBtn) {
     const id = followingItem.attr("data-index");
     $.ajax({
-        url: "/follow.do",
+        url: "/api/follow",
         method: "GET",
         data: {id: id},
         success: function() {

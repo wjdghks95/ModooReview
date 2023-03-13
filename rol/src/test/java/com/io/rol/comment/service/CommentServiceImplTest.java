@@ -12,6 +12,7 @@ import com.io.rol.member.domain.dto.MemberDto;
 import com.io.rol.member.domain.entity.Member;
 import com.io.rol.member.service.MemberService;
 import com.io.rol.security.context.MemberContext;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

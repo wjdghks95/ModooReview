@@ -1,4 +1,4 @@
-package com.io.rol.controller;
+package com.io.rol.member.controller;
 
 import com.io.rol.board.domain.entity.Board;
 import com.io.rol.like.domain.entity.Like;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collections;
 import java.util.List;
 
-// 프로필 컨트롤러
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/profile")
@@ -47,7 +46,7 @@ public class ProfileController {
         return "profile/profile";
     }
 
-    // 프로필 작성 게시글 목록
+    // 프로필 - 작성 게시글 목록
     @GetMapping("/{id}/boardList")
     public String reviewList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.getMember(id);
@@ -66,7 +65,7 @@ public class ProfileController {
         return "profile/profile_review";
     }
 
-    // 프로필 좋아요한 게시글 목록
+    // 프로필 - 좋아요한 게시글 목록
     @GetMapping("/{id}/likeList")
     public String likeList(@PathVariable Long id, Model model, @AuthenticationPrincipal MemberContext memberContext) {
         Member member = memberService.getMember(id);

@@ -9,9 +9,9 @@ $('.check-phone-number__send-btn').on('click', function() {
         alert("인증번호가 발송되었습니다.");
         $(".check-phone-number__message").text("");
         $.ajax({
-            url: "/sendSMS", 
+            url: "/api/SMS",
             method: "GET", 
-            data: {"phone": phoneNum},
+            data: {"phoneNum": phoneNum},
             success: function(data) {
                 $('.check-phone-number__send-btn').attr('disabled', true);
                 $('.check-phone-number__phone-number').attr('readonly', true);
