@@ -35,12 +35,6 @@ public class ImageServiceImpl implements ImageService {
         return imageRepository.save(image);
     }
 
-    // 모든 이미지 조회
-    @Override
-    public List<Image> findImages() {
-        return imageRepository.findAll();
-    }
-
     // 이미지 전체 삭제
     @Override
     @Transactional

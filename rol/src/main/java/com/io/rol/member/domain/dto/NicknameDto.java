@@ -1,4 +1,4 @@
-package com.io.rol.domain.dto;
+package com.io.rol.member.domain.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

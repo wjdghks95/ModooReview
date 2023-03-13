@@ -15,11 +15,9 @@ public interface MemberService {
 
     void follow(Member follower, Member following); // 팔로우
 
-    // 닉네임 변경
-    void nicknameModify(Member member, String nickname);
+    void nicknameModify(Member member, String nickname); // 닉네임 변경
 
-    // 프로필 이미지 변경
-    void profileImgModify(Member member, Image image);
+    void profileImgModify(Member member, Image image); // 프로필 이미지 변경
 
     // 회원 탈퇴
     void withdrawal(Member member);

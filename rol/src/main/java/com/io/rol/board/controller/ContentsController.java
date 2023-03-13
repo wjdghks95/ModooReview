@@ -1,16 +1,16 @@
 package com.io.rol.board.controller;
 
 import com.io.rol.board.domain.dto.BoardDto;
-import com.io.rol.domain.dto.PageDto;
+import com.io.rol.board.domain.dto.PageDto;
 import com.io.rol.board.domain.entity.Board;
-import com.io.rol.tag.domain.entity.BoardTag;
-import com.io.rol.comment.domain.entity.Comment;
-import com.io.rol.member.domain.entity.Member;
-import com.io.rol.security.context.MemberContext;
 import com.io.rol.board.service.BoardService;
-import com.io.rol.tag.service.BoardTagService;
+import com.io.rol.comment.domain.entity.Comment;
 import com.io.rol.comment.service.CommentService;
+import com.io.rol.member.domain.entity.Member;
 import com.io.rol.member.service.MemberService;
+import com.io.rol.security.context.MemberContext;
+import com.io.rol.tag.domain.entity.BoardTag;
+import com.io.rol.tag.service.BoardTagService;
 import com.io.rol.validator.FileValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
